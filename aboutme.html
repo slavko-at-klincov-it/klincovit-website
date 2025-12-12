@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Slavko Klincov – Digital Transformation Expert & Power Platform Specialist. Erfahren Sie mehr über meinen Werdegang und meine Expertise.">
+    <title>Über mich – Slavko Klincov | Klincov.it</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Dark bases (Hero, Footer, Nav) */
+            --bg-dark: #08090b;
+            --bg-dark-secondary: #0d0e11;
+            --bg-dark-elevated: #131519;
+            --bg-dark-card: #101214;
+
+            /* Light content areas */
+            --bg-light: #f4f1eb;
+            --bg-light-secondary: #eeebe6;
+            --bg-light-elevated: #faf8f5;
+            --bg-light-card: #ffffff;
+
+            /* Text colors */
+            --text-on-dark: #f5f5f5;
+            --text-on-dark-secondary: #a8a8a8;
+            --text-on-dark-muted: #6b6b6b;
+
+            --text-on-light: #1a1a1a;
+            --text-on-light-secondary: #4a4a4a;
+            --text-on-light-muted: #7a7a7a;
+
+            /* Gold accents */
+            --accent-gold: #c9a227;
+            --accent-gold-light: #dbb84a;
+            --accent-gold-dark: #a8871f;
+            --accent-gold-glow: rgba(201, 162, 39, 0.12);
+            --accent-gold-glow-light: rgba(201, 162, 39, 0.08);
+
+            /* Borders */
+            --border-dark-subtle: rgba(255, 255, 255, 0.06);
+            --border-dark-medium: rgba(255, 255, 255, 0.12);
+            --border-dark-gold: rgba(201, 162, 39, 0.3);
+
+            --border-light-subtle: rgba(0, 0, 0, 0.06);
+            --border-light-medium: rgba(0, 0, 0, 0.1);
+            --border-light-gold: rgba(201, 162, 39, 0.35);
+
+            /* Typography */
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', system-ui, sans-serif;
+
+            /* Animations */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+            /* Layout */
+            --section-padding: clamp(5rem, 12vw, 9rem);
+            --container-max: 1200px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-light);
+            color: var(--text-on-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* ═══════════════════════════════════════════
+           NAVIGATION
+        ═══════════════════════════════════════════ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 9, 11, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-dark-subtle);
+            transform: translateY(-100%);
+            animation: navSlideIn 0.8s var(--ease-out-expo) 0.3s forwards;
+        }
+
+        @keyframes navSlideIn {
+            to { transform: translateY(0); }
+        }
+
+        .nav__logo {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-on-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav__logo:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav__links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav__link {
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--text-on-dark-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav__link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s var(--ease-out-expo);
+        }
+
+        .nav__link:hover,
+        .nav__link--active {
+            color: var(--text-on-dark);
+        }
+
+        .nav__link:hover::after,
+        .nav__link--active::after {
+            width: 100%;
+        }
+
+        .nav__link--active {
+            color: var(--accent-gold);
+        }
+
+        .nav__cta {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--bg-dark);
+            background: var(--accent-gold);
+            text-decoration: none;
+            border: 1px solid var(--accent-gold);
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        .nav__cta:hover {
+            background: transparent;
+            color: var(--accent-gold);
+        }
+
+        /* ═══════════════════════════════════════════
+           PAGE HERO (LIGHT)
+        ═══════════════════════════════════════════ */
+        .page-hero {
+            padding: 10rem 5% 5rem;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, #e8e4dc 0%, var(--bg-light-secondary) 100%);
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 30% 40%, rgba(201, 162, 39, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 70% 60%, rgba(201, 162, 39, 0.1) 0%, transparent 35%);
+            animation: heroGlow 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-5%, -5%) rotate(3deg); }
+        }
+
+        .page-hero__content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .page-hero__label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-gold-dark);
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-light-gold);
+            background: rgba(255, 255, 255, 0.7);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s var(--ease-out-expo) 0.5s forwards;
+        }
+
+        .page-hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-on-light);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s var(--ease-out-expo) 0.7s forwards;
+        }
+
+        .page-hero__subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-on-light-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s var(--ease-out-expo) 0.9s forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═══════════════════════════════════════════
+           SECTION STYLING
+        ═══════════════════════════════════════════ */
+        .section {
+            padding: var(--section-padding) 5%;
+            position: relative;
+        }
+
+        .section--light {
+            background: var(--bg-light);
+            color: var(--text-on-light);
+        }
+
+        .section--light-alt {
+            background: var(--bg-light-secondary);
+            color: var(--text-on-light);
+        }
+
+        .section--dark {
+            background: var(--bg-dark);
+            color: var(--text-on-dark);
+        }
+
+        .section__header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section__label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-light-gold);
+            background: var(--accent-gold-glow-light);
+        }
+
+        .section--dark .section__label {
+            border-color: var(--border-dark-gold);
+            background: var(--accent-gold-glow);
+        }
+
+        .section__title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-on-light);
+        }
+
+        .section--dark .section__title {
+            color: var(--text-on-dark);
+        }
+
+        .section__subtitle {
+            font-size: 1.1rem;
+            color: var(--text-on-light-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section--dark .section__subtitle {
+            color: var(--text-on-dark-secondary);
+        }
+
+        /* ═══════════════════════════════════════════
+           PROFILE INTRO SECTION (LIGHT ALT)
+        ═══════════════════════════════════════════ */
+        .profile-intro {
+            background: var(--bg-light-secondary);
+        }
+
+        .profile-intro__container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 4rem;
+            align-items: start;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .profile-intro__image-wrapper {
+            position: relative;
+        }
+
+        .profile-intro__image-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--bg-light-card);
+            border: 1px solid var(--border-light-subtle);
+            overflow: hidden;
+            transition: all 0.4s var(--ease-out-expo);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .profile-intro__image-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--accent-gold);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .profile-intro__image-frame:hover::before {
+            opacity: 1;
+        }
+
+        .profile-intro__image-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .profile-intro__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-intro__content h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-on-light);
+            font-weight: 500;
+        }
+
+        .profile-intro__content h3 {
+            font-size: 1.1rem;
+            color: var(--accent-gold-dark);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-intro__bio {
+            color: var(--text-on-light-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        .profile-intro__bio p {
+            margin-bottom: 1.25rem;
+        }
+
+        .profile-intro__highlight {
+            background: var(--accent-gold-glow-light);
+            border-left: 3px solid var(--accent-gold);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .profile-intro__highlight p {
+            color: var(--text-on-light);
+            font-size: 1.1rem;
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* ═══════════════════════════════════════════
+           CAREER TIMELINE (LIGHT)
+        ═══════════════════════════════════════════ */
+        .career {
+            background: var(--bg-light);
+        }
+
+        .career__timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .career__timeline::before {
+            content: '';
+            position: absolute;
+            left: 35px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-gold), var(--border-light-subtle));
+        }
+
+        .career__item {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .career__marker {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            background: var(--bg-light);
+            border: 2px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .career__marker svg {
+            width: 28px;
+            height: 28px;
+            color: var(--accent-gold-dark);
+        }
+
+        .career__content {
+            flex: 1;
+            background: var(--bg-light-card);
+            border: 1px solid var(--border-light-subtle);
+            padding: 2rem;
+            transition: all 0.4s var(--ease-out-expo);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .career__content:hover {
+            border-color: var(--border-light-gold);
+            transform: translateX(5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .career__period {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-gold-dark);
+            margin-bottom: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--accent-gold-glow-light);
+            border: 1px solid var(--border-light-gold);
+        }
+
+        .career__title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--text-on-light);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .career__company {
+            font-size: 1rem;
+            color: var(--accent-gold-dark);
+            margin-bottom: 1rem;
+        }
+
+        .career__description {
+            font-size: 0.95rem;
+            color: var(--text-on-light-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .career__highlights {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .career__highlights li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-on-light-secondary);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .career__highlights li::before {
+            content: '→';
+            color: var(--accent-gold);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .career__learning {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light-subtle);
+        }
+
+        .career__learning-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-on-light-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .career__learning-text {
+            font-size: 0.9rem;
+            color: var(--accent-gold-dark);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        /* ═══════════════════════════════════════════
+           EDUCATION SECTION (LIGHT ALT)
+        ═══════════════════════════════════════════ */
+        .education {
+            background: var(--bg-light-secondary);
+        }
+
+        .education__container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .education__card {
+            background: var(--bg-light-card);
+            border: 1px solid var(--border-light-subtle);
+            padding: 3rem;
+            position: relative;
+            transition: all 0.4s var(--ease-out-expo);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .education__card:hover {
+            border-color: var(--border-light-gold);
+        }
+
+        .education__card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light), var(--accent-gold));
+        }
+
+        .education__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .education__degree {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--text-on-light);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .education__institution {
+            font-size: 1rem;
+            color: var(--accent-gold-dark);
+        }
+
+        .education__period {
+            font-size: 0.85rem;
+            color: var(--text-on-light-muted);
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--border-light-subtle);
+            background: var(--bg-light-secondary);
+        }
+
+        .education__thesis {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--bg-light-secondary);
+            border: 1px solid var(--border-light-subtle);
+        }
+
+        .education__thesis-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-gold-dark);
+            margin-bottom: 1rem;
+        }
+
+        .education__thesis-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--text-on-light);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .education__thesis-text {
+            font-size: 0.95rem;
+            color: var(--text-on-light-secondary);
+            line-height: 1.8;
+        }
+
+        .education__connection {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--accent-gold-glow-light);
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .education__connection p {
+            font-size: 1rem;
+            color: var(--text-on-light);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ═══════════════════════════════════════════
+           SKILLS SECTION (LIGHT)
+        ═══════════════════════════════════════════ */
+        .skills {
+            background: var(--bg-light);
+        }
+
+        .skills__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            background: var(--bg-light-card);
+            border: 1px solid var(--border-light-subtle);
+            padding: 2rem;
+            transition: all 0.4s var(--ease-out-expo);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .skill-category:hover {
+            border-color: var(--border-light-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .skill-category__title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--text-on-light);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-light-subtle);
+            font-weight: 500;
+        }
+
+        .skill-category__list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: transparent;
+            border: 1px solid var(--border-light-subtle);
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-on-light-secondary);
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════════
+           PHILOSOPHY SECTION (LIGHT ALT)
+        ═══════════════════════════════════════════ */
+        .philosophy {
+            background: var(--bg-light-secondary);
+        }
+
+        .philosophy__container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .philosophy__quote {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--text-on-light);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .philosophy__quote::before,
+        .philosophy__quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent-gold);
+            opacity: 0.4;
+            position: absolute;
+            font-family: var(--font-display);
+        }
+
+        .philosophy__quote::before {
+            top: -1.5rem;
+            left: -1rem;
+        }
+
+        .philosophy__quote::after {
+            content: '"';
+            bottom: -2.5rem;
+            right: -1rem;
+        }
+
+        .philosophy__text {
+            font-size: 1.1rem;
+            color: var(--text-on-light-secondary);
+            line-height: 1.9;
+            margin-top: 3rem;
+        }
+
+        /* ═══════════════════════════════════════════
+           CTA SECTION (DARK)
+        ═══════════════════════════════════════════ */
+        .cta {
+            background: var(--bg-dark);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .cta__title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--text-on-dark);
+            margin-bottom: 1rem;
+        }
+
+        .cta__subtitle {
+            font-size: 1.1rem;
+            color: var(--text-on-dark-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: all 0.4s var(--ease-out-expo);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn--primary {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border: 2px solid var(--accent-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn--primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn--primary:hover::before {
+            left: 100%;
+        }
+
+        .btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(201, 162, 39, 0.35);
+        }
+
+        .btn--large {
+            padding: 1.25rem 3rem;
+            font-size: 1rem;
+        }
+
+        .btn__arrow {
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        .btn:hover .btn__arrow {
+            transform: translateX(4px);
+        }
+
+        /* ═══════════════════════════════════════════
+           FOOTER (DARK)
+        ═══════════════════════════════════════════ */
+        .footer {
+            background: var(--bg-dark);
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border-dark-subtle);
+        }
+
+        .footer__container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer__brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer__logo {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-on-dark);
+            text-decoration: none;
+        }
+
+        .footer__tagline {
+            font-size: 0.85rem;
+            color: var(--text-on-dark-muted);
+        }
+
+        .footer__nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer__nav-link {
+            font-size: 0.85rem;
+            color: var(--text-on-dark-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer__nav-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer__social {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .footer__social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-dark-subtle);
+            color: var(--text-on-dark-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer__social-link:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .footer__bottom {
+            max-width: var(--container-max);
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-dark-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer__legal {
+            font-size: 0.8rem;
+            color: var(--text-on-dark-muted);
+        }
+
+        .footer__legal-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer__legal-link {
+            font-size: 0.8rem;
+            color: var(--text-on-dark-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer__legal-link:hover {
+            color: var(--accent-gold);
+        }
+
+        /* ═══════════════════════════════════════════
+           IMPRESSUM MODAL
+        ═══════════════════════════════════════════ */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal__overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal__content {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: var(--bg-light-card);
+            border: 1px solid var(--border-light-medium);
+            padding: 3rem;
+            transform: translateY(30px);
+            transition: transform 0.4s var(--ease-out-expo);
+        }
+
+        .modal.active .modal__content {
+            transform: translateY(0);
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 1px solid var(--border-light-subtle);
+            color: var(--text-on-light-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal__close:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .modal__title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            color: var(--text-on-light);
+        }
+
+        .modal__section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal__section h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-gold-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal__section p {
+            font-size: 0.95rem;
+            color: var(--text-on-light-secondary);
+            line-height: 1.7;
+        }
+
+        /* ═══════════════════════════════════════════
+           SCROLL ANIMATIONS
+        ═══════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s var(--ease-out-expo);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ═══════════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .profile-intro__container {
+                grid-template-columns: 280px 1fr;
+                gap: 3rem;
+            }
+
+            .career__timeline::before {
+                left: 35px;
+            }
+
+            .career__item {
+                gap: 1.5rem;
+            }
+
+            .career__marker {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+                padding: 1rem 5%;
+            }
+
+            .nav__links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+
+            .profile-intro__container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .profile-intro__image-wrapper {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .career__timeline::before {
+                display: none;
+            }
+
+            .career__item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .career__marker {
+                width: 50px;
+                height: 50px;
+            }
+
+            .education__header {
+                flex-direction: column;
+            }
+
+            .skills__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer__container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer__social {
+                justify-content: center;
+            }
+
+            .footer__bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+
+            .nav__cta {
+                display: none;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .page-hero {
+                padding: 8rem 5% 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav__logo">KLINCOV.IT</a>
+        <ul class="nav__links">
+            <li><a href="index.html#services" class="nav__link">Leistungen</a></li>
+            <li><a href="aboutme.html" class="nav__link nav__link--active">Über mich</a></li>
+            <li><a href="index.html#transformation" class="nav__link">Transformation</a></li>
+            <li><a href="index.html#contact" class="nav__link">Kontakt</a></li>
+        </ul>
+        <a href="https://calendly.com/YOUR-LINK" class="nav__cta" target="_blank">Termin buchen</a>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero__content">
+            <span class="page-hero__label">Über mich</span>
+            <h1 class="page-hero__title">Der Mensch hinter der Transformation</h1>
+            <p class="page-hero__subtitle">
+                Spezialisiert auf digitale Transformation, Process Excellence und die Verbindung von Low-Code/No-Code, KI und modernen Cloud-Architekturen.
+            </p>
+        </div>
+    </section>
+
+    <!-- Profile Intro Section -->
+    <section class="section profile-intro">
+        <div class="profile-intro__container">
+            <div class="profile-intro__image-wrapper reveal">
+                <div class="profile-intro__image-frame">
+                    <img src="img/profil.png" alt="Slavko Klincov" class="profile-intro__image">
+                </div>
+            </div>
+
+            <div class="profile-intro__content reveal reveal-delay-1">
+                <h2>Slavko Klincov</h2>
+                <h3>Digital Transformation Expert | Power Platform Specialist</h3>
+
+                <div class="profile-intro__bio">
+                    <p>Seit fast einem Jahrzehnt arbeite ich an der Schnittstelle von Technologie, Business und Organisationsentwicklung. Ich helfe Unternehmen dabei, skalierbare Plattformen aufzubauen, Innovation zu beschleunigen und nachhaltige Governance-Strukturen zu etablieren.</p>
+
+                    <p>Meine Leidenschaft liegt darin, komplexe Herausforderungen in elegante Lösungen zu verwandeln — ob Canvas Apps, Power Automate Flows oder umfassende Governance-Konzepte. Mein Ansatz vereint technisches Know-how mit der Fähigkeit, Menschen für neue Technologien zu begeistern.</p>
+                </div>
+
+                <div class="profile-intro__highlight">
+                    <p>Ich helfe Unternehmen, ihre digitale Transformation end-to-end zu denken — technologisch, organisatorisch und menschlich.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Timeline -->
+    <section class="section career">
+        <div class="section__header reveal">
+            <span class="section__label">Berufserfahrung</span>
+            <h2 class="section__title">Mein Werdegang</h2>
+            <p class="section__subtitle">Von der ersten Microsoft-Zertifizierung bis zum Enterprise Solution Architect.</p>
+        </div>
+
+        <div class="career__timeline">
+            <!-- Current Role -->
+            <div class="career__item reveal">
+                <div class="career__marker">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="career__content">
+                    <span class="career__period">11/2022 – heute</span>
+                    <h3 class="career__title">Power Platform Team Technical Lead & Enterprise Solution Architect</h3>
+                    <p class="career__company">Gebrüder Weiss GmbH, Kennelbach & Wien</p>
+                    <p class="career__description">
+                        In dieser Rolle führe ich ein cross-funktionales Team und verantworte die unternehmensweite Power-Platform-Strategie. Ein Schwerpunkt meiner Arbeit liegt auf der Verbindung technischer Exzellenz mit organisationaler Transformation.
+                    </p>
+                    <ul class="career__highlights">
+                        <li>Entwicklung von Governance-, Security- und Compliance-Frameworks</li>
+                        <li>Implementierung KI-basierter Copilot Agents für automatisiertes Plattform-Management</li>
+                        <li>Reduzierung manueller Administrationsaufwände um bis zu 95%</li>
+                        <li>Aufbau eines Innovation Backlogs für organisationsweite Digitalisierungsinitiativen</li>
+                        <li>Etablierung von Citizen Development und Center-of-Excellence-Strukturen</li>
+                    </ul>
+                    <div class="career__learning">
+                        <div class="career__learning-label">Key Learning</div>
+                        <p class="career__learning-text">Diese Rolle hat meine Expertise in strategischer Plattformführung, Führungskompetenz und KI-getriebener Automatisierung massiv vertieft.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BI Consultant -->
+            <div class="career__item reveal">
+                <div class="career__marker">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 21H4.6c-.6 0-1.1-.5-1.1-1.1V3"/>
+                        <path d="m7 14 4-4 4 4 6-6"/>
+                    </svg>
+                </div>
+                <div class="career__content">
+                    <span class="career__period">09/2019 – 09/2022</span>
+                    <h3 class="career__title">Business Intelligence Consultant</h3>
+                    <p class="career__company">Abax Informationstechnik GmbH, Wien</p>
+                    <p class="career__description">
+                        Leitung eines BI-Teams mit Verantwortung für den Aufbau eines unternehmensweiten Data Warehouses sowie umfassender Reportingstrukturen.
+                    </p>
+                    <ul class="career__highlights">
+                        <li>Implementierung von ALM-Prozessen für Power-Platform-Lösungen</li>
+                        <li>Entwicklung produktionsreifer Automatisierungen</li>
+                        <li>Betreuung von Dynamics-365-Integrationen</li>
+                        <li>Aufbau skalierbarer Datenarchitekturen</li>
+                    </ul>
+                    <div class="career__learning">
+                        <div class="career__learning-label">Key Learning</div>
+                        <p class="career__learning-text">In dieser Zeit habe ich gelernt, Plattform- und Datenarchitekturen nicht nur technisch, sondern vor allem strategisch zu denken — insbesondere im Hinblick auf Skalierbarkeit, Lifecycle, Governance und den Mehrwert für das Business.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trainer -->
+            <div class="career__item reveal">
+                <div class="career__marker">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <div class="career__content">
+                    <span class="career__period">08/2016 – 09/2019</span>
+                    <h3 class="career__title">Microsoft Specialist & Trainer</h3>
+                    <p class="career__company">ETC – Enterprise Training Center GmbH, Wien</p>
+                    <p class="career__description">
+                        Begleitung zahlreicher Microsoft-365-Modern-Workplace- und Infrastrukturprojekte — von Cloud-Migrationen über Systemintegration bis hin zur Modernisierung von Arbeitsumgebungen.
+                    </p>
+                    <ul class="career__highlights">
+                        <li>Trainer für Microsoft 365, Power Automate, Kollaboration und Sicherheit</li>
+                        <li>Begleitung von Cloud-Migrationen und Systemintegrationen</li>
+                        <li>Unterstützung von Pre-Sales-Aktivitäten</li>
+                        <li>Modernisierung von Arbeitsumgebungen</li>
+                    </ul>
+                    <div class="career__learning">
+                        <div class="career__learning-label">Key Learning</div>
+                        <p class="career__learning-text">Dieser Abschnitt meiner Laufbahn hat meine Fähigkeit geprägt, komplexe technische Konzepte verständlich zu vermitteln, Change Management aktiv zu unterstützen und Organisationen sicher durch Transformationsprozesse zu führen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section education">
+        <div class="section__header reveal">
+            <span class="section__label">Akademischer Hintergrund</span>
+            <h2 class="section__title">Wissenschaft trifft Praxis</h2>
+            <p class="section__subtitle">Die Verbindung von akademischer Fundierung und praktischer Erfahrung.</p>
+        </div>
+
+        <div class="education__container">
+            <div class="education__card reveal">
+                <div class="education__header">
+                    <div>
+                        <h3 class="education__degree">Master of Arts in Angewandtem Unternehmensmanagement</h3>
+                        <p class="education__institution">FH Wien der WKW</p>
+                    </div>
+                    <span class="education__period">09/2023 – 07/2025</span>
+                </div>
+
+                <p style="color: var(--text-on-light-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                    Mein Masterstudium hat meine praktische Erfahrung durch eine wissenschaftlich fundierte Perspektive ergänzt und die theoretischen Grundlagen für meine tägliche Arbeit geschaffen.
+                </p>
+
+                <div class="education__thesis">
+                    <div class="education__thesis-label">Masterarbeit</div>
+                    <h4 class="education__thesis-title">„Low-Code/No-Code Platforms and Generative AI: Potentials, Success Factors, and Barriers in the Transformation of Business Processes in Large Enterprises"</h4>
+                    <p class="education__thesis-text">
+                        Die Arbeit untersucht systematisch, wie Low-Code/No-Code und generative KI industrielle Transformationsprozesse in Großunternehmen verändern — genau die Themen, an denen ich täglich praktisch arbeite.
+                    </p>
+                </div>
+
+                <div class="education__connection">
+                    <p>
+                        <strong>Die zentrale Erkenntnis:</strong> Digitale Transformation ist ein sozio-technischer Prozess — erst durch Kultur, Governance, Verantwortlichkeiten und einen reifen organisationalen Rahmen wird sie wirklich wirksam. Diese Erkenntnis prägt meinen Führungsstil wie auch meinen architektonischen Ansatz.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills">
+        <div class="section__header reveal">
+            <span class="section__label">Kompetenzen</span>
+            <h2 class="section__title">Skills & Expertise</h2>
+            <p class="section__subtitle">Technische Tiefe kombiniert mit strategischem Denken.</p>
+        </div>
+
+        <div class="skills__grid">
+            <div class="skill-category reveal reveal-delay-1">
+                <h3 class="skill-category__title">Power Platform & Microsoft 365</h3>
+                <div class="skill-category__list">
+                    <span class="skill-tag">Power Apps (Canvas & Model-Driven)</span>
+                    <span class="skill-tag">Power Automate</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Copilot Studio</span>
+                    <span class="skill-tag">Microsoft 365 Administration</span>
+                    <span class="skill-tag">SharePoint</span>
+                    <span class="skill-tag">Teams</span>
+                    <span class="skill-tag">Dataverse</span>
+                </div>
+            </div>
+
+            <div class="skill-category reveal reveal-delay-2">
+                <h3 class="skill-category__title">Architecture & Development</h3>
+                <div class="skill-category__list">
+                    <span class="skill-tag">ALM & Solutions Architecture</span>
+                    <span class="skill-tag">Enterprise Integration</span>
+                    <span class="skill-tag">API Design</span>
+                    <span class="skill-tag">Data Warehouse</span>
+                    <span class="skill-tag">Dynamics 365</span>
+                    <span class="skill-tag">Azure Services</span>
+                </div>
+            </div>
+
+            <div class="skill-category reveal reveal-delay-3">
+                <h3 class="skill-category__title">Governance & Strategy</h3>
+                <div class="skill-category__list">
+                    <span class="skill-tag">Platform Governance</span>
+                    <span class="skill-tag">Security & Compliance</span>
+                    <span class="skill-tag">Center of Excellence</span>
+                    <span class="skill-tag">Digital Strategy</span>
+                    <span class="skill-tag">Change Management</span>
+                    <span class="skill-tag">Process Excellence</span>
+                </div>
+            </div>
+
+            <div class="skill-category reveal reveal-delay-4">
+                <h3 class="skill-category__title">Leadership & Enablement</h3>
+                <div class="skill-category__list">
+                    <span class="skill-tag">Team Leadership</span>
+                    <span class="skill-tag">Citizen Development</span>
+                    <span class="skill-tag">Training & Coaching</span>
+                    <span class="skill-tag">Community Building</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag">AI & Innovation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="section philosophy">
+        <div class="philosophy__container reveal">
+            <p class="philosophy__quote">
+                Technologie allein transformiert nichts — erst Menschen, Prozesse und Kultur machen den Unterschied.
+            </p>
+            <p class="philosophy__text">
+                Die Erkenntnis, dass digitale Transformation ein sozio-technischer Prozess ist, prägt jeden Aspekt meiner Arbeit. Ich glaube daran, dass nachhaltige Veränderung nur dann gelingt, wenn wir technische Exzellenz mit organisationaler Reife und echter Befähigung der Menschen verbinden.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta">
+        <h2 class="cta__title reveal">Lassen Sie uns sprechen</h2>
+        <p class="cta__subtitle reveal">
+            Ich freue mich darauf, Ihre Herausforderungen kennenzulernen und gemeinsam Lösungen zu entwickeln.
+        </p>
+
+        <a href="https://calendly.com/YOUR-LINK" class="btn btn--primary btn--large reveal" target="_blank">
+            Kostenloses 30-Min Assessment
+            <svg class="btn__arrow" width="18" height="18" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__brand">
+                <a href="index.html" class="footer__logo">KLINCOV.IT</a>
+                <span class="footer__tagline">Digital Transformation Expert</span>
+            </div>
+
+            <nav class="footer__nav">
+                <a href="index.html#problems" class="footer__nav-link">Herausforderungen</a>
+                <a href="index.html#services" class="footer__nav-link">Leistungen</a>
+                <a href="index.html#transformation" class="footer__nav-link">Transformation</a>
+                <a href="index.html#contact" class="footer__nav-link">Kontakt</a>
+            </nav>
+
+            <div class="footer__social">
+                <a href="https://www.linkedin.com/in/slavko-klincov/" class="footer__social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="mailto:kontakt@klincov.it" class="footer__social-link" aria-label="Email">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer__bottom">
+            <span class="footer__legal">© 2024 Klincov.it — Einzelunternehmen, Wien, Österreich</span>
+            <div class="footer__legal-links">
+                <a href="#" class="footer__legal-link" onclick="openModal(event)">Impressum</a>
+                <a href="mailto:kontakt@klincov.it" class="footer__legal-link">kontakt@klincov.it</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Impressum Modal -->
+    <div class="modal" id="impressum-modal">
+        <div class="modal__overlay" onclick="closeModal()"></div>
+        <div class="modal__content">
+            <button class="modal__close" onclick="closeModal()">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+            </button>
+
+            <h2 class="modal__title">Impressum</h2>
+
+            <div class="modal__section">
+                <h3>Angaben gemäß §5 ECG</h3>
+                <p>
+                    <strong>Einzelunternehmen:</strong> Klincov.it<br>
+                    <strong>Inhaber:</strong> Slavko Klincov
+                </p>
+            </div>
+
+            <div class="modal__section">
+                <h3>Kontakt</h3>
+                <p>
+                    <strong>E-Mail:</strong> kontakt@klincov.it<br>
+                    <strong>Website:</strong> www.klincov.it
+                </p>
+            </div>
+
+            <div class="modal__section">
+                <h3>Unternehmensgegenstand</h3>
+                <p>Dienstleistungen in der automatischen Datenverarbeitung und Informationstechnik</p>
+            </div>
+
+            <div class="modal__section">
+                <h3>Gerichtsstand</h3>
+                <p>
+                    <strong>Zuständiges Gericht:</strong> Wien<br>
+                    <strong>Land:</strong> Österreich
+                </p>
+            </div>
+
+            <div class="modal__section">
+                <h3>Aufsichtsbehörde</h3>
+                <p>Magistrat der Stadt Wien, Gewerbebehörde</p>
+            </div>
+
+            <div class="modal__section">
+                <h3>Gewerberechtliche Vorschriften</h3>
+                <p>Gewerbeordnung: www.ris.bka.gv.at</p>
+            </div>
+
+            <div class="modal__section">
+                <h3>Haftungsausschluss</h3>
+                <p>
+                    Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte
+                    externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren
+                    Betreiber verantwortlich.
+                </p>
+            </div>
+
+            <div class="modal__section">
+                <h3>Urheberrecht</h3>
+                <p>
+                    Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
+                    unterliegen dem österreichischen Urheberrecht. Die Vervielfältigung, Bearbeitung,
+                    Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes
+                    bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Modal functions
+        function openModal(e) {
+            e.preventDefault();
+            document.getElementById('impressum-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('impressum-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                nav.style.background = 'rgba(8, 9, 11, 0.97)';
+                nav.style.borderBottomColor = 'rgba(201, 162, 39, 0.15)';
+            } else {
+                nav.style.background = 'rgba(8, 9, 11, 0.92)';
+                nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.06)';
+            }
+        });
+    </script>
+</body>
+</html>
