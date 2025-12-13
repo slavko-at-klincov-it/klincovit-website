@@ -1,0 +1,8 @@
+# VS Code / local config
+.vscode/sftp.json
+
+# Optional: macOS
+.DS_Store
+
+# Optional: Node (falls du mal ein Build machst)
+node_modules/
