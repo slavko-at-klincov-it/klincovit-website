@@ -12,17 +12,15 @@
 
     <style>
         :root {
-            /* Dark bases (Hero, Footer, Nav) */
-            --bg-dark: #08090b;
-            --bg-dark-secondary: #0d0e11;
-            --bg-dark-elevated: #131519;
-            --bg-dark-card: #101214;
-
             /* Light content areas */
             --bg-light: #f4f1eb;
             --bg-light-secondary: #eeebe6;
             --bg-light-elevated: #faf8f5;
             --bg-light-card: #ffffff;
+
+            /* Dark bases */
+            --bg-dark: #08090b;
+            --bg-dark-secondary: #0d0e11;
 
             /* Text colors */
             --text-on-dark: #f5f5f5;
@@ -42,9 +40,6 @@
 
             /* Borders */
             --border-dark-subtle: rgba(255, 255, 255, 0.06);
-            --border-dark-medium: rgba(255, 255, 255, 0.12);
-            --border-dark-gold: rgba(201, 162, 39, 0.3);
-
             --border-light-subtle: rgba(0, 0, 0, 0.06);
             --border-light-medium: rgba(0, 0, 0, 0.1);
             --border-light-gold: rgba(201, 162, 39, 0.35);
@@ -55,7 +50,6 @@
 
             /* Animations */
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 
             /* Layout */
             --section-padding: clamp(5rem, 12vw, 9rem);
@@ -87,112 +81,250 @@
             color: var(--bg-dark);
         }
 
-        .container {
-            max-width: var(--container-max);
-            margin: 0 auto;
-            padding: 0 5%;
-        }
-
         /* ═══════════════════════════════════════════
-           NAVIGATION
+           NAVIGATION - Animated Pill Style (matching index.html)
         ═══════════════════════════════════════════ */
-        .nav {
+        .nav-wrapper {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(-150%);
             z-index: 1000;
-            padding: 1.25rem 5%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: rgba(8, 9, 11, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-dark-subtle);
-            transform: translateY(-100%);
             animation: navSlideIn 0.8s var(--ease-out-expo) 0.3s forwards;
         }
 
         @keyframes navSlideIn {
-            to { transform: translateY(0); }
+            to { transform: translateX(-50%) translateY(0); }
         }
 
-        .nav__logo {
-            font-family: var(--font-body);
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--text-on-dark);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav__logo:hover {
-            color: var(--accent-gold);
+        .nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: rgba(232, 228, 220, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50px;
+            box-shadow:
+                0 4px 24px rgba(0, 0, 0, 0.08),
+                0 0 12px rgba(201, 162, 39, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: width 0.5s var(--ease-out-expo), left 0.5s var(--ease-out-expo);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .nav__links {
             display: flex;
-            gap: 2.5rem;
+            gap: 0.1rem;
             list-style: none;
+            position: relative;
+            padding: 0.3rem;
+            z-index: 1;
         }
 
         .nav__link {
-            font-size: 0.85rem;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            color: var(--text-on-dark-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav__link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent-gold);
-            transition: width 0.3s var(--ease-out-expo);
-        }
-
-        .nav__link:hover,
-        .nav__link--active {
-            color: var(--text-on-dark);
-        }
-
-        .nav__link:hover::after,
-        .nav__link--active::after {
-            width: 100%;
-        }
-
-        .nav__link--active {
-            color: var(--accent-gold);
-        }
-
-        .nav__cta {
-            padding: 0.7rem 1.5rem;
+            display: block;
             font-size: 0.8rem;
             font-weight: 500;
-            letter-spacing: 0.05em;
-            color: var(--bg-dark);
-            background: var(--accent-gold);
+            letter-spacing: 0.02em;
+            color: var(--text-on-light-muted);
             text-decoration: none;
-            border: 1px solid var(--accent-gold);
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            transition: opacity 0.5s var(--ease-out-expo), color 0.5s var(--ease-out-expo), background 0.25s var(--ease-out-expo);
+            white-space: nowrap;
+            opacity: 0.4;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav__link:hover {
+            opacity: 1;
+            color: var(--text-on-light-secondary);
+            background: rgba(232, 228, 220, 0.95);
+        }
+
+        .nav__link.active {
+            color: var(--accent-gold-dark);
+            font-weight: 600;
+            opacity: 1;
+        }
+
+        /* Mobile Navigation - Hamburger Menu */
+        .nav-hamburger {
+            display: none;
+            width: 44px;
+            height: 44px;
+            background: rgba(232, 228, 220, 0.95);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            z-index: 1001;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-hamburger__line {
+            width: 18px;
+            height: 2px;
+            background: var(--accent-gold-dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-hamburger.active .nav-hamburger__line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-hamburger.active .nav-hamburger__line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.active .nav-hamburger__line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Menu Overlay */
+        .nav-mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(232, 228, 220, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.4s var(--ease-out-expo);
         }
 
-        .nav__cta:hover {
-            background: transparent;
-            color: var(--accent-gold);
+        .nav-mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Menu - Centered */
+        .nav-mobile {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .nav-mobile__links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .nav-mobile__link {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--text-on-light-muted);
+            text-decoration: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--border-light-subtle);
+            transition: all 0.4s var(--ease-out-expo);
+            opacity: 0;
+            transform: translateY(20px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-mobile.active .nav-mobile__link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-mobile.active .nav-mobile__links li:nth-child(1) .nav-mobile__link { transition-delay: 0.1s; }
+        .nav-mobile.active .nav-mobile__links li:nth-child(2) .nav-mobile__link { transition-delay: 0.15s; }
+        .nav-mobile.active .nav-mobile__links li:nth-child(3) .nav-mobile__link { transition-delay: 0.2s; }
+        .nav-mobile.active .nav-mobile__links li:nth-child(4) .nav-mobile__link { transition-delay: 0.25s; }
+        .nav-mobile.active .nav-mobile__links li:nth-child(5) .nav-mobile__link { transition-delay: 0.3s; }
+
+        .nav-mobile__link:hover {
+            color: var(--text-on-light);
+            border-color: var(--border-light-gold);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .nav-mobile__link.active {
+            color: var(--accent-gold-dark);
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.15);
+        }
+
+        /* Bug Report Button */
+        .nav-mobile__bug {
+            display: none;
+            position: fixed;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            opacity: 0;
+            transition: all 0.4s var(--ease-out-expo);
+            z-index: 1001;
+            pointer-events: none;
+        }
+
+        .nav-mobile__bug.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            transition-delay: 0.4s;
+            pointer-events: auto;
+        }
+
+        .nav-mobile__bug-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--bg-dark);
+            text-decoration: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            background: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            transition: all 0.4s var(--ease-out-expo);
+            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.25);
+        }
+
+        .nav-mobile__bug-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201, 162, 39, 0.35);
+        }
+
+        .nav-mobile__bug-btn svg {
+            width: 16px;
+            height: 16px;
         }
 
         /* ═══════════════════════════════════════════
-           PAGE HERO (LIGHT)
+           PAGE HERO
         ═══════════════════════════════════════════ */
         .page-hero {
             padding: 10rem 5% 5rem;
@@ -245,7 +377,7 @@
 
         .page-hero__title {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 500;
             line-height: 1.2;
             margin-bottom: 1.5rem;
@@ -256,7 +388,7 @@
         }
 
         .page-hero__subtitle {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(1rem, 2vw, 1.15rem);
             color: var(--text-on-light-secondary);
             max-width: 700px;
             margin: 0 auto;
@@ -281,19 +413,9 @@
             position: relative;
         }
 
-        .section--light {
-            background: var(--bg-light);
-            color: var(--text-on-light);
-        }
-
-        .section--light-alt {
-            background: var(--bg-light-secondary);
-            color: var(--text-on-light);
-        }
-
-        .section--dark {
-            background: var(--bg-dark);
-            color: var(--text-on-dark);
+        .section:not(.page-hero) {
+            content-visibility: auto;
+            contain-intrinsic-size: 0 800px;
         }
 
         .section__header {
@@ -314,37 +436,24 @@
             background: var(--accent-gold-glow-light);
         }
 
-        .section--dark .section__label {
-            border-color: var(--border-dark-gold);
-            background: var(--accent-gold-glow);
-        }
-
         .section__title {
             font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 500;
             line-height: 1.2;
             margin-bottom: 1rem;
             color: var(--text-on-light);
         }
 
-        .section--dark .section__title {
-            color: var(--text-on-dark);
-        }
-
         .section__subtitle {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-on-light-secondary);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .section--dark .section__subtitle {
-            color: var(--text-on-dark-secondary);
-        }
-
         /* ═══════════════════════════════════════════
-           PROFILE INTRO SECTION (LIGHT ALT)
+           PROFILE INTRO SECTION
         ═══════════════════════════════════════════ */
         .profile-intro {
             background: var(--bg-light-secondary);
@@ -352,15 +461,11 @@
 
         .profile-intro__container {
             display: grid;
-            grid-template-columns: 350px 1fr;
+            grid-template-columns: 320px 1fr;
             gap: 4rem;
             align-items: start;
             max-width: 1100px;
             margin: 0 auto;
-        }
-
-        .profile-intro__image-wrapper {
-            position: relative;
         }
 
         .profile-intro__image-frame {
@@ -374,23 +479,10 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
         }
 
-        .profile-intro__image-frame::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 1px solid var(--accent-gold);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 1;
-        }
-
-        .profile-intro__image-frame:hover::before {
-            opacity: 1;
-        }
-
         .profile-intro__image-frame:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+            border-color: var(--border-light-gold);
         }
 
         .profile-intro__image {
@@ -402,14 +494,14 @@
 
         .profile-intro__content h2 {
             font-family: var(--font-display);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
             color: var(--text-on-light);
             font-weight: 500;
         }
 
         .profile-intro__content h3 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--accent-gold-dark);
             margin-bottom: 2rem;
             font-weight: 500;
@@ -420,7 +512,7 @@
             color: var(--text-on-light-secondary);
             margin-bottom: 2rem;
             line-height: 1.9;
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
 
         .profile-intro__bio p {
@@ -436,13 +528,13 @@
 
         .profile-intro__highlight p {
             color: var(--text-on-light);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-style: italic;
             margin: 0;
         }
 
         /* ═══════════════════════════════════════════
-           CAREER TIMELINE (LIGHT)
+           CAREER TIMELINE
         ═══════════════════════════════════════════ */
         .career {
             background: var(--bg-light);
@@ -461,7 +553,19 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(180deg, var(--accent-gold), var(--border-light-subtle));
+            background: var(--border-light-subtle);
+        }
+
+        .career__timeline::after {
+            content: '';
+            position: absolute;
+            left: 35px;
+            top: 0;
+            width: 2px;
+            height: 0;
+            background: linear-gradient(180deg, var(--accent-gold), var(--accent-gold-light));
+            transition: height 0.1s ease-out;
+            box-shadow: 0 0 10px rgba(201, 162, 39, 0.4);
         }
 
         .career__item {
@@ -477,16 +581,28 @@
             width: 70px;
             height: 70px;
             background: var(--bg-light);
-            border: 2px solid var(--accent-gold);
+            border: 2px solid var(--border-light-medium);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1;
+            transition: all 0.5s var(--ease-out-expo);
         }
 
         .career__marker svg {
             width: 28px;
             height: 28px;
+            color: var(--text-on-light-muted);
+            transition: color 0.5s var(--ease-out-expo);
+        }
+
+        .career__item.active .career__marker,
+        .career__item.completed .career__marker {
+            border-color: var(--accent-gold);
+        }
+
+        .career__item.active .career__marker svg,
+        .career__item.completed .career__marker svg {
             color: var(--accent-gold-dark);
         }
 
@@ -520,14 +636,14 @@
 
         .career__title {
             font-family: var(--font-display);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--text-on-light);
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
 
         .career__company {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--accent-gold-dark);
             margin-bottom: 1rem;
         }
@@ -584,7 +700,7 @@
         }
 
         /* ═══════════════════════════════════════════
-           EDUCATION SECTION (LIGHT ALT)
+           EDUCATION SECTION
         ═══════════════════════════════════════════ */
         .education {
             background: var(--bg-light-secondary);
@@ -598,7 +714,7 @@
         .education__card {
             background: var(--bg-light-card);
             border: 1px solid var(--border-light-subtle);
-            padding: 3rem;
+            padding: 2.5rem;
             position: relative;
             transition: all 0.4s var(--ease-out-expo);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
@@ -629,7 +745,7 @@
 
         .education__degree {
             font-family: var(--font-display);
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--text-on-light);
             margin-bottom: 0.5rem;
             font-weight: 500;
@@ -650,7 +766,7 @@
 
         .education__thesis {
             margin-top: 2rem;
-            padding: 2rem;
+            padding: 1.5rem;
             background: var(--bg-light-secondary);
             border: 1px solid var(--border-light-subtle);
         }
@@ -666,7 +782,7 @@
 
         .education__thesis-title {
             font-family: var(--font-display);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-on-light);
             margin-bottom: 1rem;
             font-weight: 500;
@@ -687,14 +803,14 @@
         }
 
         .education__connection p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-on-light);
             line-height: 1.8;
             margin: 0;
         }
 
         /* ═══════════════════════════════════════════
-           SKILLS SECTION (LIGHT)
+           SKILLS SECTION
         ═══════════════════════════════════════════ */
         .skills {
             background: var(--bg-light);
@@ -702,8 +818,8 @@
 
         .skills__grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -711,7 +827,7 @@
         .skill-category {
             background: var(--bg-light-card);
             border: 1px solid var(--border-light-subtle);
-            padding: 2rem;
+            padding: 1.75rem;
             transition: all 0.4s var(--ease-out-expo);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
         }
@@ -724,9 +840,9 @@
 
         .skill-category__title {
             font-family: var(--font-display);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-on-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--border-light-subtle);
             font-weight: 500;
@@ -735,17 +851,16 @@
         .skill-category__list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
 
         .skill-tag {
             background: transparent;
             border: 1px solid var(--border-light-subtle);
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
+            padding: 0.4rem 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-on-light-secondary);
             transition: all 0.3s ease;
-            font-weight: 400;
         }
 
         .skill-tag:hover {
@@ -756,7 +871,7 @@
         }
 
         /* ═══════════════════════════════════════════
-           PHILOSOPHY SECTION (LIGHT ALT)
+           PHILOSOPHY SECTION
         ═══════════════════════════════════════════ */
         .philosophy {
             background: var(--bg-light-secondary);
@@ -770,7 +885,7 @@
 
         .philosophy__quote {
             font-family: var(--font-display);
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(1.4rem, 3vw, 1.9rem);
             color: var(--text-on-light);
             line-height: 1.6;
             margin-bottom: 2rem;
@@ -799,14 +914,14 @@
         }
 
         .philosophy__text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-on-light-secondary);
             line-height: 1.9;
             margin-top: 3rem;
         }
 
         /* ═══════════════════════════════════════════
-           CTA SECTION (DARK)
+           CTA SECTION
         ═══════════════════════════════════════════ */
         .cta {
             background: var(--bg-dark);
@@ -827,13 +942,13 @@
 
         .cta__title {
             font-family: var(--font-display);
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
             color: var(--text-on-dark);
             margin-bottom: 1rem;
         }
 
         .cta__subtitle {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-on-dark-secondary);
             margin-bottom: 2.5rem;
             max-width: 500px;
@@ -855,14 +970,14 @@
             transition: all 0.4s var(--ease-out-expo);
             cursor: pointer;
             border: none;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn--primary {
             background: var(--accent-gold);
             color: var(--bg-dark);
             border: 2px solid var(--accent-gold);
-            position: relative;
-            overflow: hidden;
         }
 
         .btn--primary::before {
@@ -872,8 +987,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.6s ease;
         }
 
         .btn--primary:hover::before {
@@ -881,7 +996,7 @@
         }
 
         .btn--primary:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             box-shadow: 0 15px 40px rgba(201, 162, 39, 0.35);
         }
 
@@ -899,107 +1014,22 @@
         }
 
         /* ═══════════════════════════════════════════
-           FOOTER (DARK)
+           FOOTER
         ═══════════════════════════════════════════ */
-        .footer {
-            background: var(--bg-dark);
-            padding: 3rem 5%;
-            border-top: 1px solid var(--border-dark-subtle);
-        }
-
-        .footer__container {
-            max-width: var(--container-max);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .footer__brand {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .footer__logo {
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-on-dark);
-            text-decoration: none;
-        }
-
-        .footer__tagline {
-            font-size: 0.85rem;
-            color: var(--text-on-dark-muted);
-        }
-
-        .footer__nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer__nav-link {
-            font-size: 0.85rem;
-            color: var(--text-on-dark-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer__nav-link:hover {
-            color: var(--accent-gold);
-        }
-
-        .footer__social {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-        }
-
-        .footer__social-link {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border-dark-subtle);
-            color: var(--text-on-dark-secondary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer__social-link:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-        }
-
         .footer__bottom {
-            max-width: var(--container-max);
-            margin: 2rem auto 0;
-            padding-top: 2rem;
+            background: var(--bg-dark);
+            padding: 2rem 5%;
+            text-align: center;
             border-top: 1px solid var(--border-dark-subtle);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
         }
 
         .footer__legal {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-on-dark-muted);
-        }
-
-        .footer__legal-links {
-            display: flex;
-            gap: 1.5rem;
         }
 
         .footer__legal-link {
-            font-size: 0.8rem;
-            color: var(--text-on-dark-muted);
+            color: var(--text-on-dark-secondary);
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -1009,7 +1039,7 @@
         }
 
         /* ═══════════════════════════════════════════
-           IMPRESSUM MODAL
+           MODAL
         ═══════════════════════════════════════════ */
         .modal {
             position: fixed;
@@ -1107,12 +1137,14 @@
         .reveal {
             opacity: 0;
             transform: translateY(40px);
-            transition: all 0.8s var(--ease-out-expo);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+            will-change: opacity, transform;
         }
 
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
+            will-change: auto;
         }
 
         .reveal-delay-1 { transition-delay: 0.1s; }
@@ -1129,7 +1161,8 @@
                 gap: 3rem;
             }
 
-            .career__timeline::before {
+            .career__timeline::before,
+            .career__timeline::after {
                 left: 35px;
             }
 
@@ -1144,36 +1177,77 @@
         }
 
         @media (max-width: 768px) {
-            .nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-                padding: 1rem 5%;
+            /* Hide desktop nav, show hamburger */
+            .nav,
+            .nav__links {
+                display: none;
             }
 
-            .nav__links {
-                order: 3;
-                width: 100%;
-                justify-content: center;
-                gap: 1.5rem;
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .nav-mobile,
+            .nav-mobile-overlay,
+            .nav-mobile__bug {
+                display: block;
+            }
+
+            .nav-wrapper {
+                left: auto;
+                right: 1.5rem;
+                transform: translateX(0) translateY(-150%);
+            }
+
+            @keyframes navSlideIn {
+                to { transform: translateX(0) translateY(0); }
+            }
+
+            .page-hero {
+                padding: 7rem 5% 4rem;
+            }
+
+            .page-hero__title {
+                font-size: clamp(1.8rem, 7vw, 2.5rem);
+            }
+
+            .section {
+                padding: clamp(3rem, 8vw, 5rem) 5%;
+            }
+
+            .section__header {
+                margin-bottom: 2.5rem;
+            }
+
+            .section__title {
+                font-size: clamp(1.5rem, 6vw, 2rem);
             }
 
             .profile-intro__container {
                 grid-template-columns: 1fr;
-                gap: 2.5rem;
+                gap: 2rem;
             }
 
             .profile-intro__image-wrapper {
-                max-width: 280px;
+                max-width: 250px;
                 margin: 0 auto;
             }
 
-            .career__timeline::before {
-                display: none;
+            .profile-intro__content h2 {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+
+            .profile-intro__content h3 {
+                text-align: center;
+            }
+
+            .career__timeline::before,
+            .career__timeline::after {
+                left: 25px;
             }
 
             .career__item {
-                flex-direction: column;
                 gap: 1rem;
             }
 
@@ -1182,26 +1256,52 @@
                 height: 50px;
             }
 
+            .career__marker svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .career__content {
+                padding: 1.5rem;
+            }
+
+            .career__title {
+                font-size: 1.15rem;
+            }
+
+            .education__card {
+                padding: 2rem 1.5rem;
+            }
+
             .education__header {
                 flex-direction: column;
+            }
+
+            .education__degree {
+                font-size: 1.3rem;
             }
 
             .skills__grid {
                 grid-template-columns: 1fr;
             }
 
-            .footer__container {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .philosophy__quote::before,
+            .philosophy__quote::after {
+                display: none;
             }
 
-            .footer__social {
-                justify-content: center;
+            .cta__title {
+                font-size: clamp(1.4rem, 5vw, 1.8rem);
             }
 
-            .footer__bottom {
-                flex-direction: column;
-                text-align: center;
+            .modal__content {
+                padding: 2rem 1.5rem;
+                max-height: 90vh;
+            }
+
+            .modal__title {
+                font-size: 1.5rem;
+                padding-right: 2rem;
             }
         }
 
@@ -1210,32 +1310,91 @@
                 font-size: 14px;
             }
 
-            .nav__cta {
-                display: none;
+            .page-hero {
+                padding: 6rem 5% 3rem;
+            }
+
+            .career__timeline::before,
+            .career__timeline::after {
+                left: 22px;
+            }
+
+            .career__marker {
+                width: 44px;
+                height: 44px;
+            }
+
+            .career__marker svg {
+                width: 18px;
+                height: 18px;
             }
 
             .btn {
                 width: 100%;
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .career__content:hover,
+            .skill-category:hover,
+            .education__card:hover {
+                transform: none;
             }
 
-            .page-hero {
-                padding: 8rem 5% 3rem;
+            .nav-mobile__link {
+                padding: 1rem 2.5rem;
+                min-height: 48px;
+            }
+
+            .btn {
+                min-height: 48px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
-        <a href="index.html" class="nav__logo">KLINCOV.IT</a>
+    <div class="nav-wrapper">
+        <div class="nav"></div>
         <ul class="nav__links">
+            <li><a href="index.html" class="nav__link">Home</a></li>
             <li><a href="index.html#services" class="nav__link">Leistungen</a></li>
-            <li><a href="aboutme.html" class="nav__link nav__link--active">Über mich</a></li>
-            <li><a href="index.html#transformation" class="nav__link">Transformation</a></li>
+            <li><a href="index.html#testimonials" class="nav__link">Kundenstimmen</a></li>
             <li><a href="index.html#contact" class="nav__link">Kontakt</a></li>
+            <li><a href="aboutme.html" class="nav__link active">Über mich</a></li>
         </ul>
-        <a href="https://calendly.com/YOUR-LINK" class="nav__cta" target="_blank">Termin buchen</a>
+        <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+            <span class="nav-hamburger__line"></span>
+            <span class="nav-hamburger__line"></span>
+            <span class="nav-hamburger__line"></span>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="nav-mobile-overlay"></div>
+
+    <!-- Mobile Navigation Panel -->
+    <nav class="nav-mobile">
+        <ul class="nav-mobile__links">
+            <li><a href="index.html" class="nav-mobile__link">Home</a></li>
+            <li><a href="index.html#services" class="nav-mobile__link">Leistungen</a></li>
+            <li><a href="index.html#testimonials" class="nav-mobile__link">Kundenstimmen</a></li>
+            <li><a href="index.html#contact" class="nav-mobile__link">Kontakt</a></li>
+            <li><a href="aboutme.html" class="nav-mobile__link active">Über mich</a></li>
+        </ul>
     </nav>
+
+    <!-- Mobile Bug Report Button -->
+    <div class="nav-mobile__bug">
+        <a href="mailto:bug@klincov.it?subject=Bug%20Report%20-%20klincov.it" class="nav-mobile__bug-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Bug melden
+        </a>
+    </div>
 
     <!-- Page Hero -->
     <section class="page-hero">
@@ -1258,7 +1417,7 @@
             </div>
 
             <div class="profile-intro__content reveal reveal-delay-1">
-                <h2>Slavko Klincov</h2>
+                <h2>Slavko Klincov, MSc</h2>
                 <h3>Digital Transformation Expert | Power Platform Specialist</h3>
 
                 <div class="profile-intro__bio">
@@ -1283,7 +1442,6 @@
         </div>
 
         <div class="career__timeline">
-            <!-- Current Role -->
             <div class="career__item reveal">
                 <div class="career__marker">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1295,13 +1453,12 @@
                     <h3 class="career__title">Power Platform Team Technical Lead & Enterprise Solution Architect</h3>
                     <p class="career__company">Gebrüder Weiss GmbH, Kennelbach & Wien</p>
                     <p class="career__description">
-                        In dieser Rolle führe ich ein cross-funktionales Team und verantworte die unternehmensweite Power-Platform-Strategie. Ein Schwerpunkt meiner Arbeit liegt auf der Verbindung technischer Exzellenz mit organisationaler Transformation.
+                        In dieser Rolle führe ich ein cross-funktionales Team und verantworte die unternehmensweite Power-Platform-Strategie.
                     </p>
                     <ul class="career__highlights">
                         <li>Entwicklung von Governance-, Security- und Compliance-Frameworks</li>
                         <li>Implementierung KI-basierter Copilot Agents für automatisiertes Plattform-Management</li>
                         <li>Reduzierung manueller Administrationsaufwände um bis zu 95%</li>
-                        <li>Aufbau eines Innovation Backlogs für organisationsweite Digitalisierungsinitiativen</li>
                         <li>Etablierung von Citizen Development und Center-of-Excellence-Strukturen</li>
                     </ul>
                     <div class="career__learning">
@@ -1311,7 +1468,6 @@
                 </div>
             </div>
 
-            <!-- BI Consultant -->
             <div class="career__item reveal">
                 <div class="career__marker">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1330,16 +1486,14 @@
                         <li>Implementierung von ALM-Prozessen für Power-Platform-Lösungen</li>
                         <li>Entwicklung produktionsreifer Automatisierungen</li>
                         <li>Betreuung von Dynamics-365-Integrationen</li>
-                        <li>Aufbau skalierbarer Datenarchitekturen</li>
                     </ul>
                     <div class="career__learning">
                         <div class="career__learning-label">Key Learning</div>
-                        <p class="career__learning-text">In dieser Zeit habe ich gelernt, Plattform- und Datenarchitekturen nicht nur technisch, sondern vor allem strategisch zu denken — insbesondere im Hinblick auf Skalierbarkeit, Lifecycle, Governance und den Mehrwert für das Business.</p>
+                        <p class="career__learning-text">In dieser Zeit habe ich gelernt, Plattform- und Datenarchitekturen strategisch zu denken.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Trainer -->
             <div class="career__item reveal">
                 <div class="career__marker">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1354,17 +1508,16 @@
                     <h3 class="career__title">Microsoft Specialist & Trainer</h3>
                     <p class="career__company">ETC – Enterprise Training Center GmbH, Wien</p>
                     <p class="career__description">
-                        Begleitung zahlreicher Microsoft-365-Modern-Workplace- und Infrastrukturprojekte — von Cloud-Migrationen über Systemintegration bis hin zur Modernisierung von Arbeitsumgebungen.
+                        Begleitung zahlreicher Microsoft-365-Modern-Workplace- und Infrastrukturprojekte.
                     </p>
                     <ul class="career__highlights">
                         <li>Trainer für Microsoft 365, Power Automate, Kollaboration und Sicherheit</li>
                         <li>Begleitung von Cloud-Migrationen und Systemintegrationen</li>
-                        <li>Unterstützung von Pre-Sales-Aktivitäten</li>
                         <li>Modernisierung von Arbeitsumgebungen</li>
                     </ul>
                     <div class="career__learning">
                         <div class="career__learning-label">Key Learning</div>
-                        <p class="career__learning-text">Dieser Abschnitt meiner Laufbahn hat meine Fähigkeit geprägt, komplexe technische Konzepte verständlich zu vermitteln, Change Management aktiv zu unterstützen und Organisationen sicher durch Transformationsprozesse zu führen.</p>
+                        <p class="career__learning-text">Dieser Abschnitt hat meine Fähigkeit geprägt, komplexe technische Konzepte verständlich zu vermitteln.</p>
                     </div>
                 </div>
             </div>
@@ -1383,27 +1536,27 @@
             <div class="education__card reveal">
                 <div class="education__header">
                     <div>
-                        <h3 class="education__degree">Master of Arts in Angewandtem Unternehmensmanagement</h3>
+                        <h3 class="education__degree">Master of Science in Angewandtem Unternehmensmanagement</h3>
                         <p class="education__institution">FH Wien der WKW</p>
                     </div>
                     <span class="education__period">09/2023 – 07/2025</span>
                 </div>
 
                 <p style="color: var(--text-on-light-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-                    Mein Masterstudium hat meine praktische Erfahrung durch eine wissenschaftlich fundierte Perspektive ergänzt und die theoretischen Grundlagen für meine tägliche Arbeit geschaffen.
+                    Mein Masterstudium hat meine praktische Erfahrung durch eine wissenschaftlich fundierte Perspektive ergänzt.
                 </p>
 
                 <div class="education__thesis">
                     <div class="education__thesis-label">Masterarbeit</div>
                     <h4 class="education__thesis-title">„Low-Code/No-Code Platforms and Generative AI: Potentials, Success Factors, and Barriers in the Transformation of Business Processes in Large Enterprises"</h4>
                     <p class="education__thesis-text">
-                        Die Arbeit untersucht systematisch, wie Low-Code/No-Code und generative KI industrielle Transformationsprozesse in Großunternehmen verändern — genau die Themen, an denen ich täglich praktisch arbeite.
+                        Die Arbeit untersucht systematisch, wie Low-Code/No-Code und generative KI industrielle Transformationsprozesse in Großunternehmen verändern.
                     </p>
                 </div>
 
                 <div class="education__connection">
                     <p>
-                        <strong>Die zentrale Erkenntnis:</strong> Digitale Transformation ist ein sozio-technischer Prozess — erst durch Kultur, Governance, Verantwortlichkeiten und einen reifen organisationalen Rahmen wird sie wirklich wirksam. Diese Erkenntnis prägt meinen Führungsstil wie auch meinen architektonischen Ansatz.
+                        <strong>Die zentrale Erkenntnis:</strong> Digitale Transformation ist ein sozio-technischer Prozess — erst durch Kultur, Governance und einen reifen organisationalen Rahmen wird sie wirklich wirksam.
                     </p>
                 </div>
             </div>
@@ -1422,13 +1575,11 @@
             <div class="skill-category reveal reveal-delay-1">
                 <h3 class="skill-category__title">Power Platform & Microsoft 365</h3>
                 <div class="skill-category__list">
-                    <span class="skill-tag">Power Apps (Canvas & Model-Driven)</span>
+                    <span class="skill-tag">Power Apps</span>
                     <span class="skill-tag">Power Automate</span>
                     <span class="skill-tag">Power BI</span>
                     <span class="skill-tag">Copilot Studio</span>
-                    <span class="skill-tag">Microsoft 365 Administration</span>
                     <span class="skill-tag">SharePoint</span>
-                    <span class="skill-tag">Teams</span>
                     <span class="skill-tag">Dataverse</span>
                 </div>
             </div>
@@ -1436,12 +1587,11 @@
             <div class="skill-category reveal reveal-delay-2">
                 <h3 class="skill-category__title">Architecture & Development</h3>
                 <div class="skill-category__list">
-                    <span class="skill-tag">ALM & Solutions Architecture</span>
+                    <span class="skill-tag">ALM & Solutions</span>
                     <span class="skill-tag">Enterprise Integration</span>
                     <span class="skill-tag">API Design</span>
-                    <span class="skill-tag">Data Warehouse</span>
-                    <span class="skill-tag">Dynamics 365</span>
                     <span class="skill-tag">Azure Services</span>
+                    <span class="skill-tag">Dynamics 365</span>
                 </div>
             </div>
 
@@ -1452,7 +1602,6 @@
                     <span class="skill-tag">Security & Compliance</span>
                     <span class="skill-tag">Center of Excellence</span>
                     <span class="skill-tag">Digital Strategy</span>
-                    <span class="skill-tag">Change Management</span>
                     <span class="skill-tag">Process Excellence</span>
                 </div>
             </div>
@@ -1463,7 +1612,6 @@
                     <span class="skill-tag">Team Leadership</span>
                     <span class="skill-tag">Citizen Development</span>
                     <span class="skill-tag">Training & Coaching</span>
-                    <span class="skill-tag">Community Building</span>
                     <span class="skill-tag">Stakeholder Management</span>
                     <span class="skill-tag">AI & Innovation</span>
                 </div>
@@ -1499,43 +1647,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer__container">
-            <div class="footer__brand">
-                <a href="index.html" class="footer__logo">KLINCOV.IT</a>
-                <span class="footer__tagline">Digital Transformation Expert</span>
-            </div>
-
-            <nav class="footer__nav">
-                <a href="index.html#problems" class="footer__nav-link">Herausforderungen</a>
-                <a href="index.html#services" class="footer__nav-link">Leistungen</a>
-                <a href="index.html#transformation" class="footer__nav-link">Transformation</a>
-                <a href="index.html#contact" class="footer__nav-link">Kontakt</a>
-            </nav>
-
-            <div class="footer__social">
-                <a href="https://www.linkedin.com/in/slavko-klincov/" class="footer__social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                <a href="mailto:kontakt@klincov.it" class="footer__social-link" aria-label="Email">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                        <polyline points="22,6 12,13 2,6"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <div class="footer__bottom">
-            <span class="footer__legal">© 2024 Klincov.it — Einzelunternehmen, Wien, Österreich</span>
-            <div class="footer__legal-links">
-                <a href="#" class="footer__legal-link" onclick="openModal(event)">Impressum</a>
-                <a href="mailto:kontakt@klincov.it" class="footer__legal-link">kontakt@klincov.it</a>
-            </div>
-        </div>
-    </footer>
+    <div class="footer__bottom">
+        <span class="footer__legal">© 2025 Klincov.it — <a href="#" class="footer__legal-link" onclick="openModal(event)">Impressum</a></span>
+    </div>
 
     <!-- Impressum Modal -->
     <div class="modal" id="impressum-modal">
@@ -1553,14 +1667,14 @@
                 <h3>Angaben gemäß §5 ECG</h3>
                 <p>
                     <strong>Einzelunternehmen:</strong> Klincov.it<br>
-                    <strong>Inhaber:</strong> Slavko Klincov
+                    <strong>Inhaber:</strong> Slavko Klincov, MSc
                 </p>
             </div>
 
             <div class="modal__section">
                 <h3>Kontakt</h3>
                 <p>
-                    <strong>E-Mail:</strong> kontakt@klincov.it<br>
+                    <strong>E-Mail:</strong> slavko@klincov.it<br>
                     <strong>Website:</strong> www.klincov.it
                 </p>
             </div>
@@ -1601,25 +1715,24 @@
                 <h3>Urheberrecht</h3>
                 <p>
                     Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
-                    unterliegen dem österreichischen Urheberrecht. Die Vervielfältigung, Bearbeitung,
-                    Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes
-                    bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+                    unterliegen dem österreichischen Urheberrecht.
                 </p>
             </div>
         </div>
     </div>
 
     <script>
-        // Intersection Observer for scroll animations
+        // Intersection Observer for scroll animations (optimized)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -80px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    obs.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -1643,19 +1756,130 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.nav');
-            const currentScroll = window.pageYOffset;
+        // Mobile Navigation Toggle
+        (function() {
+            const hamburger = document.querySelector('.nav-hamburger');
+            const mobileNav = document.querySelector('.nav-mobile');
+            const overlay = document.querySelector('.nav-mobile-overlay');
+            const bugButton = document.querySelector('.nav-mobile__bug');
+            const mobileLinks = document.querySelectorAll('.nav-mobile__link');
 
-            if (currentScroll > 100) {
-                nav.style.background = 'rgba(8, 9, 11, 0.97)';
-                nav.style.borderBottomColor = 'rgba(201, 162, 39, 0.15)';
-            } else {
-                nav.style.background = 'rgba(8, 9, 11, 0.92)';
-                nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.06)';
+            if (!hamburger || !mobileNav || !overlay) return;
+
+            function toggleMobileNav() {
+                const isOpen = hamburger.classList.contains('active');
+
+                hamburger.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+                overlay.classList.toggle('active');
+                if (bugButton) bugButton.classList.toggle('active');
+
+                hamburger.setAttribute('aria-expanded', !isOpen);
+                document.body.style.overflow = isOpen ? '' : 'hidden';
             }
-        });
+
+            function closeMobileNav() {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                if (bugButton) bugButton.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', toggleMobileNav);
+            overlay.addEventListener('click', closeMobileNav);
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    closeMobileNav();
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && hamburger.classList.contains('active')) {
+                    closeMobileNav();
+                }
+            });
+        })();
+
+        // Navigation pill position (desktop only)
+        (function () {
+            const pill = document.querySelector('.nav');
+            const navLinks = Array.from(document.querySelectorAll('.nav__link'));
+            const navLinksContainer = document.querySelector('.nav__links');
+
+            function updatePillPosition(link) {
+                if (!link || !navLinksContainer || !pill) return;
+                const linkRect = link.getBoundingClientRect();
+                const containerRect = navLinksContainer.getBoundingClientRect();
+                const left = linkRect.left - containerRect.left;
+                const width = linkRect.width;
+                pill.style.left = `${left}px`;
+                pill.style.width = `${width}px`;
+            }
+
+            const initial = document.querySelector('.nav__link.active');
+            if (initial) setTimeout(() => updatePillPosition(initial), 700);
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    const activeLink = document.querySelector('.nav__link.active');
+                    if (activeLink) updatePillPosition(activeLink);
+                }, 100);
+            }, { passive: true });
+        })();
+
+        // Career timeline scroll progress
+        (function() {
+            const timeline = document.querySelector('.career__timeline');
+            if (!timeline) return;
+
+            const items = timeline.querySelectorAll('.career__item');
+            if (items.length === 0) return;
+
+            function updateTimelineProgress() {
+                const timelineRect = timeline.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const timelineHeight = timelineRect.height;
+
+                const scrollProgress = Math.max(0, Math.min(1, (viewportHeight * 0.6 - timelineRect.top) / timelineHeight));
+                const progressHeight = scrollProgress * timelineHeight;
+                timeline.style.setProperty('--timeline-progress', `${progressHeight}px`);
+
+                items.forEach((item) => {
+                    const itemRect = item.getBoundingClientRect();
+                    const itemCenter = itemRect.top + itemRect.height / 2;
+                    const triggerPoint = viewportHeight * 0.55;
+
+                    item.classList.remove('active', 'completed');
+                    if (itemCenter < triggerPoint - 100) {
+                        item.classList.add('completed');
+                    } else if (itemCenter < triggerPoint + 100) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `.career__timeline::after { height: var(--timeline-progress, 0); }`;
+            document.head.appendChild(style);
+
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        updateTimelineProgress();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            updateTimelineProgress();
+        })();
     </script>
 </body>
 </html>
