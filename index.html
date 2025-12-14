@@ -754,70 +754,77 @@
         }
 
         /* ═══════════════════════════════════════════
-           PROBLEM-AGITATE SECTION (LIGHT)
+           PROBLEM-AGITATE SECTION (LIGHT) - Compact Icons
         ═══════════════════════════════════════════ */
         .problems {
             background: var(--bg-light-secondary);
         }
 
-        .problems__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+        .challenges-compact {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 4rem;
         }
 
-        .problem-card {
+        .challenge-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding: 1.5rem;
             background: var(--bg-light-card);
             border: 1px solid var(--border-light-subtle);
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s var(--ease-out-expo);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            border-left: 3px solid var(--accent-gold);
+            transition: all 0.3s ease;
         }
 
-        .problem-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--accent-gold), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .problem-card:hover {
+        .challenge-item:hover {
             border-color: var(--border-light-gold);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border-left-color: var(--accent-gold);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transform: translateX(5px);
         }
 
-        .problem-card:hover::before {
-            opacity: 1;
+        .challenge-item__icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--accent-gold-glow-light);
+            border: 1px solid var(--border-light-gold);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold-dark);
         }
 
-        .problem-card__number {
+        .challenge-item__content {
+            flex: 1;
+        }
+
+        .challenge-item__title {
             font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 600;
-            color: var(--accent-gold);
-            opacity: 0.4;
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-
-        .problem-card__text {
-            font-size: 1.05rem;
-            color: var(--text-on-light-secondary);
-            line-height: 1.8;
-        }
-
-        .problem-card__text strong {
-            color: var(--text-on-light);
+            font-size: 1.1rem;
             font-weight: 500;
+            color: var(--text-on-light);
+            margin-bottom: 0.4rem;
+        }
+
+        .challenge-item__text {
+            font-size: 0.9rem;
+            color: var(--text-on-light-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 600px) {
+            .challenge-item {
+                padding: 1.25rem;
+            }
+            .challenge-item__icon {
+                width: 38px;
+                height: 38px;
+            }
         }
 
         /* Transition Story */
@@ -1885,26 +1892,59 @@
             <p class="section__subtitle">Diese Probleme sehe ich in fast jedem Unternehmen — und ich weiß, wie man sie löst.</p>
         </div>
 
-        <div class="problems__grid">
-            <div class="problem-card reveal reveal-delay-1">
-                <div class="problem-card__number">01</div>
-                <p class="problem-card__text">
-                    <strong>Ihre Microsoft-365-Landschaft ist außer Kontrolle.</strong> Excel-Listen ersetzen Datenbanken, Freigaben laufen per E-Mail, manuelle Workarounds kosten täglich Stunden. SharePoint-Ordner wuchern, Integrationen fehlen, und niemand hat den Überblick.
-                </p>
+        <div class="challenges-compact">
+            <div class="challenge-item reveal reveal-delay-1">
+                <div class="challenge-item__icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
+                <div class="challenge-item__content">
+                    <h3 class="challenge-item__title">Microsoft-365-Landschaft außer Kontrolle</h3>
+                    <p class="challenge-item__text">Excel-Listen ersetzen Datenbanken, Freigaben per E-Mail, manuelle Workarounds kosten täglich Stunden. SharePoint-Ordner wuchern, niemand hat den Überblick.</p>
+                </div>
             </div>
 
-            <div class="problem-card reveal reveal-delay-2">
-                <div class="problem-card__number">02</div>
-                <p class="problem-card__text">
-                    <strong>Ihre Power Platform wächst unkontrolliert</strong> — ohne DLP-Regeln, ohne klare Verantwortlichkeiten, ohne Audit-Trail. Jede neue App fühlt sich wie ein Compliance-Risiko an. Sie haben Angst vor der nächsten Revision oder Datenschutzanfrage.
-                </p>
+            <div class="challenge-item reveal reveal-delay-2">
+                <div class="challenge-item__icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                </div>
+                <div class="challenge-item__content">
+                    <h3 class="challenge-item__title">Power Platform wächst unkontrolliert</h3>
+                    <p class="challenge-item__text">Keine DLP-Regeln, keine Verantwortlichkeiten, kein Audit-Trail. Jede neue App ist ein Compliance-Risiko. Angst vor der nächsten Revision.</p>
+                </div>
             </div>
 
-            <div class="problem-card reveal reveal-delay-3">
-                <div class="problem-card__number">03</div>
-                <p class="problem-card__text">
-                    <strong>Sie haben M365, Power Platform, Teams, Copilot — aber niemand weiß, was erlaubt ist.</strong> Keine klaren Rollen zwischen IT und Citizen Developern. Keine Guidelines, keine Schulung. Das Ergebnis: Unsicherheit, Wildwuchs und verschenktes Potenzial.
-                </p>
+            <div class="challenge-item reveal reveal-delay-3">
+                <div class="challenge-item__icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
+                <div class="challenge-item__content">
+                    <h3 class="challenge-item__title">Niemand weiß, was erlaubt ist</h3>
+                    <p class="challenge-item__text">M365, Power Platform, Teams, Copilot — aber keine klaren Rollen. Keine Guidelines, keine Schulung. Unsicherheit, Wildwuchs, verschenktes Potenzial.</p>
+                </div>
+            </div>
+
+            <div class="challenge-item reveal reveal-delay-4">
+                <div class="challenge-item__icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div class="challenge-item__content">
+                    <h3 class="challenge-item__title">Copilot & KI ohne Strategie</h3>
+                    <p class="challenge-item__text">Copilot-Lizenzen gekauft, aber kein Plan für den Rollout. Mitarbeiter wissen nicht, wie sie KI sinnvoll nutzen. Potenzial bleibt ungenutzt, Investition verpufft.</p>
+                </div>
             </div>
         </div>
 
