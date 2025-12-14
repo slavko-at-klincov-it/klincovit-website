@@ -168,6 +168,178 @@
             opacity: 1;
         }
 
+        /* Mobile Navigation - Hamburger Menu */
+        .nav-hamburger {
+            display: none;
+            width: 44px;
+            height: 44px;
+            background: rgba(232, 228, 220, 0.95);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            z-index: 1001;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-hamburger__line {
+            width: 18px;
+            height: 2px;
+            background: var(--accent-gold-dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-hamburger.active .nav-hamburger__line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-hamburger.active .nav-hamburger__line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.active .nav-hamburger__line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Menu Overlay - Fullscreen Centered */
+        .nav-mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(232, 228, 220, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        .nav-mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Menu - Centered */
+        .nav-mobile {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .nav-mobile__links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .nav-mobile__link {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--text-on-light-muted);
+            text-decoration: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--border-light-subtle);
+            transition: all 0.4s var(--ease-out-expo);
+            opacity: 0;
+            transform: translateY(20px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-mobile.active .nav-mobile__link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered animation delays */
+        .nav-mobile.active .nav-mobile__links li:nth-child(1) .nav-mobile__link { transition-delay: 0.1s; }
+        .nav-mobile.active .nav-mobile__links li:nth-child(2) .nav-mobile__link { transition-delay: 0.15s; }
+        .nav-mobile.active .nav-mobile__links li:nth-child(3) .nav-mobile__link { transition-delay: 0.2s; }
+        .nav-mobile.active .nav-mobile__links li:nth-child(4) .nav-mobile__link { transition-delay: 0.25s; }
+        .nav-mobile.active .nav-mobile__links li:nth-child(5) .nav-mobile__link { transition-delay: 0.3s; }
+        .nav-mobile.active .nav-mobile__links li:nth-child(6) .nav-mobile__link { transition-delay: 0.35s; }
+
+        .nav-mobile__link:hover {
+            color: var(--text-on-light);
+            border-color: var(--border-light-gold);
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-mobile__link.active {
+            color: var(--accent-gold-dark);
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.15);
+        }
+
+        /* Bug Report Button - Fixed at bottom */
+        .nav-mobile__bug {
+            display: none;
+            position: fixed;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            opacity: 0;
+            transition: all 0.4s var(--ease-out-expo);
+            z-index: 1001;
+            pointer-events: none;
+        }
+
+        .nav-mobile__bug.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            transition-delay: 0.4s;
+            pointer-events: auto;
+        }
+
+        .nav-mobile__bug-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--bg-dark);
+            text-decoration: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            background: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            transition: all 0.4s var(--ease-out-expo);
+            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.25);
+        }
+
+        .nav-mobile__bug-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201, 162, 39, 0.35);
+        }
+
+        .nav-mobile__bug-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
         /* ═══════════════════════════════════════════
            HERO SECTION (LIGHT)
         ═══════════════════════════════════════════ */
@@ -1860,31 +2032,76 @@
         }
 
         @media (max-width: 768px) {
-            .nav {
-                flex-wrap: nowrap;
-                padding: 0.35rem 0.4rem;
-                max-width: 95vw;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
+            /* Hide desktop nav, show hamburger */
+            .nav,
             .nav__links {
-                gap: 0.1rem;
-                flex-wrap: nowrap;
+                display: none;
             }
 
-            .nav__link {
-                font-size: 0.7rem;
-                padding: 0.45rem 0.7rem;
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .nav-mobile,
+            .nav-mobile-overlay,
+            .nav-mobile__bug {
+                display: block;
+            }
+
+            .nav-wrapper {
+                left: auto;
+                right: 1.5rem;
+                transform: translateX(0) translateY(-150%);
+            }
+
+            @keyframes navSlideIn {
+                to { transform: translateX(0) translateY(0); }
             }
 
             .hero {
-                padding: 6rem 5% 6rem;
-                padding-bottom: calc(6rem + 80px); /* Extra space for scroll indicator */
+                padding: 5rem 5% 4rem;
+                padding-bottom: calc(4rem + 80px);
+                min-height: 100svh; /* Use svh for mobile browsers */
+            }
+
+            .hero__bridge {
+                width: 140%;
+                opacity: 0.6;
+            }
+
+            .hero__eyebrow {
+                padding: 0.5rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero__eyebrow-text {
+                font-size: 0.7rem;
+                letter-spacing: 0.15em;
+            }
+
+            .hero__title {
+                font-size: clamp(1.8rem, 8vw, 2.8rem);
+                margin-bottom: 1rem;
+            }
+
+            .hero__description {
+                font-size: 0.95rem;
+                line-height: 1.7;
+                margin-bottom: 2rem;
+            }
+
+            .hero__cta-group {
+                width: 100%;
+                gap: 1rem;
+            }
+
+            .hero__cta-group .btn {
+                width: 100%;
             }
 
             .hero__trust {
-                margin-bottom: 2rem;
+                margin-top: 2rem;
+                padding-top: 1.5rem;
             }
 
             .hero__trust-items {
@@ -1897,23 +2114,149 @@
                 white-space: normal;
                 text-align: center;
                 justify-content: center;
+                font-size: 0.8rem;
             }
 
             .hero__scroll {
-                bottom: 1.5rem;
+                bottom: 1rem;
             }
 
+            /* Sections */
+            .section {
+                padding: clamp(3rem, 8vw, 5rem) 5%;
+            }
+
+            .section__header {
+                margin-bottom: 2.5rem;
+            }
+
+            .section__title {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+
+            .section__subtitle {
+                font-size: 0.95rem;
+            }
+
+            /* Challenge items */
+            .challenges-compact {
+                gap: 1rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .challenge-item {
+                padding: 1.25rem;
+                gap: 1rem;
+            }
+
+            .challenge-item__icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .challenge-item__title {
+                font-size: 1rem;
+            }
+
+            .challenge-item__text {
+                font-size: 0.85rem;
+            }
+
+            /* Transition story */
+            .transition-story {
+                padding: 2rem 1.5rem;
+            }
+
+            .transition-story__text {
+                font-size: 0.95rem;
+            }
+
+            .transition-story::before {
+                font-size: 5rem;
+                top: -0.5rem;
+                left: 1rem;
+            }
+
+            /* Timeline */
+            .transformation__timeline::before,
+            .transformation__timeline::after {
+                left: 25px;
+            }
+
+            .transformation__stage {
+                gap: 1rem;
+            }
+
+            .transformation__marker {
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+
+            .transformation__title {
+                font-size: 1.15rem;
+            }
+
+            .transformation__text {
+                font-size: 0.9rem;
+            }
+
+            /* Tiers and Testimonials */
             .tiers {
                 grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            .tier-card {
+                padding: 2rem 1.5rem;
             }
 
             .testimonials {
                 grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            .testimonial-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .testimonial-card__text {
+                font-size: 0.9rem;
+            }
+
+            /* ROI Box */
+            .roi-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .roi-box__stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .roi-box__stat-value {
+                font-size: 2rem;
+            }
+
+            /* Secondary CTA */
+            .secondary-cta__title {
+                font-size: clamp(1.4rem, 5vw, 1.8rem);
+            }
+
+            .secondary-cta__subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
+
+            /* Footer */
+            .footer {
+                padding: 2rem 5%;
             }
 
             .footer__container {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 1.5rem;
             }
 
             .footer__social {
@@ -1923,6 +2266,19 @@
             .footer__bottom {
                 flex-direction: column;
                 text-align: center;
+                padding-top: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            /* Modal */
+            .modal__content {
+                padding: 2rem 1.5rem;
+                max-height: 90vh;
+            }
+
+            .modal__title {
+                font-size: 1.5rem;
+                padding-right: 2rem;
             }
         }
 
@@ -1931,30 +2287,74 @@
                 font-size: 14px;
             }
 
-            .nav {
-                padding: 0.3rem 0.35rem;
+            .hero__title {
+                font-size: clamp(1.5rem, 7vw, 2rem);
             }
 
-            .nav__link {
-                font-size: 0.65rem;
-                padding: 0.4rem 0.55rem;
-            }
-
-            .nav__cta {
-                display: none;
+            .hero__bridge {
+                display: none; /* Hide complex SVG on very small screens */
             }
 
             .btn {
                 width: 100%;
+                padding: 1rem 1.5rem;
+                font-size: 0.85rem;
             }
 
-            .problems__grid {
-                grid-template-columns: 1fr;
-            }
-
-            .roi-box__stats {
+            .challenge-item {
                 flex-direction: column;
-                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .challenge-item__icon {
+                margin: 0 auto;
+            }
+
+            .transformation__marker {
+                width: 44px;
+                height: 44px;
+                font-size: 1rem;
+            }
+
+            .transformation__timeline::before,
+            .transformation__timeline::after {
+                left: 22px;
+            }
+
+            .roi-box__stat-value {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Landscape mode on mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 4rem 5% 3rem;
+            }
+
+            .hero__scroll {
+                display: none;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            /* Disable hover effects that don't work well on touch */
+            .challenge-item:hover,
+            .testimonial-card:hover,
+            .tier-card:hover {
+                transform: none;
+            }
+
+            /* Make touch targets larger */
+            .nav-mobile__link {
+                padding: 1rem 2.5rem;
+                min-height: 48px;
+            }
+
+            .btn {
+                min-height: 48px;
             }
         }
     </style>
@@ -1970,6 +2370,36 @@
             <li><a href="#contact" class="nav__link" data-section="contact">Kontakt</a></li>
             <li><a href="aboutme_white.html" class="nav__link" data-external="true">Über mich</a></li>
         </ul>
+        <!-- Mobile Hamburger Button -->
+        <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+            <span class="nav-hamburger__line"></span>
+            <span class="nav-hamburger__line"></span>
+            <span class="nav-hamburger__line"></span>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="nav-mobile-overlay"></div>
+
+    <!-- Mobile Navigation Panel -->
+    <nav class="nav-mobile">
+        <ul class="nav-mobile__links">
+            <li><a href="#hero" class="nav-mobile__link active">Home</a></li>
+            <li><a href="#services" class="nav-mobile__link">Leistungen</a></li>
+            <li><a href="#testimonials" class="nav-mobile__link">Kundenstimmen</a></li>
+            <li><a href="#contact" class="nav-mobile__link">Kontakt</a></li>
+            <li><a href="aboutme_white.html" class="nav-mobile__link">Über mich</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Bug Report Button (separate for bottom positioning) -->
+    <div class="nav-mobile__bug">
+        <a href="mailto:bug@klincov.it?subject=Bug%20Report%20-%20klincov.it" class="nav-mobile__bug-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Bug melden
+        </a>
     </div>
 
     <!-- ═══════════════════════════════════════════
@@ -2572,6 +3002,91 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
+
+        // Mobile Navigation Toggle
+        (function() {
+            const hamburger = document.querySelector('.nav-hamburger');
+            const mobileNav = document.querySelector('.nav-mobile');
+            const overlay = document.querySelector('.nav-mobile-overlay');
+            const bugButton = document.querySelector('.nav-mobile__bug');
+            const mobileLinks = document.querySelectorAll('.nav-mobile__link');
+
+            if (!hamburger || !mobileNav || !overlay) return;
+
+            function toggleMobileNav() {
+                const isOpen = hamburger.classList.contains('active');
+
+                hamburger.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+                overlay.classList.toggle('active');
+                if (bugButton) bugButton.classList.toggle('active');
+
+                hamburger.setAttribute('aria-expanded', !isOpen);
+                document.body.style.overflow = isOpen ? '' : 'hidden';
+            }
+
+            function closeMobileNav() {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                if (bugButton) bugButton.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', toggleMobileNav);
+            overlay.addEventListener('click', closeMobileNav);
+
+            // Close on link click and update active state
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Update active state
+                    mobileLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Don't close for external links
+                    if (!this.getAttribute('href').startsWith('#')) return;
+
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const target = document.getElementById(targetId);
+
+                    closeMobileNav();
+
+                    // Smooth scroll after menu closes
+                    setTimeout(() => {
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }, 300);
+                });
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && hamburger.classList.contains('active')) {
+                    closeMobileNav();
+                }
+            });
+
+            // Update mobile nav active state on scroll
+            const sections = document.querySelectorAll('.section, .hero');
+            const mobileNavObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        mobileLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-45% 0px -45% 0px' });
+
+            sections.forEach(section => mobileNavObserver.observe(section));
+        })();
 
         // Navigation pill: position & active state
         (function () {
