@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Klincov.it – Power Platform & Microsoft 365 Beratung für Unternehmen. Governance, Security, Copilot, Dynamics 365 und Citizen Development. Kostenloses 30-Minuten-Assessment für Ihre Power-Platform-Landschaft.">
-    <title>Klincov.it – Power Platform & Microsoft 365 Beratung | Governance, Copilot, Dynamics</title>
+    <meta name="description" content="Klincov.it – Power Platform & Microsoft 365 Beratung für Unternehmen. Power Automate, Power Apps, Copilot Studio, KI-Agents und Governance. Kostenloses 30-Minuten-Assessment für Ihre Power-Platform-Landschaft.">
+    <title>Klincov.it – Power Platform & Microsoft 365 Beratung | Power Apps, Power Automate, Copilot Studio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -961,16 +961,24 @@
             margin-bottom: 0.5rem;
         }
 
-        .tier-card__price {
-            font-size: 1.8rem;
+        .tier-card__phase {
+            font-size: 0.75rem;
             font-weight: 600;
-            color: var(--accent-gold-dark);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 0.25rem;
         }
 
-        .tier-card__price span {
+        .tier-card__outcome {
+            margin-top: auto;
+            padding: 1rem 1.25rem;
+            background: var(--accent-gold-glow-light);
+            border-left: 3px solid var(--accent-gold);
             font-size: 0.9rem;
-            font-weight: 400;
-            color: var(--text-on-light-muted);
+            color: var(--accent-gold-dark);
+            font-style: italic;
+            line-height: 1.6;
         }
 
         .tier-card__description {
@@ -1757,7 +1765,7 @@
             </h1>
 
             <p class="hero__description">
-                Ich unterstütze IT-Teams und Entscheider dabei, ihre Power-Platform- und Microsoft-365-Landschaft unter Kontrolle zu bringen: klare Governance, sichere Automatisierung, sinnvolle Copilot-Szenarien und eine vorbereitete Dynamics-365-Umgebung – statt Excel-Hölle, E-Mail-Freigaben und Schatten-IT. Ob Dynamics-CRM-Migration, Power-BI-Reporting oder DLP-Policies: Gemeinsam schaffen wir Struktur und Sicherheit.
+                Ich unterstütze IT-Teams, Entscheider und Fachbereiche dabei, ihre Power-Platform- und Microsoft-365-Landschaft unter Kontrolle zu bringen: klare Governance, sichere Automatisierung mit Power Automate, maßgeschneiderte Apps mit Power Apps und intelligente Agenten mit Copilot Studio – statt Excel-Hölle, E-Mail-Freigaben und Schatten-IT. Gemeinsam schaffen wir Struktur und Sicherheit.
             </p>
 
             <div class="hero__cta-group">
@@ -1786,7 +1794,7 @@
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
-                        <span>Power Platform & Dynamics 365 Specialist</span>
+                        <span>Power Platform & Microsoft 365 Specialist</span>
                     </div>
                     <div class="hero__trust-item">
                         <svg class="hero__trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1840,7 +1848,7 @@
 
         <div class="transition-story reveal">
             <p class="transition-story__text">
-                „Ich war selbst jahrelang Teil chaotischer Microsoft-365-Landschaften — Excel-Silos, manuelle Freigaben per E-Mail, fehlende DLP-Policies. Als Trainer, Consultant und Team Lead bei Kunden aus Finanzdienstleistung, Industrie und öffentlichem Sektor (500+ Mitarbeitende) habe ich erlebt, <strong>wie viel Potenzial verloren geht</strong>, wenn Power Platform, Dynamics und M365 ohne klare Governance eingeführt werden.<br><br>
+                „Ich war selbst jahrelang Teil chaotischer Microsoft-365-Landschaften — Excel-Silos, manuelle Freigaben per E-Mail, fehlende DLP-Policies. Als Trainer, Consultant und Team Lead bei Kunden aus Finanzdienstleistung, Industrie und öffentlichem Sektor (500+ Mitarbeitende) habe ich erlebt, <strong>wie viel Potenzial verloren geht</strong>, wenn Power Platform und M365 ohne klare Governance eingeführt werden.<br><br>
                 Der Wendepunkt kam, als ich begann, <strong>Enterprise-Plattformen mit Governance, DLP, Entra-Rollen und Center of Excellence aufzubauen</strong>. Heute helfe ich IT-Teams, genau diese Reise abzukürzen — von Wildwuchs zu kontrollierter Plattform."
             </p>
             <div class="transition-story__author">
@@ -1864,14 +1872,14 @@
         </div>
 
         <div class="value-stack__intro reveal">
-            <p>Ich biete ein ganzheitliches Beratungs- und Umsetzungssystem für Microsoft 365 und Power Platform — mit Fokus auf Governance, DLP, Citizen Development, Dynamics-365-Migration und Copilot-Enablement.</p>
+            <p>Ich biete ein ganzheitliches Beratungs- und Umsetzungssystem für Microsoft 365 und Power Platform — mit Fokus auf Governance, DLP, Citizen Development, Power Automate, Power Apps, Copilot Studio und KI-Agents. Ob IT-Leitung, Fachbereich oder Business-Verantwortliche: Gemeinsam entwickeln wir Lösungen, die wirklich funktionieren.</p>
         </div>
 
         <div class="tiers">
             <div class="tier-card reveal reveal-delay-1">
                 <div class="tier-card__header">
+                    <div class="tier-card__phase">Phase 1</div>
                     <h3 class="tier-card__name">Foundation</h3>
-                    <div class="tier-card__price">€3.000–4.000</div>
                 </div>
                 <p class="tier-card__description">Power Platform & Microsoft-365-Governance-Kickstart für Unternehmen, die Klarheit brauchen.</p>
                 <ul class="tier-card__features">
@@ -1880,16 +1888,15 @@
                     <li>Identifikation von 3–5 priorisierten Use-Cases mit konkreten Empfehlungen</li>
                     <li>Governance-Roadmap für die nächsten 12 Monate</li>
                 </ul>
-                <div class="tier-card__value">
-                    <div class="tier-card__value-label">Ihr Vorteil</div>
-                    <div class="tier-card__value-text">Weniger Wildwuchs, klare Guardrails. Die Basis, um Compliance-Risiken und Schatten-IT zu vermeiden.</div>
+                <div class="tier-card__outcome">
+                    Klarheit über Ist-Zustand und konkrete nächste Schritte
                 </div>
             </div>
 
             <div class="tier-card reveal reveal-delay-2">
                 <div class="tier-card__header">
+                    <div class="tier-card__phase">Phase 2</div>
                     <h3 class="tier-card__name">Enablement</h3>
-                    <div class="tier-card__price">€5.000–7.000</div>
                 </div>
                 <p class="tier-card__description">IT-Elite-Team & Citizen-Developer-Enablement für nachhaltigen internen Skill-Aufbau.</p>
                 <ul class="tier-card__features">
@@ -1899,47 +1906,44 @@
                     <li>Templates, Naming-Conventions & Governance-Guidelines</li>
                     <li>Begleitendes Coaching und Review-Sessions</li>
                 </ul>
-                <div class="tier-card__value">
-                    <div class="tier-card__value-label">Ihr Vorteil</div>
-                    <div class="tier-card__value-text">Klare Verantwortlichkeiten, weniger Tickets an die IT. Ihre Mitarbeitenden automatisieren selbst — sicher und regelkonform.</div>
+                <div class="tier-card__outcome">
+                    Erste Zeitersparnis, befähigtes IT-Team, etablierte Guardrails
                 </div>
             </div>
 
             <div class="tier-card tier-card--featured reveal reveal-delay-3">
                 <div class="tier-card__header">
+                    <div class="tier-card__phase">Phase 3</div>
                     <h3 class="tier-card__name">Execution</h3>
-                    <div class="tier-card__price">€6.000–9.000</div>
                 </div>
-                <p class="tier-card__description">Umsetzung ausgewählter Kern-Use-Cases mit Power Apps, Power Automate und ggf. Dynamics-Erweiterungen.</p>
+                <p class="tier-card__description">Umsetzung ausgewählter Kern-Use-Cases mit Power Apps, Power Automate und Copilot Studio.</p>
                 <ul class="tier-card__features">
-                    <li>Implementierung von 2–3 Kern-Use-Cases (z.B. Antragsprozesse, On-/Offboarding, einfache CRM-Workflows)</li>
+                    <li>Implementierung von 2–3 Kern-Use-Cases (z.B. Antragsprozesse, On-/Offboarding, Automatisierungen)</li>
                     <li>Entwicklung individueller Power Apps & Power Automate Flows</li>
-                    <li>Data-Integration & Power-BI-Reporting</li>
+                    <li>KI-Agents mit Copilot Studio</li>
                     <li>Iterative Entwicklung mit „Shadowing" für Wissenstransfer</li>
                     <li>Qualitätssicherung, Security Reviews & Dokumentation</li>
                 </ul>
-                <div class="tier-card__value">
-                    <div class="tier-card__value-label">Ihr Vorteil</div>
-                    <div class="tier-card__value-text">Nachweisbare Zeitersparnis im Betrieb. Sofortige Effizienzgewinne + gleichzeitiges Lernen.</div>
+                <div class="tier-card__outcome">
+                    Nachweisbare Zeitersparnis, sofortige Effizienzgewinne + gleichzeitiges Lernen
                 </div>
             </div>
 
             <div class="tier-card reveal reveal-delay-4">
                 <div class="tier-card__header">
+                    <div class="tier-card__phase">Langfristig</div>
                     <h3 class="tier-card__name">Transformation</h3>
-                    <div class="tier-card__price">€8.000–14.000</div>
                 </div>
-                <p class="tier-card__description">Plattform-Strategie für Dynamics-365-Migration, Copilot-Rollout, Power-BI-Governance und Purview-Integration.</p>
+                <p class="tier-card__description">Plattform-Strategie für Copilot-Rollout, KI-Agents, Power-BI-Governance und Purview-Integration.</p>
                 <ul class="tier-card__features">
-                    <li>Strategische Roadmap für Dynamics-365-Migration und Copilot-Rollout</li>
+                    <li>Strategische Roadmap für Copilot Studio, KI-Agents und Automatisierung</li>
                     <li>Governance-Framework inkl. DLP-Policies, Entra-Rollen und Monitoring</li>
                     <li>Power-BI-Governance und Purview-Integration</li>
                     <li>Vollwertiges Center of Excellence mit klaren Prozessen</li>
                     <li>Management-Coaching & Change Enablement</li>
                 </ul>
-                <div class="tier-card__value">
-                    <div class="tier-card__value-label">Ihr Vorteil</div>
-                    <div class="tier-card__value-text">Reduziertes Risiko bei Audits und Compliance. Ein vollständiges digitales Betriebssystem — von Wildwuchs zu kontrollierter Plattform.</div>
+                <div class="tier-card__outcome">
+                    Eine kontrollierte, lernende, innovative Organisation — keine Schatten-IT mehr
                 </div>
             </div>
         </div>
@@ -2029,7 +2033,7 @@
         <div class="section__header reveal">
             <span class="section__label">Ihre Reise</span>
             <h2 class="section__title">Von Chaos zu kontrollierter Plattform</h2>
-            <p class="section__subtitle">Der klare Weg zu Governance, Copilot-Readiness und Dynamics-365-Migration.</p>
+            <p class="section__subtitle">Der klare Weg zu Governance, Copilot-Readiness und kontrollierten Automatisierungen.</p>
         </div>
 
         <div class="transformation__timeline">
@@ -2063,7 +2067,7 @@
                     <div class="transformation__time">Phase 3</div>
                     <h3 class="transformation__title">Skalierung & Plattform-Strategie</h3>
                     <p class="transformation__text">
-                        Dynamics-365-Migration vorbereiten. Copilot-Szenarien entwickeln und pilotieren. Power-BI-Governance etablieren, Purview-Integration prüfen. Skalierung auf weitere Fachbereiche mit klaren Prozessen und Self-Service-Guidelines.
+                        Copilot-Szenarien entwickeln und pilotieren. KI-Agents mit Copilot Studio erstellen. Power-BI-Governance etablieren, Purview-Integration prüfen. Skalierung auf weitere Fachbereiche mit klaren Prozessen und Self-Service-Guidelines.
                     </p>
                     <div class="transformation__outcome">Reduziertes Audit-Risiko, Copilot-Ready, skalierbare Plattform</div>
                 </div>
@@ -2075,7 +2079,7 @@
                     <div class="transformation__time">Langfristig</div>
                     <h3 class="transformation__title">Kontrollierte Plattform & Autonomie</h3>
                     <p class="transformation__text">
-                        Vollständiges Governance-Framework etabliert. Citizen Developer arbeiten regelkonform. IT hat Überblick und Kontrolle. Dynamics 365, Copilot und Power BI sind produktiv im Einsatz. Weniger Abhängigkeit von externen Dienstleistern.
+                        Vollständiges Governance-Framework etabliert. Citizen Developer arbeiten regelkonform. IT hat Überblick und Kontrolle. Power Apps, Power Automate, Copilot und Power BI sind produktiv im Einsatz. Weniger Abhängigkeit von externen Dienstleistern.
                     </p>
                     <div class="transformation__outcome">Eine kontrollierte, lernende, innovative Organisation</div>
                 </div>
@@ -2096,7 +2100,7 @@
 
         <h2 class="secondary-cta__title reveal">Bereit, Ihre Power Platform unter Kontrolle zu bringen?</h2>
         <p class="secondary-cta__subtitle reveal">
-            In 30 Minuten analysieren wir gemeinsam Ihre Power-Platform- und Microsoft-365-Situation: Governance, Copilot, Dynamics & Reporting. Sie erhalten 2–3 konkrete nächste Schritte — kostenlos und unverbindlich. Der Call richtet sich an IT-Leitung, Microsoft-365-Verantwortliche und Power-Platform-Owner.
+            In 30 Minuten analysieren wir gemeinsam Ihre Power-Platform- und Microsoft-365-Situation: Governance, Automatisierungen, Copilot & Reporting. Sie erhalten 2–3 konkrete nächste Schritte — kostenlos und unverbindlich. Der Call richtet sich an IT-Leitung, Fachbereiche, Business-Verantwortliche und Power-Platform-Owner.
         </p>
 
         <!-- TODO: Ersetzen Sie "YOUR-LINK" durch Ihren echten Calendly-Link -->
