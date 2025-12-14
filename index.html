@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Klincov.it – Power Platform & Microsoft 365 Beratung für Unternehmen. Power Automate, Power Apps, Copilot Studio, KI-Agents und Governance. Kostenloses 30-Minuten-Assessment für Ihre Power-Platform-Landschaft.">
+    <meta name="description" content="Klincov.it – Power Platform & Microsoft 365 Beratung für Unternehmen. Power Automate, Power Apps, Copilot Studio, KI-Agents und Governance. Kostenloses 45-Minuten-Assessment für Ihre Power-Platform-Landschaft.">
     <title>Klincov.it – Power Platform & Microsoft 365 Beratung | Power Apps, Power Automate, Copilot Studio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1257,6 +1257,29 @@
             line-height: 1.8;
         }
 
+        .transformation__features {
+            list-style: none;
+            margin: 1rem 0;
+            padding: 0;
+        }
+
+        .transformation__features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-on-light-secondary);
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .transformation__features li::before {
+            content: '✓';
+            color: var(--accent-gold);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
         .transformation__outcome {
             margin-top: 1rem;
             padding: 0.75rem 1rem;
@@ -1657,7 +1680,7 @@
             <li><a href="index.html" class="nav__link">Home</a></li>
             <li><a href="#services" class="nav__link">Leistungen</a></li>
             <li><a href="aboutme_white.html" class="nav__link">Über mich</a></li>
-            <li><a href="#transformation" class="nav__link">Transformation</a></li>
+            <li><a href="#testimonials" class="nav__link">Kundenstimmen</a></li>
             <li><a href="#contact" class="nav__link">Kontakt</a></li>
         </ul>
     </nav>
@@ -1771,7 +1794,7 @@
             <div class="hero__cta-group">
                 <!-- TODO: Ersetzen Sie "YOUR-LINK" durch Ihren echten Calendly-Link -->
                 <a href="https://calendly.com/YOUR-LINK" class="btn btn--primary" target="_blank">
-                    Kostenloses 30-Min Assessment
+                    Kostenloses 45-Min Assessment
                     <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/>
                     </svg>
@@ -1875,75 +1898,79 @@
             <p>Ich biete ein ganzheitliches Beratungs- und Umsetzungssystem für Microsoft 365 und Power Platform — mit Fokus auf Governance, DLP, Citizen Development, Power Automate, Power Apps, Copilot Studio und KI-Agents. Ob IT-Leitung, Fachbereich oder Business-Verantwortliche: Gemeinsam entwickeln wir Lösungen, die wirklich funktionieren.</p>
         </div>
 
-        <div class="tiers">
-            <div class="tier-card reveal reveal-delay-1">
-                <div class="tier-card__header">
-                    <div class="tier-card__phase">Phase 1</div>
-                    <h3 class="tier-card__name">Foundation</h3>
-                </div>
-                <p class="tier-card__description">Power Platform & Microsoft-365-Governance-Kickstart für Unternehmen, die Klarheit brauchen.</p>
-                <ul class="tier-card__features">
-                    <li>Analyse der bestehenden Tenant- und Power-Platform-Umgebung</li>
-                    <li>Review von Environments, DLP-Policies, Konnektoren und Security-Einstellungen</li>
-                    <li>Identifikation von 3–5 priorisierten Use-Cases mit konkreten Empfehlungen</li>
-                    <li>Governance-Roadmap für die nächsten 12 Monate</li>
-                </ul>
-                <div class="tier-card__outcome">
-                    Klarheit über Ist-Zustand und konkrete nächste Schritte
-                </div>
-            </div>
-
-            <div class="tier-card reveal reveal-delay-2">
-                <div class="tier-card__header">
-                    <div class="tier-card__phase">Phase 2</div>
-                    <h3 class="tier-card__name">Enablement</h3>
-                </div>
-                <p class="tier-card__description">IT-Elite-Team & Citizen-Developer-Enablement für nachhaltigen internen Skill-Aufbau.</p>
-                <ul class="tier-card__features">
-                    <li>Schulung von 4–6 IT-Power-Usern (Power Apps, Power Automate, Power BI)</li>
-                    <li>Aufbau eines Rollen- und Rechtemodells (IT vs. Citizen Developer)</li>
-                    <li>Einführung eines Center of Excellence (CoE) auf Basis Microsoft-Best-Practices</li>
-                    <li>Templates, Naming-Conventions & Governance-Guidelines</li>
-                    <li>Begleitendes Coaching und Review-Sessions</li>
-                </ul>
-                <div class="tier-card__outcome">
-                    Erste Zeitersparnis, befähigtes IT-Team, etablierte Guardrails
+        <div class="transformation__timeline">
+            <div class="transformation__stage reveal">
+                <div class="transformation__marker">1</div>
+                <div class="transformation__content">
+                    <div class="transformation__time">Phase 1</div>
+                    <h3 class="transformation__title">Analyse & Governance-Design</h3>
+                    <p class="transformation__text">
+                        Bestandsaufnahme Ihrer Power-Platform- und M365-Landschaft. Review von Environments, DLP-Policies, Konnektoren und bestehenden Apps. Definition von Governance-Regeln, Rollen (IT vs. Citizen Developer) und ersten Quick-Win-Use-Cases.
+                    </p>
+                    <ul class="transformation__features">
+                        <li>Analyse der bestehenden Tenant- und Power-Platform-Umgebung</li>
+                        <li>Review von Environments, DLP-Policies, Konnektoren und Security-Einstellungen</li>
+                        <li>Identifikation von 3–5 priorisierten Use-Cases mit konkreten Empfehlungen</li>
+                        <li>Governance-Roadmap für die nächsten 12 Monate</li>
+                    </ul>
+                    <div class="transformation__outcome">Klarheit über Ist-Zustand und konkrete nächste Schritte</div>
                 </div>
             </div>
 
-            <div class="tier-card tier-card--featured reveal reveal-delay-3">
-                <div class="tier-card__header">
-                    <div class="tier-card__phase">Phase 3</div>
-                    <h3 class="tier-card__name">Execution</h3>
-                </div>
-                <p class="tier-card__description">Umsetzung ausgewählter Kern-Use-Cases mit Power Apps, Power Automate und Copilot Studio.</p>
-                <ul class="tier-card__features">
-                    <li>Implementierung von 2–3 Kern-Use-Cases (z.B. Antragsprozesse, On-/Offboarding, Automatisierungen)</li>
-                    <li>Entwicklung individueller Power Apps & Power Automate Flows</li>
-                    <li>KI-Agents mit Copilot Studio</li>
-                    <li>Iterative Entwicklung mit „Shadowing" für Wissenstransfer</li>
-                    <li>Qualitätssicherung, Security Reviews & Dokumentation</li>
-                </ul>
-                <div class="tier-card__outcome">
-                    Nachweisbare Zeitersparnis, sofortige Effizienzgewinne + gleichzeitiges Lernen
+            <div class="transformation__stage reveal">
+                <div class="transformation__marker">2</div>
+                <div class="transformation__content">
+                    <div class="transformation__time">Phase 2</div>
+                    <h3 class="transformation__title">Quick-Win-Use-Cases & IT-Enablement</h3>
+                    <p class="transformation__text">
+                        Umsetzung erster automatisierter Prozesse (z.B. Genehmigungen, Anträge). Schulung des IT-Kernteams in Power Apps, Power Automate und Power BI. Aufbau eines Center of Excellence (CoE) auf Basis Microsoft-Best-Practices.
+                    </p>
+                    <ul class="transformation__features">
+                        <li>Schulung von 4–6 IT-Power-Usern (Power Apps, Power Automate, Power BI)</li>
+                        <li>Aufbau eines Rollen- und Rechtemodells (IT vs. Citizen Developer)</li>
+                        <li>Einführung eines Center of Excellence (CoE) auf Basis Microsoft-Best-Practices</li>
+                        <li>Templates, Naming-Conventions & Governance-Guidelines</li>
+                        <li>Begleitendes Coaching und Review-Sessions</li>
+                    </ul>
+                    <div class="transformation__outcome">Erste Zeitersparnis, befähigtes IT-Team, etablierte Guardrails</div>
                 </div>
             </div>
 
-            <div class="tier-card reveal reveal-delay-4">
-                <div class="tier-card__header">
-                    <div class="tier-card__phase">Langfristig</div>
-                    <h3 class="tier-card__name">Transformation</h3>
+            <div class="transformation__stage reveal">
+                <div class="transformation__marker">3</div>
+                <div class="transformation__content">
+                    <div class="transformation__time">Phase 3</div>
+                    <h3 class="transformation__title">Skalierung & Plattform-Strategie</h3>
+                    <p class="transformation__text">
+                        Copilot-Szenarien entwickeln und pilotieren. KI-Agents mit Copilot Studio erstellen. Power-BI-Governance etablieren, Purview-Integration prüfen. Skalierung auf weitere Fachbereiche mit klaren Prozessen und Self-Service-Guidelines.
+                    </p>
+                    <ul class="transformation__features">
+                        <li>Implementierung von 2–3 Kern-Use-Cases (z.B. Antragsprozesse, On-/Offboarding, Automatisierungen)</li>
+                        <li>Entwicklung individueller Power Apps & Power Automate Flows</li>
+                        <li>KI-Agents mit Copilot Studio</li>
+                        <li>Iterative Entwicklung mit „Shadowing" für Wissenstransfer</li>
+                        <li>Qualitätssicherung, Security Reviews & Dokumentation</li>
+                    </ul>
+                    <div class="transformation__outcome">Nachweisbare Zeitersparnis, Copilot-Ready, skalierbare Plattform</div>
                 </div>
-                <p class="tier-card__description">Plattform-Strategie für Copilot-Rollout, KI-Agents, Power-BI-Governance und Purview-Integration.</p>
-                <ul class="tier-card__features">
-                    <li>Strategische Roadmap für Copilot Studio, KI-Agents und Automatisierung</li>
-                    <li>Governance-Framework inkl. DLP-Policies, Entra-Rollen und Monitoring</li>
-                    <li>Power-BI-Governance und Purview-Integration</li>
-                    <li>Vollwertiges Center of Excellence mit klaren Prozessen</li>
-                    <li>Management-Coaching & Change Enablement</li>
-                </ul>
-                <div class="tier-card__outcome">
-                    Eine kontrollierte, lernende, innovative Organisation — keine Schatten-IT mehr
+            </div>
+
+            <div class="transformation__stage reveal">
+                <div class="transformation__marker">4</div>
+                <div class="transformation__content">
+                    <div class="transformation__time">Langfristig</div>
+                    <h3 class="transformation__title">Kontrollierte Plattform & Autonomie</h3>
+                    <p class="transformation__text">
+                        Vollständiges Governance-Framework etabliert. Citizen Developer arbeiten regelkonform. IT hat Überblick und Kontrolle. Power Apps, Power Automate, Copilot und Power BI sind produktiv im Einsatz. Weniger Abhängigkeit von externen Dienstleistern.
+                    </p>
+                    <ul class="transformation__features">
+                        <li>Strategische Roadmap für Copilot Studio, KI-Agents und Automatisierung</li>
+                        <li>Governance-Framework inkl. DLP-Policies, Entra-Rollen und Monitoring</li>
+                        <li>Power-BI-Governance und Purview-Integration</li>
+                        <li>Vollwertiges Center of Excellence mit klaren Prozessen</li>
+                        <li>Management-Coaching & Change Enablement</li>
+                    </ul>
+                    <div class="transformation__outcome">Eine kontrollierte, lernende, innovative Organisation — keine Schatten-IT mehr</div>
                 </div>
             </div>
         </div>
@@ -2027,68 +2054,7 @@
     </section>
 
     <!-- ═══════════════════════════════════════════
-         6. TRANSFORMATION SECTION
-    ═══════════════════════════════════════════ -->
-    <section class="section transformation" id="transformation">
-        <div class="section__header reveal">
-            <span class="section__label">Ihre Reise</span>
-            <h2 class="section__title">Von Chaos zu kontrollierter Plattform</h2>
-            <p class="section__subtitle">Der klare Weg zu Governance, Copilot-Readiness und kontrollierten Automatisierungen.</p>
-        </div>
-
-        <div class="transformation__timeline">
-            <div class="transformation__stage reveal">
-                <div class="transformation__marker">1</div>
-                <div class="transformation__content">
-                    <div class="transformation__time">Phase 1</div>
-                    <h3 class="transformation__title">Analyse & Governance-Design</h3>
-                    <p class="transformation__text">
-                        Bestandsaufnahme Ihrer Power-Platform- und M365-Landschaft. Review von Environments, DLP-Policies, Konnektoren und bestehenden Apps. Definition von Governance-Regeln, Rollen (IT vs. Citizen Developer) und ersten Quick-Win-Use-Cases.
-                    </p>
-                    <div class="transformation__outcome">Klarheit über Ist-Zustand und konkrete nächste Schritte</div>
-                </div>
-            </div>
-
-            <div class="transformation__stage reveal">
-                <div class="transformation__marker">2</div>
-                <div class="transformation__content">
-                    <div class="transformation__time">Phase 2</div>
-                    <h3 class="transformation__title">Quick-Win-Use-Cases & IT-Enablement</h3>
-                    <p class="transformation__text">
-                        Umsetzung erster automatisierter Prozesse (z.B. Genehmigungen, Anträge). Schulung des IT-Kernteams in Power Apps, Power Automate und Power BI. Aufbau eines Center of Excellence (CoE) auf Basis Microsoft-Best-Practices.
-                    </p>
-                    <div class="transformation__outcome">Erste Zeitersparnis, befähigtes IT-Team, etablierte Guardrails</div>
-                </div>
-            </div>
-
-            <div class="transformation__stage reveal">
-                <div class="transformation__marker">3</div>
-                <div class="transformation__content">
-                    <div class="transformation__time">Phase 3</div>
-                    <h3 class="transformation__title">Skalierung & Plattform-Strategie</h3>
-                    <p class="transformation__text">
-                        Copilot-Szenarien entwickeln und pilotieren. KI-Agents mit Copilot Studio erstellen. Power-BI-Governance etablieren, Purview-Integration prüfen. Skalierung auf weitere Fachbereiche mit klaren Prozessen und Self-Service-Guidelines.
-                    </p>
-                    <div class="transformation__outcome">Reduziertes Audit-Risiko, Copilot-Ready, skalierbare Plattform</div>
-                </div>
-            </div>
-
-            <div class="transformation__stage reveal">
-                <div class="transformation__marker">4</div>
-                <div class="transformation__content">
-                    <div class="transformation__time">Langfristig</div>
-                    <h3 class="transformation__title">Kontrollierte Plattform & Autonomie</h3>
-                    <p class="transformation__text">
-                        Vollständiges Governance-Framework etabliert. Citizen Developer arbeiten regelkonform. IT hat Überblick und Kontrolle. Power Apps, Power Automate, Copilot und Power BI sind produktiv im Einsatz. Weniger Abhängigkeit von externen Dienstleistern.
-                    </p>
-                    <div class="transformation__outcome">Eine kontrollierte, lernende, innovative Organisation</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         7. SECONDARY CTA SECTION
+         6. SECONDARY CTA SECTION
     ═══════════════════════════════════════════ -->
     <section class="section secondary-cta" id="contact">
         <div class="secondary-cta__avatars reveal">
@@ -2098,9 +2064,9 @@
             <div class="secondary-cta__avatar secondary-cta__avatar--count">+</div>
         </div>
 
-        <h2 class="secondary-cta__title reveal">Bereit, Ihre Power Platform unter Kontrolle zu bringen?</h2>
+        <h2 class="secondary-cta__title reveal">Bereit Ihren Digitalen Wandel zu starten?</h2>
         <p class="secondary-cta__subtitle reveal">
-            In 30 Minuten analysieren wir gemeinsam Ihre Power-Platform- und Microsoft-365-Situation: Governance, Automatisierungen, Copilot & Reporting. Sie erhalten 2–3 konkrete nächste Schritte — kostenlos und unverbindlich. Der Call richtet sich an IT-Leitung, Fachbereiche, Business-Verantwortliche und Power-Platform-Owner.
+            In 45 Minuten analysieren wir gemeinsam Ihre Power-Platform- und Microsoft-365-Situation: Governance, Automatisierungen, Copilot & Reporting. Sie erhalten 2–3 konkrete nächste Schritte — kostenlos und unverbindlich. Der Call richtet sich an IT-Leitung, Fachbereiche, Business-Verantwortliche und Power-Platform-Owner.
         </p>
 
         <!-- TODO: Ersetzen Sie "YOUR-LINK" durch Ihren echten Calendly-Link -->
@@ -2125,7 +2091,7 @@
             <nav class="footer__nav">
                 <a href="#problems" class="footer__nav-link">Herausforderungen</a>
                 <a href="#services" class="footer__nav-link">Leistungen</a>
-                <a href="#transformation" class="footer__nav-link">Transformation</a>
+                <a href="#testimonials" class="footer__nav-link">Kundenstimmen</a>
                 <a href="#contact" class="footer__nav-link">Kontakt</a>
             </nav>
 
