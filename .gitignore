@@ -6,3 +6,8 @@
 
 # Optional: Node (falls du mal ein Build machst)
 node_modules/
+
+# dokumente
+*.doc
+*.docx
+*.pdf
