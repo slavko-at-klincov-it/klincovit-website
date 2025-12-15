@@ -12,7 +12,13 @@
 
     <style>
         :root {
-            /* Dark bases (Hero, Footer, Nav) */
+            /* Hero warm backgrounds */
+            --bg-warm: #f9f7f3;
+            --bg-cream: #f3efe7;
+            --bg-soft: #eae5d9;
+            --white: #ffffff;
+
+            /* Dark bases (Footer, Nav on dark) */
             --bg-dark: #08090b;
             --bg-dark-secondary: #0d0e11;
             --bg-dark-elevated: #131519;
@@ -33,12 +39,27 @@
             --text-on-light-secondary: #4a4a4a;
             --text-on-light-muted: #7a7a7a;
 
+            /* Hero text colors (warm) */
+            --text-dark: #2c2a26;
+            --text-medium: #5a564d;
+            --text-muted: #8a857a;
+
             /* Gold accents */
+            --gold: #c9a227;
+            --gold-rich: #b8931f;
+            --gold-muted: #d4b85c;
+            --gold-soft: rgba(201, 162, 39, 0.1);
+            --gold-glow: rgba(201, 162, 39, 0.2);
             --accent-gold: #c9a227;
             --accent-gold-light: #dbb84a;
             --accent-gold-dark: #a8871f;
             --accent-gold-glow: rgba(201, 162, 39, 0.12);
             --accent-gold-glow-light: rgba(201, 162, 39, 0.08);
+
+            /* Card accent colors */
+            --copper: #c17f59;
+            --sage: #7a9a6d;
+            --dusty-blue: #7a8fa3;
 
             /* Borders */
             --border-dark-subtle: rgba(255, 255, 255, 0.06);
@@ -341,287 +362,228 @@
         }
 
         /* ═══════════════════════════════════════════
-           HERO SECTION (LIGHT)
+           HERO SECTION (WARM)
         ═══════════════════════════════════════════ */
         .hero {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 5rem 5% 4rem;
+            padding: 6rem 5%;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(180deg, #e8e4dc 0%, var(--bg-light) 100%);
+            background: var(--bg-warm);
         }
 
+        /* Warm gradient background */
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            inset: 0;
             background:
-                radial-gradient(circle at 30% 40%, rgba(201, 162, 39, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 70% 60%, rgba(201, 162, 39, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(180, 140, 40, 0.08) 0%, transparent 50%);
-            animation: heroGlow 15s ease-in-out infinite alternate;
+                radial-gradient(ellipse 100% 80% at 20% 10%, rgba(201, 162, 39, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 80% 60% at 80% 90%, rgba(193, 127, 89, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 50% at 50% 50%, rgba(122, 154, 109, 0.04) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        @keyframes heroGlow {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { transform: translate(-5%, -5%) rotate(3deg); opacity: 1; }
-        }
-
+        /* Subtle grain */
         .hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 0%, transparent 70%, var(--bg-light) 100%);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.025;
             pointer-events: none;
+            z-index: 1;
         }
 
-        /* Bridge Sketch Background */
-        .hero__bridge {
+        /* Floating Cards */
+        .float-card {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 110%;
-            max-width: 1400px;
-            height: auto;
-            pointer-events: none;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.04),
+                0 10px 20px rgba(0, 0, 0, 0.06),
+                0 25px 50px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(0, 0, 0, 0.02);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             opacity: 0;
-            animation: bridgeFadeIn 2s ease-out 0.3s forwards;
-            will-change: transform;
+            z-index: 5;
+            transition: box-shadow 0.3s ease;
         }
 
-        @keyframes bridgeFadeIn {
+        .float-card:hover {
+            box-shadow:
+                0 6px 10px rgba(0, 0, 0, 0.06),
+                0 15px 30px rgba(0, 0, 0, 0.1),
+                0 35px 60px rgba(0, 0, 0, 0.14),
+                0 0 0 1px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Scroll-controlled: disable only reveal animation, keep float */
+        .float-card.scroll-controlled {
+            animation: floatUp var(--float-duration, 6s) ease-in-out infinite !important;
+            opacity: 1;
+        }
+
+        @keyframes floatUp {
+            0%, 100% { transform: translateY(0) rotate(var(--rotate, 0deg)); }
+            50% { transform: translateY(-10px) rotate(var(--rotate, 0deg)); }
+        }
+
+        @keyframes cardReveal {
             to { opacity: 1; }
         }
 
-        .hero__bridge svg {
-            width: 100%;
-            height: auto;
-            overflow: visible;
+        /* Left Side Cards - fixed distance from center */
+        .float-card--left-1 {
+            --rotate: -2deg;
+            --float-duration: 6s;
+            top: 22%;
+            left: calc(50% - 550px);
+            animation: cardReveal 0.8s ease-out 0.8s forwards, floatUp 6s ease-in-out 1.6s infinite;
         }
 
-        /* Bridge lines */
-        .hero__bridge .bridge-line {
-            fill: none;
-            stroke: var(--accent-gold);
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            opacity: 0;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            filter: drop-shadow(0 0 3px rgba(201, 162, 39, 0.3));
-            will-change: stroke-dashoffset, opacity;
+        .float-card--left-2 {
+            --rotate: 1deg;
+            --float-duration: 7s;
+            top: 36%;
+            left: calc(50% - 520px);
+            animation: cardReveal 0.8s ease-out 1s forwards, floatUp 7s ease-in-out 1.8s infinite;
         }
 
-        .hero__bridge .bridge-line-thick { stroke-width: 3; }
-        .hero__bridge .bridge-line-medium { stroke-width: 2; }
-        .hero__bridge .bridge-line-thin { stroke-width: 1.5; }
-
-        /* Foundation posts */
-        .hero__bridge .bridge-foundation {
-            fill: none;
-            stroke: var(--accent-gold-dark);
-            stroke-width: 3;
-            stroke-linecap: square;
-            opacity: 0;
-            stroke-dasharray: 200;
-            stroke-dashoffset: 200;
+        .float-card--left-3 {
+            --rotate: -1deg;
+            --float-duration: 5.5s;
+            top: 50%;
+            left: calc(50% - 550px);
+            animation: cardReveal 0.8s ease-out 1.2s forwards, floatUp 5.5s ease-in-out 2s infinite;
         }
 
-        /* Bridge dots */
-        .hero__bridge .bridge-dot {
-            fill: var(--accent-gold);
-            opacity: 0;
+        .float-card--left-4 {
+            --rotate: 2deg;
+            --float-duration: 6.5s;
+            top: 64%;
+            left: calc(50% - 570px);
+            animation: cardReveal 0.8s ease-out 1.4s forwards, floatUp 6.5s ease-in-out 2.2s infinite;
         }
 
-        .hero__bridge .bridge-dot-glow {
-            fill: var(--accent-gold);
-            opacity: 0;
-            filter: blur(6px);
+        /* Right Side Cards - fixed distance from center */
+        .float-card--right-1 {
+            --rotate: 2deg;
+            --float-duration: 7s;
+            top: 22%;
+            right: calc(50% - 550px);
+            animation: cardReveal 0.8s ease-out 0.9s forwards, floatUp 7s ease-in-out 1.7s infinite;
         }
 
-        /* Side labels */
-        .hero__bridge .side-label {
-            font-family: var(--font-body);
-            font-size: 13px;
+        .float-card--right-2 {
+            --rotate: -1deg;
+            --float-duration: 6s;
+            top: 36%;
+            right: calc(50% - 500px);
+            animation: cardReveal 0.8s ease-out 1.1s forwards, floatUp 6s ease-in-out 1.9s infinite;
+        }
+
+        .float-card--right-3 {
+            --rotate: 1deg;
+            --float-duration: 5.5s;
+            top: 50%;
+            right: calc(50% - 520px);
+            animation: cardReveal 0.8s ease-out 1.3s forwards, floatUp 5.5s ease-in-out 2.1s infinite;
+        }
+
+        .float-card--right-4 {
+            --rotate: -2deg;
+            --float-duration: 7.5s;
+            top: 64%;
+            right: calc(50% - 570px);
+            animation: cardReveal 0.8s ease-out 1.5s forwards, floatUp 7.5s ease-in-out 2.3s infinite;
+        }
+
+        .float-card__icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .float-card__icon img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .float-card__icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .float-card__icon--gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-rich) 100%);
+            color: var(--white);
+        }
+
+        .float-card__icon--sage {
+            background: linear-gradient(135deg, var(--sage) 0%, #5a7a4d 100%);
+            color: var(--white);
+        }
+
+        .float-card__icon--copper {
+            background: linear-gradient(135deg, var(--copper) 0%, #a36a45 100%);
+            color: var(--white);
+        }
+
+        .float-card__icon--blue {
+            background: linear-gradient(135deg, var(--dusty-blue) 0%, #5a7089 100%);
+            color: var(--white);
+        }
+
+        .float-card__icon--transparent {
+            background: transparent;
+        }
+
+        .float-card__title {
+            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            fill: var(--accent-gold-dark);
-            opacity: 0;
-            text-anchor: middle;
-        }
-
-        .hero__bridge .side-sublabel {
-            font-family: var(--font-body);
-            font-size: 9px;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            fill: var(--text-on-light-muted);
-            opacity: 0;
-            text-anchor: middle;
-        }
-
-        /* Walking person sketch */
-        .hero__bridge .person {
-            fill: none;
-            stroke: var(--accent-gold);
-            stroke-width: 1.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .hero__bridge .person-head {
-            fill: var(--accent-gold);
-        }
-
-        /* Bridge draw animations - lighter for better text readability */
-        @keyframes drawLine {
-            to {
-                stroke-dashoffset: 0;
-                opacity: 0.35;
-            }
-        }
-
-        @keyframes drawLineStrong {
-            to {
-                stroke-dashoffset: 0;
-                opacity: 0.45;
-            }
-        }
-
-        @keyframes drawFoundation {
-            to {
-                stroke-dashoffset: 0;
-                opacity: 0.4;
-            }
-        }
-
-        @keyframes dotFadeIn {
-            to { opacity: 0.5; }
-        }
-
-        @keyframes dotGlowFadeIn {
-            to { opacity: 0.15; }
-        }
-
-        @keyframes labelFadeIn {
-            to { opacity: 0.8; }
-        }
-
-        @keyframes sublabelFadeIn {
-            to { opacity: 0.5; }
-        }
-
-        /* Walking animations - lighter */
-        @keyframes walkLeftToRight {
-            0% { transform: translateX(0); opacity: 0; }
-            3% { opacity: 0.3; }
-            97% { opacity: 0.3; }
-            100% { transform: translateX(540px); opacity: 0; }
-        }
-
-        @keyframes walkRightToLeft {
-            0% { transform: translateX(0) scaleX(-1); opacity: 0; }
-            3% { opacity: 0.3; }
-            97% { opacity: 0.3; }
-            100% { transform: translateX(-540px) scaleX(-1); opacity: 0; }
-        }
-
-        @keyframes legSwing1 {
-            0%, 100% { transform: rotate(-15deg); }
-            50% { transform: rotate(15deg); }
-        }
-
-        @keyframes legSwing2 {
-            0%, 100% { transform: rotate(15deg); }
-            50% { transform: rotate(-15deg); }
-        }
-
-        /* Foundation timing */
-        .hero__bridge .bridge-foundation.left-outer { animation: drawFoundation 0.8s ease-out 0.4s forwards; }
-        .hero__bridge .bridge-foundation.left-inner { animation: drawFoundation 0.8s ease-out 0.5s forwards; }
-        .hero__bridge .bridge-foundation.right-inner { animation: drawFoundation 0.8s ease-out 0.5s forwards; }
-        .hero__bridge .bridge-foundation.right-outer { animation: drawFoundation 0.8s ease-out 0.4s forwards; }
-
-        /* Bridge structure timing */
-        .hero__bridge .bridge-ground { animation: drawLine 1s ease-out 0.3s forwards; }
-        .hero__bridge .bridge-deck { animation: drawLineStrong 1.2s ease-out 0.8s forwards; }
-        .hero__bridge .bridge-arch-main { animation: drawLineStrong 2s ease-out 1.2s forwards; }
-        .hero__bridge .bridge-arch-secondary { animation: drawLine 1.8s ease-out 1.5s forwards; }
-
-        /* Pillars timing */
-        .hero__bridge .bridge-pillar-left { animation: drawLine 0.8s ease-out 2s forwards; }
-        .hero__bridge .bridge-pillar-right { animation: drawLine 0.8s ease-out 2.1s forwards; }
-        .hero__bridge .bridge-pillar-cap-left { animation: drawLine 0.6s ease-out 2.3s forwards; }
-        .hero__bridge .bridge-pillar-cap-right { animation: drawLine 0.6s ease-out 2.4s forwards; }
-
-        /* Cable timing */
-        .hero__bridge .bridge-cable-1 { animation: drawLine 0.6s ease-out 2.5s forwards; }
-        .hero__bridge .bridge-cable-2 { animation: drawLine 0.6s ease-out 2.6s forwards; }
-        .hero__bridge .bridge-cable-3 { animation: drawLine 0.6s ease-out 2.7s forwards; }
-        .hero__bridge .bridge-cable-4 { animation: drawLine 0.6s ease-out 2.5s forwards; }
-        .hero__bridge .bridge-cable-5 { animation: drawLine 0.6s ease-out 2.6s forwards; }
-        .hero__bridge .bridge-cable-6 { animation: drawLine 0.6s ease-out 2.7s forwards; }
-
-        /* Dots timing */
-        .hero__bridge .bridge-dot { animation: dotFadeIn 0.5s ease-out 3s forwards; }
-        .hero__bridge .bridge-dot-glow { animation: dotGlowFadeIn 0.5s ease-out 3s forwards; }
-
-        /* Labels timing */
-        .hero__bridge .side-label { animation: labelFadeIn 0.8s ease-out 3.5s forwards; }
-        .hero__bridge .side-sublabel { animation: sublabelFadeIn 0.8s ease-out 3.7s forwards; }
-
-        /* Walking people */
-        .hero__bridge .person-group { opacity: 0; }
-        .hero__bridge .person-group.walk-lr { animation: walkLeftToRight 24s linear 4s infinite; }
-        .hero__bridge .person-group.walk-rl { animation: walkRightToLeft 28s linear 8s infinite; }
-        .hero__bridge .person-group.walk-lr-2 { animation: walkLeftToRight 32s linear 12s infinite; }
-
-        /* Leg animations */
-        .hero__bridge .leg-left {
-            transform-origin: 0 312px;
-            animation: legSwing1 0.6s ease-in-out infinite;
-        }
-
-        .hero__bridge .leg-right {
-            transform-origin: 0 312px;
-            animation: legSwing2 0.6s ease-in-out infinite;
+            color: var(--text-dark);
+            white-space: nowrap;
         }
 
         .hero__content {
             position: relative;
             z-index: 10;
-            max-width: 900px;
+            max-width: 800px;
             text-align: center;
         }
 
-        .hero__eyebrow {
+        /* Badge */
+        .hero__badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.6rem 1.5rem;
-            border: 1px solid var(--border-light-gold);
-            background: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2.5rem;
+            gap: 0.6rem;
+            padding: 0.6rem 1.25rem;
+            background: var(--white);
+            border-radius: 100px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(201, 162, 39, 0.15);
+            margin-bottom: 2rem;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s var(--ease-out-expo) 0.5s forwards;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 0.3s forwards;
             position: relative;
             overflow: hidden;
         }
 
-        /* Shimmer effect on eyebrow */
-        .hero__eyebrow::after {
+        .hero__badge::before {
             content: '';
             position: absolute;
             top: 0;
@@ -637,26 +599,25 @@
             50%, 100% { left: 100%; }
         }
 
-        .hero__eyebrow-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-gold);
+        .hero__badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
             border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-            box-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+            box-shadow: 0 0 0 3px var(--gold-soft);
+            animation: pulse 2.5s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(201, 162, 39, 0.5); }
-            50% { opacity: 0.7; transform: scale(1.3); box-shadow: 0 0 20px rgba(201, 162, 39, 0.8); }
+            0%, 100% { box-shadow: 0 0 0 3px var(--gold-soft); }
+            50% { box-shadow: 0 0 0 8px transparent; }
         }
 
-        .hero__eyebrow-text {
+        .hero__badge-text {
             font-size: 0.8rem;
             font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent-gold-dark);
+            color: var(--text-medium);
+            letter-spacing: 0.02em;
         }
 
         @keyframes fadeUp {
@@ -666,14 +627,14 @@
             }
         }
 
+        /* Title */
         .hero__title {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 500;
-            line-height: 1.15;
-            letter-spacing: -0.01em;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.25;
             margin-bottom: 1.5rem;
-            color: var(--text-on-light);
+            color: var(--text-dark);
         }
 
         .hero__title-line {
@@ -681,132 +642,74 @@
             overflow: hidden;
         }
 
-        .hero__title-line:nth-child(1) {
-            color: var(--text-on-light);
+        .hero__title-line span {
+            display: inline-block;
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpTitle 1s var(--ease-out-expo) 0.6s forwards;
+            transform: translateY(100%);
+            animation: revealText 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .hero__title-line:nth-child(2) {
-            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-dark), #8a6d15, var(--accent-gold));
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpTitle 1s var(--ease-out-expo) 0.9s forwards, gradientShift 8s ease-in-out 2s infinite;
-        }
+        .hero__title-line:nth-child(1) span { animation-delay: 0.4s; }
+        .hero__title-line:nth-child(2) span { animation-delay: 0.55s; }
 
-        @keyframes fadeUpTitle {
+        @keyframes revealText {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        .hero__title em {
+            font-style: italic;
+            color: var(--gold-rich);
         }
 
-        .hero__description {
-            font-size: clamp(1rem, 2vw, 1.15rem);
-            color: var(--text-on-light-secondary);
-            max-width: 650px;
+        /* Description */
+        .hero__desc {
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.85;
+            color: var(--text-medium);
+            max-width: 640px;
             margin: 0 auto 2.5rem;
-            line-height: 1.8;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s var(--ease-out-expo) 1.1s forwards;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 0.7s forwards;
         }
 
-        .hero__cta-group {
+        /* CTA */
+        .hero__cta {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.8s var(--ease-out-expo) 1.3s forwards;
-        }
-
-        /* Subtle floating animation for primary CTA after load */
-        .hero__cta-group .btn--primary {
-            animation: fadeUp 0.8s var(--ease-out-expo) 1.3s forwards, floatBtn 4s ease-in-out 2.5s infinite;
-        }
-
-        @keyframes floatBtn {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-
-        .hero__cta-group .btn--primary:hover {
-            animation: none;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 0.9s forwards;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            padding: 1.1rem 2.5rem;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
             font-family: var(--font-body);
             font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
+            font-weight: 600;
             text-decoration: none;
-            transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            border-radius: 12px;
             cursor: pointer;
-            border: none;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
         }
 
-        /* Ripple effect container */
-        .btn .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(0);
-            animation: rippleEffect 0.6s ease-out;
-            pointer-events: none;
-        }
-
-        .btn--secondary .ripple {
-            background: rgba(201, 162, 39, 0.25);
-        }
-
-        @keyframes rippleEffect {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        /* Magnetic hover glow */
-        .btn::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .btn--primary::after {
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.15);
-        }
-
-        .btn:hover::after {
-            opacity: 1;
-        }
-
         .btn--primary {
-            background: var(--accent-gold);
-            color: var(--bg-dark);
-            border: 2px solid var(--accent-gold);
+            background: var(--gold);
+            color: var(--white);
+            border: 2px solid var(--gold);
+            box-shadow: 0 4px 15px var(--gold-glow);
         }
 
         .btn--primary::before {
@@ -816,7 +719,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
             transition: left 0.6s ease;
             z-index: 1;
         }
@@ -826,6 +729,8 @@
         }
 
         .btn--primary:hover {
+            background: var(--gold-rich);
+            border-color: var(--gold-rich);
             transform: translateY(-4px);
             box-shadow: 0 15px 40px rgba(201, 162, 39, 0.35), 0 5px 15px rgba(201, 162, 39, 0.2);
         }
@@ -836,9 +741,9 @@
         }
 
         .btn--secondary {
-            background: #e8e0d0;
-            color: var(--text-on-light);
-            border: 1px solid var(--border-light-medium);
+            background: var(--white);
+            color: var(--text-dark);
+            border: 2px solid rgba(0, 0, 0, 0.08);
         }
 
         .btn--secondary::before {
@@ -858,9 +763,8 @@
         }
 
         .btn--secondary:hover {
-            border-color: var(--accent-gold-dark);
-            color: var(--accent-gold-dark);
-            background: #e2d9c8;
+            border-color: var(--gold);
+            color: var(--gold-rich);
             transform: translateY(-4px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
@@ -880,27 +784,33 @@
             color: var(--accent-gold);
         }
 
-        .btn__arrow {
-            transition: transform 0.3s var(--ease-out-expo);
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
         }
 
-        .btn:hover .btn__arrow {
-            transform: translateX(4px);
+        .btn:hover svg {
+            transform: translateX(3px);
         }
 
+        /* Trust Section */
         .hero__trust {
-            margin-top: 3rem;
-            padding-top: 2.5rem;
-            border-top: 1px solid var(--border-light-subtle);
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
             opacity: 0;
-            animation: fadeUp 0.8s var(--ease-out-expo) 1.5s forwards;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 1.1s forwards;
         }
 
         .hero__trust-label {
             font-size: 0.75rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--text-on-light-muted);
+            color: var(--text-muted);
             margin-bottom: 1rem;
         }
 
@@ -916,15 +826,56 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.85rem;
-            color: var(--text-on-light-secondary);
+            color: var(--text-medium);
             white-space: nowrap;
         }
 
         .hero__trust-icon {
-            color: var(--accent-gold-dark);
+            color: var(--gold);
+            flex-shrink: 0;
         }
 
-        /* Scroll Indicator */
+        /* Scroll Hint - Enlarged */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease-out 1.8s forwards;
+            transition: opacity 0.4s ease;
+            z-index: 10;
+        }
+
+        .scroll-hint.hidden {
+            opacity: 0 !important;
+        }
+
+        .scroll-hint__text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .scroll-hint__line {
+            width: 2px;
+            height: 45px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.4; transform: scaleY(0.7); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        /* Legacy scroll indicator (for compatibility) */
         .hero__scroll {
             position: absolute;
             bottom: 2.5rem;
@@ -933,14 +884,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             opacity: 0;
-            animation: fadeIn 1s ease 2s forwards;
+            animation: fadeUp 0.8s ease-out 1.8s forwards;
             z-index: 10;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
         }
 
         .hero__scroll-text {
@@ -951,15 +898,52 @@
         }
 
         .hero__scroll-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--accent-gold-dark), transparent);
+            width: 2px;
+            height: 45px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
             animation: scrollPulse 2s ease-in-out infinite;
         }
 
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-            50% { opacity: 1; transform: scaleY(1); }
+        /* Responsive - all cards hide together */
+        @media (max-width: 1100px) {
+            .float-card { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .hero__trust {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+            }
+
+            .hero__trust-items {
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
+            }
+
+            .hero__trust-item {
+                white-space: normal;
+                text-align: center;
+                justify-content: center;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero { padding: 5rem 5%; }
+
+            .hero__title {
+                font-size: clamp(1.6rem, 7vw, 2.2rem);
+            }
+
+            .hero__desc { font-size: 0.95rem; }
+
+            .hero__cta {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn { width: 100%; justify-content: center; }
         }
 
         /* ═══════════════════════════════════════════
@@ -1046,7 +1030,7 @@
             padding: 1rem 0;
             display: flex;
             flex-direction: column;
-            gap: 0.9rem; /* consistent vertical rhythm */
+            gap: 0.9rem;
         }
 
         .challenge-item {
@@ -1061,11 +1045,9 @@
             transition: box-shadow 180ms ease, border-color 240ms ease;
             transform-style: preserve-3d;
             z-index: 2;
-            /* stronger static shadow for more depth */
             box-shadow: -20px 42px 80px rgba(0,0,0,0.14), 0 22px 50px rgba(0,0,0,0.12);
-            margin: 0; /* rely on container gap for spacing */
+            margin: 0;
             position: relative;
-            /* small visual offsets via translate (do not affect layout spacing) */
             --offset-x: 0px;
             --offset-y: 0px;
             transform: translate(var(--offset-x), var(--offset-y));
@@ -1094,12 +1076,9 @@
             border-left: none;
         }
 
-        /* Slight overlapping and subtle offsets so cards don't stack perfectly straight */
-        /* subtle, consistent visual offsets using translate so spacing stays even */
         .challenge-item:nth-child(odd)  { --offset-x: -10px; --offset-y: 6px; z-index: 3; }
         .challenge-item:nth-child(even) { --offset-x: 10px; --offset-y: -6px; z-index: 2; }
 
-        /* Hover: subtle instantaneous lift via shadow only (no animation/transform) */
         .challenge-item:hover {
             box-shadow: -26px 52px 100px rgba(0,0,0,0.15), 0 26px 64px rgba(0,0,0,0.13);
         }
@@ -1108,19 +1087,12 @@
             box-shadow: 0 0 26px rgba(201, 162, 39, 0.3);
         }
 
-        /* Mobile: stacked clean layout (no rotation/offsets) */
         @media (max-width: 768px) {
             .challenge-item { width: 100%; margin: 0 0 1rem 0; border-left: 3px solid var(--accent-gold); border-right: none; top: 0; left: 0; z-index: auto; transform: rotate(0deg); }
             .challenge-item:nth-child(even) { border-left: 3px solid var(--accent-gold); }
-            /* Disable hover animations on touch devices for stability */
-            @media (hover: none), (pointer: coarse) {
-                .challenge-item:hover { animation: none !important; }
-                .challenge-item:hover .challenge-item__icon { animation: none !important; transform: none !important; }
-            }
         }
 
         .challenge-item__icon {
-            border-right: 3px solid var(--accent-gold);
             width: 44px;
             height: 44px;
             background: var(--accent-gold-glow-light);
@@ -1159,18 +1131,6 @@
                 width: 38px;
                 height: 38px;
             }
-        }
-
-        /* Mobile: stacked clean layout (no rotation/offsets) */
-        @media (max-width: 768px) {
-            .challenge-item { width: 100%; margin: 0 0 1rem 0; border-left: 3px solid var(--accent-gold); border-right: none; top: 0; left: 0; z-index: auto; transform: rotate(0deg); }
-            .challenge-item:nth-child(even) { border-left: 3px solid var(--accent-gold); }
-        }
-
-        /* Disable hover animations on touch devices for stability */
-        @media (hover: none), (pointer: coarse) {
-            .challenge-item:hover { animation: none !important; }
-            .challenge-item:hover .challenge-item__icon { animation: none !important; transform: none !important; }
         }
 
         /* Transition Story */
@@ -2453,114 +2413,99 @@
          1. HERO SECTION
     ═══════════════════════════════════════════ -->
     <section class="hero" id="hero">
-        <!-- Bridge Sketch Background -->
-        <div class="hero__bridge">
-            <svg viewBox="0 0 900 420" preserveAspectRatio="xMidYMid meet">
-                <!-- FOUNDATION POSTS -->
-                <path class="bridge-foundation left-outer" d="M100,320 L100,360" />
-                <path class="bridge-foundation left-inner" d="M180,320 L180,360" />
-                <path class="bridge-foundation right-inner" d="M720,320 L720,360" />
-                <path class="bridge-foundation right-outer" d="M800,320 L800,360" />
+        <!-- Left Side: Use Cases -->
+        <div class="float-card float-card--left-1">
+            <div class="float-card__icon float-card__icon--gold">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+            </div>
+            <span class="float-card__title">Freigabeprozesse</span>
+        </div>
 
-                <!-- Ground line -->
-                <path class="bridge-line bridge-line-thin bridge-ground" d="M70,360 L830,360" />
+        <div class="float-card float-card--left-2">
+            <div class="float-card__icon float-card__icon--sage">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+            </div>
+            <span class="float-card__title">Orchestrierung</span>
+        </div>
 
-                <!-- BRIDGE DECK -->
-                <path class="bridge-line bridge-line-thick bridge-deck" d="M80,320 L820,320" />
+        <div class="float-card float-card--left-3">
+            <div class="float-card__icon float-card__icon--copper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+            </div>
+            <span class="float-card__title">Inventarverwaltung</span>
+        </div>
 
-                <!-- MAIN ARCH -->
-                <path class="bridge-line bridge-line-thick bridge-arch-main" d="M120,320 Q300,120 450,100 Q600,120 780,320" />
+        <div class="float-card float-card--left-4">
+            <div class="float-card__icon float-card__icon--blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+            </div>
+            <span class="float-card__title">Onboarding</span>
+        </div>
 
-                <!-- SECONDARY SUPPORT ARCH -->
-                <path class="bridge-line bridge-line-medium bridge-arch-secondary" d="M160,320 Q320,160 450,140 Q580,160 740,320" />
+        <!-- Right Side: Tools with Logos -->
+        <div class="float-card float-card--right-1">
+            <div class="float-card__icon float-card__icon--transparent">
+                <img src="img/paut.svg" alt="Power Automate">
+            </div>
+            <span class="float-card__title">Power Automate</span>
+        </div>
 
-                <!-- LEFT PILLAR/TOWER -->
-                <path class="bridge-line bridge-line-medium bridge-pillar-left" d="M180,320 L180,240" />
-                <path class="bridge-line bridge-line-medium bridge-pillar-cap-left" d="M180,240 L180,200 Q180,180 200,180" />
+        <div class="float-card float-card--right-2">
+            <div class="float-card__icon float-card__icon--transparent">
+                <img src="img/papps.svg" alt="Power Apps">
+            </div>
+            <span class="float-card__title">Power Apps</span>
+        </div>
 
-                <!-- RIGHT PILLAR/TOWER -->
-                <path class="bridge-line bridge-line-medium bridge-pillar-right" d="M720,320 L720,240" />
-                <path class="bridge-line bridge-line-medium bridge-pillar-cap-right" d="M720,240 L720,200 Q720,180 700,180" />
+        <div class="float-card float-card--right-3">
+            <div class="float-card__icon float-card__icon--transparent">
+                <img src="img/cop.svg" alt="Copilot Studio">
+            </div>
+            <span class="float-card__title">Copilot Studio</span>
+        </div>
 
-                <!-- CABLE LINES - Left side -->
-                <path class="bridge-line bridge-line-thin bridge-cable-1" d="M200,180 L270,320" />
-                <path class="bridge-line bridge-line-thin bridge-cable-2" d="M255,155 L350,320" />
-                <path class="bridge-line bridge-line-thin bridge-cable-3" d="M320,130 L430,320" />
-
-                <!-- CABLE LINES - Right side -->
-                <path class="bridge-line bridge-line-thin bridge-cable-4" d="M700,180 L630,320" />
-                <path class="bridge-line bridge-line-thin bridge-cable-5" d="M645,155 L550,320" />
-                <path class="bridge-line bridge-line-thin bridge-cable-6" d="M580,130 L470,320" />
-
-                <!-- STRUCTURAL DOTS -->
-                <circle class="bridge-dot-glow" cx="450" cy="100" r="10" />
-                <circle class="bridge-dot" cx="450" cy="100" r="5" />
-                <circle class="bridge-dot-glow" cx="180" cy="240" r="8" />
-                <circle class="bridge-dot" cx="180" cy="240" r="4" />
-                <circle class="bridge-dot-glow" cx="200" cy="180" r="8" />
-                <circle class="bridge-dot" cx="200" cy="180" r="4" />
-                <circle class="bridge-dot-glow" cx="720" cy="240" r="8" />
-                <circle class="bridge-dot" cx="720" cy="240" r="4" />
-                <circle class="bridge-dot-glow" cx="700" cy="180" r="8" />
-                <circle class="bridge-dot" cx="700" cy="180" r="4" />
-
-                <!-- LABELS UNDER THE FOUNDATION POSTS -->
-                <text class="side-label" x="140" y="390">Business</text>
-                <text class="side-sublabel" x="140" y="405">Prozesse & Menschen</text>
-                <text class="side-label" x="760" y="390">IT</text>
-                <text class="side-sublabel" x="760" y="405">Technologie & Systeme</text>
-
-                <!-- WALKING PEOPLE with animated legs -->
-                <g class="person-group walk-lr" transform="translate(150, 0)">
-                    <circle class="person-head" cx="0" cy="298" r="4" />
-                    <line class="person" x1="0" y1="302" x2="0" y2="312" />
-                    <line class="person" x1="0" y1="305" x2="-4" y2="310" />
-                    <line class="person" x1="0" y1="305" x2="4" y2="309" />
-                    <line class="person leg-left" x1="0" y1="312" x2="-4" y2="320" />
-                    <line class="person leg-right" x1="0" y1="312" x2="4" y2="320" />
-                </g>
-
-                <g class="person-group walk-rl" transform="translate(700, 0)">
-                    <circle class="person-head" cx="0" cy="298" r="4" />
-                    <line class="person" x1="0" y1="302" x2="0" y2="312" />
-                    <line class="person" x1="0" y1="305" x2="-4" y2="309" />
-                    <line class="person" x1="0" y1="305" x2="4" y2="310" />
-                    <line class="person leg-left" x1="0" y1="312" x2="-4" y2="320" />
-                    <line class="person leg-right" x1="0" y1="312" x2="4" y2="320" />
-                </g>
-
-                <g class="person-group walk-lr-2" transform="translate(200, 0)">
-                    <circle class="person-head" cx="0" cy="299" r="3.5" />
-                    <line class="person" x1="0" y1="303" x2="0" y2="312" />
-                    <line class="person" x1="0" y1="306" x2="-3" y2="310" />
-                    <line class="person" x1="0" y1="306" x2="3" y2="309" />
-                    <line class="person leg-left" x1="0" y1="312" x2="-3" y2="319" />
-                    <line class="person leg-right" x1="0" y1="312" x2="3" y2="319" />
-                </g>
-            </svg>
+        <div class="float-card float-card--right-4">
+            <div class="float-card__icon float-card__icon--transparent">
+                <img src="img/bi.svg" alt="Power BI">
+            </div>
+            <span class="float-card__title">Power BI</span>
         </div>
 
         <div class="hero__content">
-            <div class="hero__eyebrow">
-                <span class="hero__eyebrow-dot"></span>
-                <span class="hero__eyebrow-text">Power Platform & Microsoft 365 Beratung</span>
+            <div class="hero__badge">
+                <span class="hero__badge-dot"></span>
+                <span class="hero__badge-text">Power Platform & Microsoft 365 Beratung</span>
             </div>
 
             <h1 class="hero__title">
-                <span class="hero__title-line">Ihr Brückenbauer</span>
-                <span class="hero__title-line">zwischen Business und IT</span>
+                <span class="hero__title-line"><span>Mehr <em>Wirkung</em> mit</span></span>
+                <span class="hero__title-line"><span>Microsoft 365 & Power Platform</span></span>
             </h1>
 
-            <p class="hero__description">
-                Ich unterstütze Unternehmen dabei, Digitale Transformation zu schaffen mitttels Power Platform und der Microsoft-365-Landschaft. Und das mit klarer Governance, sicheren Automatisierung, maßgeschneiderte Apps mit Power Apps und intelligente Agenten mit Copilot Studio. Ich begleite Sie in die Digitale Transformation.
+            <p class="hero__desc">
+                Sie haben Microsoft 365 im Einsatz? Ich helfe Ihnen, das Potenzial daraus sichtbar und nutzbar zu machen – von vorhandenen Automatisierungs-Tools über Apps bis hin zu KI-Agenten. Mit Workshops, Enablement und Umsetzung schaffen wir gemeinsam messbaren Mehrwert und Ergebnisse, die im Alltag wirklich ankommen.
             </p>
 
-            <div class="hero__cta-group">
-                <!-- TODO: Ersetzen Sie "YOUR-LINK" durch Ihren echten Calendly-Link -->
+            <div class="hero__cta">
                 <a href="https://calendly.com/YOUR-LINK" class="btn btn--primary" target="_blank">
                     Kostenloses 45-Min Assessment
-                    <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/>
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 8H13M13 8L8 3M13 8L8 13"/>
                     </svg>
                 </a>
                 <a href="#services" class="btn btn--secondary">Leistungen entdecken</a>
@@ -2574,29 +2519,29 @@
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
-                        <span>9+ Jahre Microsoft 365 & Security</span>
+                        <span>9+ Jahre Microsoft 365</span>
                     </div>
                     <div class="hero__trust-item">
                         <svg class="hero__trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
-                        <span>Power Platform & Microsoft 365 Specialist</span>
+                        <span>Power Platform Solution Architect</span>
                     </div>
                     <div class="hero__trust-item">
                         <svg class="hero__trust-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
-                        <span>Governance, Compliance & Copilot Enablement</span>
+                        <span>Copilot & Dataverse Enablement</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="hero__scroll">
-            <span class="hero__scroll-text">Scroll</span>
-            <span class="hero__scroll-line"></span>
+        <div class="scroll-hint">
+            <span class="scroll-hint__text">Scroll</span>
+            <span class="scroll-hint__line"></span>
         </div>
     </section>
 
@@ -2664,7 +2609,7 @@
                     <p class="challenge-item__text">Copilot-Lizenzen gekauft, aber kein Plan für den Rollout. Mitarbeiter wissen nicht, wie sie KI sinnvoll nutzen. Potenzial bleibt ungenutzt, Investition verpufft.</p>
                 </div>
             </div>
-            
+
             <div class="challenge-item reveal reveal-delay-5">
                 <div class="challenge-item__icon">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2672,8 +2617,8 @@
                     </svg>
                 </div>
                 <div class="challenge-item__content">
-                    <h3 class="challenge-item__title">Power solutions without an operating model</h3>
-                    <p class="challenge-item__text">“The Power App or Flow works — but nobody knows how to properly put it into production. ALM process, security concept, permissions, support, monitoring — everything is unclear. Who is the owner? How are changes deployed? What happens when errors occur? Without an operating model, every automation becomes a risk instead of a relief and often remains stuck in ‘test’ mode out of fear.”</p>
+                    <h3 class="challenge-item__title">Power-Lösungen ohne Operating Model</h3>
+                    <p class="challenge-item__text">Die Power App oder der Flow funktioniert — aber niemand weiß, wie man sie produktiv einsetzt. ALM-Prozess, Sicherheitskonzept, Berechtigungen, Support, Monitoring — alles unklar. Wer ist Owner? Wie werden Änderungen deployed? Was passiert bei Fehlern? Ohne Operating Model wird jede Automatisierung zum Risiko statt zur Entlastung.</p>
                 </div>
             </div>
         </div>
@@ -2965,53 +2910,102 @@
     </div>
 
     <script>
-        // Performance: Unified scroll handler to minimize event listeners
+        // Floating Cards Scroll Animation
         (function() {
-            'use strict';
-
-            // Cache DOM elements once
-            const heroBridge = document.querySelector('.hero__bridge');
-            const heroContent = document.querySelector('.hero__content');
-            const heroHeight = window.innerHeight;
+            const leftCards = document.querySelectorAll('.float-card[class*="left"]');
+            const rightCards = document.querySelectorAll('.float-card[class*="right"]');
+            const allCards = document.querySelectorAll('.float-card');
+            const hero = document.querySelector('.hero');
+            const scrollHint = document.querySelector('.scroll-hint');
 
             let ticking = false;
-            let lastScrollY = 0;
+            let initialized = false;
 
-            // Parallax Effect for Hero Bridge (optimized)
-            function updateParallax() {
-                const scrollY = lastScrollY;
+            function initCards() {
+                if (initialized) return;
 
-                // Early exit if past hero section
-                if (scrollY > heroHeight) {
+                // Wait for CSS animations to complete initial reveal, then enable scroll effects
+                setTimeout(() => {
+                    allCards.forEach(card => {
+                        card.classList.add('scroll-controlled');
+                    });
+                    initialized = true;
+                }, 1600);
+            }
+
+            // Scroll spread animation using margins (so CSS float animation can use transform)
+            const maxSpreadX = 200;
+            const maxSpreadY = 40;
+            const maxOpacityLoss = 0.1;
+
+            function updateScrollAnimation() {
+                if (!initialized) {
                     ticking = false;
                     return;
                 }
 
-                // Use transform3d for GPU acceleration
-                const bridgeOffset = scrollY * 0.3;
-                const contentOffset = scrollY * 0.1;
-                const opacity = Math.max(0, 1 - (scrollY / heroHeight) * 0.5);
+                const scrollY = window.scrollY;
+                const heroHeight = hero.offsetHeight;
+                const animationEndPoint = heroHeight * 0.80;
+                const progress = Math.min(scrollY / animationEndPoint, 1);
+                const eased = 1 - Math.pow(1 - progress, 2);
 
-                if (heroBridge) {
-                    heroBridge.style.transform = `translate3d(-50%, calc(-50% + ${bridgeOffset}px), 0)`;
-                    heroBridge.style.opacity = opacity;
-                }
+                // Left cards spread further left using margin
+                leftCards.forEach((card, index) => {
+                    const stagger = 1 + (index * 0.30);
+                    const xOffset = -maxSpreadX * eased * stagger; // negative = move left
+                    const yOffset = maxSpreadY * eased * (index % 2 === 0 ? -1 : 1) * 0.3;
+                    const opacity = 1 - (maxOpacityLoss * eased);
 
-                if (heroContent) {
-                    heroContent.style.transform = `translate3d(0, ${contentOffset}px, 0)`;
+                    card.style.marginLeft = `${xOffset}px`;
+                    card.style.marginTop = `${yOffset}px`;
+                    card.style.opacity = opacity;
+                });
+
+                // Right cards spread further right using margin
+                rightCards.forEach((card, index) => {
+                    const stagger = 1 + (index * 0.30);
+                    const xOffset = maxSpreadX * eased * stagger; // positive = move right
+                    const yOffset = maxSpreadY * eased * (index % 2 === 0 ? 1 : -1) * 0.3;
+                    const opacity = 1 - (maxOpacityLoss * eased);
+
+                    card.style.marginRight = `${-xOffset}px`; // negative margin to push right
+                    card.style.marginTop = `${yOffset}px`;
+                    card.style.opacity = opacity;
+                });
+
+                // Scroll hint fade behavior - hide when scrolled, show when at top
+                if (scrollHint) {
+                    if (scrollY > 50) {
+                        scrollHint.classList.add('hidden');
+                    } else {
+                        scrollHint.classList.remove('hidden');
+                    }
                 }
 
                 ticking = false;
             }
 
-            // Single optimized scroll listener with passive flag
-            window.addEventListener('scroll', function() {
-                lastScrollY = window.pageYOffset;
+            function onScroll() {
                 if (!ticking) {
-                    requestAnimationFrame(updateParallax);
+                    requestAnimationFrame(updateScrollAnimation);
                     ticking = true;
                 }
-            }, { passive: true });
+            }
+
+            // Check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (!prefersReducedMotion) {
+                // Initialize after fonts load
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(initCards);
+                } else {
+                    window.addEventListener('load', initCards);
+                }
+
+                window.addEventListener('scroll', onScroll, { passive: true });
+            }
         })();
 
         // Intersection Observer for scroll animations (optimized - unobserve after reveal)

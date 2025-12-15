@@ -11,3 +11,10 @@ node_modules/
 *.doc
 *.docx
 *.pdf
+
+#Ordner die nciht ins Repo sollen
+Notes/
+
+#testdateien
+
+hero*.html
