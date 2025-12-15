@@ -436,17 +436,25 @@
             50% { transform: translateY(-10px) rotate(var(--rotate, 0deg)); }
         }
 
-        @keyframes cardReveal {
-            to { opacity: 1; }
+        /* Card reveal animation - comes from above while fading in */
+        @keyframes cardRevealFromAbove {
+            from {
+                opacity: 0;
+                transform: translateY(-80px) rotate(var(--rotate, 0deg));
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotate(var(--rotate, 0deg));
+            }
         }
 
-        /* Left Side Cards - fixed distance from center */
+        /* Left Side Cards - Start first, longer animation */
         .float-card--left-1 {
             --rotate: -2deg;
             --float-duration: 6s;
             top: 22%;
             left: calc(50% - 550px);
-            animation: cardReveal 0.8s ease-out 0.8s forwards, floatUp 6s ease-in-out 1.6s infinite;
+            animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards, floatUp 6s ease-in-out 1.3s infinite;
         }
 
         .float-card--left-2 {
@@ -454,7 +462,7 @@
             --float-duration: 7s;
             top: 36%;
             left: calc(50% - 520px);
-            animation: cardReveal 0.8s ease-out 1s forwards, floatUp 7s ease-in-out 1.8s infinite;
+            animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards, floatUp 7s ease-in-out 1.4s infinite;
         }
 
         .float-card--left-3 {
@@ -462,7 +470,7 @@
             --float-duration: 5.5s;
             top: 50%;
             left: calc(50% - 550px);
-            animation: cardReveal 0.8s ease-out 1.2s forwards, floatUp 5.5s ease-in-out 2s infinite;
+            animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards, floatUp 5.5s ease-in-out 1.5s infinite;
         }
 
         .float-card--left-4 {
@@ -470,16 +478,16 @@
             --float-duration: 6.5s;
             top: 64%;
             left: calc(50% - 570px);
-            animation: cardReveal 0.8s ease-out 1.4s forwards, floatUp 6.5s ease-in-out 2.2s infinite;
+            animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards, floatUp 6.5s ease-in-out 1.6s infinite;
         }
 
-        /* Right Side Cards - fixed distance from center */
+        /* Right Side Cards - Start first, longer animation */
         .float-card--right-1 {
             --rotate: 2deg;
             --float-duration: 7s;
             top: 22%;
             right: calc(50% - 550px);
-            animation: cardReveal 0.8s ease-out 0.9s forwards, floatUp 7s ease-in-out 1.7s infinite;
+            animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards, floatUp 7s ease-in-out 1.35s infinite;
         }
 
         .float-card--right-2 {
@@ -487,7 +495,7 @@
             --float-duration: 6s;
             top: 36%;
             right: calc(50% - 500px);
-            animation: cardReveal 0.8s ease-out 1.1s forwards, floatUp 6s ease-in-out 1.9s infinite;
+            animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards, floatUp 6s ease-in-out 1.45s infinite;
         }
 
         .float-card--right-3 {
@@ -495,7 +503,7 @@
             --float-duration: 5.5s;
             top: 50%;
             right: calc(50% - 520px);
-            animation: cardReveal 0.8s ease-out 1.3s forwards, floatUp 5.5s ease-in-out 2.1s infinite;
+            animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards, floatUp 5.5s ease-in-out 1.55s infinite;
         }
 
         .float-card--right-4 {
@@ -503,7 +511,7 @@
             --float-duration: 7.5s;
             top: 64%;
             right: calc(50% - 570px);
-            animation: cardReveal 0.8s ease-out 1.5s forwards, floatUp 7.5s ease-in-out 2.3s infinite;
+            animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards, floatUp 7.5s ease-in-out 1.65s infinite;
         }
 
         .float-card__icon {
@@ -565,7 +573,7 @@
             text-align: center;
         }
 
-        /* Badge */
+        /* Badge - starts shortly after cards begin */
         .hero__badge {
             display: inline-flex;
             align-items: center;
@@ -578,7 +586,7 @@
             margin-bottom: 2rem;
             opacity: 0;
             transform: translateY(15px);
-            animation: fadeUp 0.8s ease-out 0.3s forwards;
+            animation: fadeUp 0.8s ease-out 0.35s forwards;
             position: relative;
             overflow: hidden;
         }
@@ -649,8 +657,9 @@
             animation: revealText 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .hero__title-line:nth-child(1) span { animation-delay: 0.4s; }
-        .hero__title-line:nth-child(2) span { animation-delay: 0.55s; }
+        /* Title starts shortly after cards begin (while cards are still animating) */
+        .hero__title-line:nth-child(1) span { animation-delay: 0.45s; }
+        .hero__title-line:nth-child(2) span { animation-delay: 0.6s; }
 
         @keyframes revealText {
             to {
@@ -664,7 +673,7 @@
             color: var(--gold-rich);
         }
 
-        /* Description */
+        /* Description - starts while cards are still animating */
         .hero__desc {
             font-size: 1.05rem;
             font-weight: 400;
@@ -674,7 +683,7 @@
             margin: 0 auto 2.5rem;
             opacity: 0;
             transform: translateY(15px);
-            animation: fadeUp 0.8s ease-out 0.7s forwards;
+            animation: fadeUp 0.8s ease-out 0.75s forwards;
         }
 
         /* CTA */
@@ -686,7 +695,7 @@
             margin-bottom: 3rem;
             opacity: 0;
             transform: translateY(15px);
-            animation: fadeUp 0.8s ease-out 0.9s forwards;
+            animation: fadeUp 0.8s ease-out 0.95s forwards;
         }
 
         .btn {
@@ -803,7 +812,7 @@
             border-top: 1px solid rgba(0, 0, 0, 0.06);
             opacity: 0;
             transform: translateY(15px);
-            animation: fadeUp 0.8s ease-out 1.1s forwards;
+            animation: fadeUp 0.8s ease-out 1.15s forwards;
         }
 
         .hero__trust-label {
@@ -2925,12 +2934,13 @@
                 if (initialized) return;
 
                 // Wait for CSS animations to complete initial reveal, then enable scroll effects
+                // Cards: last one starts at 0.45s + 1.2s duration = 1.65s
                 setTimeout(() => {
                     allCards.forEach(card => {
                         card.classList.add('scroll-controlled');
                     });
                     initialized = true;
-                }, 1600);
+                }, 1800);
             }
 
             // Scroll spread animation using margins (so CSS float animation can use transform)
