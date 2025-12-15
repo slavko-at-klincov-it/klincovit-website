@@ -3,6 +3,7 @@
 
 # Optional: macOS
 .DS_Store
+.claude
 
 # Optional: Node (falls du mal ein Build machst)
 node_modules/
