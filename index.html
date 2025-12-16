@@ -314,6 +314,58 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Card 6: Interactive - Share Your Pain Point -->
+            <div class="challenge-card challenge-card--interactive reveal reveal-delay-5" id="painpoint-card">
+                <!-- Input State -->
+                <div class="challenge-card__input-state">
+                    <div class="challenge-card__header">
+                        <div class="challenge-card__icon challenge-card__icon--interactive">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="challenge-card__title">Was ist Ihre größte Herausforderung?</h3>
+                    </div>
+                    <div class="challenge-card__body">
+                        <p class="challenge-card__text">Teilen Sie mir Ihren Pain Point mit — ich melde mich mit einem konkreten Lösungsvorschlag.</p>
+                        <form class="painpoint-form" id="painpoint-form">
+                            <textarea
+                                class="painpoint-input"
+                                id="painpoint-input"
+                                placeholder="z.B. Unsere SharePoint-Struktur ist ein Chaos..."
+                                rows="3"
+                                required
+                            ></textarea>
+                            <input
+                                type="email"
+                                class="painpoint-email"
+                                id="painpoint-email"
+                                placeholder="Ihre E-Mail (optional)"
+                            >
+                            <button type="submit" class="painpoint-submit">
+                                <span>Absenden</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"/>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Thank You State (hidden initially) -->
+                <div class="challenge-card__success-state" style="display: none;">
+                    <div class="success-checkmark">
+                        <svg viewBox="0 0 52 52">
+                            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                    </div>
+                    <h3 class="success-title">Vielen Dank!</h3>
+                    <p class="success-text">Ich melde mich innerhalb von 24 Stunden bei Ihnen.</p>
+                </div>
+            </div>
         </div>
 
         <div class="transition-story reveal">

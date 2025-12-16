@@ -542,3 +542,68 @@ document.addEventListener('keydown', (e) => {
         });
     });
 })();
+
+// ═══════════════════════════════════════════
+// PAIN POINT FORM SUBMISSION
+// ═══════════════════════════════════════════
+(function() {
+    const form = document.getElementById('painpoint-form');
+    const card = document.getElementById('painpoint-card');
+
+    if (!form || !card) return;
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const painpoint = document.getElementById('painpoint-input').value.trim();
+        const email = document.getElementById('painpoint-email').value.trim();
+
+        if (!painpoint) return;
+
+        // Add submitting class for animation
+        card.classList.add('submitting');
+
+        // Prepare form data
+        const formData = {
+            painpoint: painpoint,
+            email: email || 'Not provided',
+            timestamp: new Date().toISOString(),
+            page: window.location.href
+        };
+
+        try {
+            // Send to Formspree (replace YOUR_FORM_ID with actual ID)
+            // For now, we'll simulate the submission
+            // Uncomment and replace with your Formspree endpoint:
+            // await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(formData)
+            // });
+
+            // Simulate network delay
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            // Switch to success state
+            setTimeout(() => {
+                const inputState = card.querySelector('.challenge-card__input-state');
+                const successState = card.querySelector('.challenge-card__success-state');
+
+                inputState.style.display = 'none';
+                successState.style.display = 'flex';
+
+                // Store in localStorage as backup
+                const submissions = JSON.parse(localStorage.getItem('painpoint_submissions') || '[]');
+                submissions.push(formData);
+                localStorage.setItem('painpoint_submissions', JSON.stringify(submissions));
+
+                console.log('Pain point submitted:', formData);
+            }, 300);
+
+        } catch (error) {
+            console.error('Submission error:', error);
+            card.classList.remove('submitting');
+            alert('Es gab einen Fehler. Bitte versuchen Sie es erneut.');
+        }
+    });
+})();

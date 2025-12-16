@@ -1180,6 +1180,219 @@ body {
     }
 }
 
+/* Interactive Pain Point Card */
+.challenge-card--interactive {
+    background: linear-gradient(135deg, var(--white) 0%, #faf9f7 100%);
+    border: 2px dashed var(--accent-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.challenge-card--interactive::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(201, 162, 39, 0.03) 0%, rgba(232, 168, 56, 0.05) 100%);
+    pointer-events: none;
+}
+
+.challenge-card__icon--interactive {
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--gold) 100%);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(201, 162, 39, 0.35);
+}
+
+.challenge-card__input-state,
+.challenge-card__success-state {
+    position: relative;
+    z-index: 1;
+}
+
+/* Form Styling */
+.painpoint-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.painpoint-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    background: var(--white);
+    border: 1.5px solid var(--border-light-subtle);
+    border-radius: 10px;
+    resize: none;
+    transition: all 0.3s ease;
+    line-height: 1.5;
+}
+
+.painpoint-input:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+.painpoint-input::placeholder {
+    color: var(--text-on-light-muted);
+}
+
+.painpoint-email {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    background: var(--white);
+    border: 1.5px solid var(--border-light-subtle);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.painpoint-email:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.15);
+}
+
+.painpoint-email::placeholder {
+    color: var(--text-on-light-muted);
+}
+
+.painpoint-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--gold) 100%);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(201, 162, 39, 0.3);
+}
+
+.painpoint-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201, 162, 39, 0.4);
+}
+
+.painpoint-submit:active {
+    transform: translateY(0);
+}
+
+.painpoint-submit svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.painpoint-submit:hover svg {
+    transform: translateX(3px);
+}
+
+/* Success State */
+.challenge-card__success-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    min-height: 200px;
+}
+
+.success-checkmark {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+}
+
+.success-checkmark svg {
+    width: 100%;
+    height: 100%;
+}
+
+.checkmark-circle {
+    stroke: var(--accent-gold);
+    stroke-width: 2;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: checkmark-circle 0.6s ease-in-out forwards;
+}
+
+.checkmark-check {
+    stroke: var(--accent-gold);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: checkmark-check 0.3s ease-in-out 0.4s forwards;
+}
+
+@keyframes checkmark-circle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes checkmark-check {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.success-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 0.5s ease-out 0.5s both;
+}
+
+.success-text {
+    font-size: 0.95rem;
+    color: var(--text-on-light-secondary);
+    line-height: 1.6;
+    animation: fadeInUp 0.5s ease-out 0.6s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card transition animation */
+.challenge-card--interactive.submitting .challenge-card__input-state {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
 /* Transition Story */
 .transition-story {
     max-width: 800px;
