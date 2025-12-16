@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Hero Test - Version 1: Staggered Icon Reveal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-warm: #f9f7f3;
+            --white: #ffffff;
+            --text-dark: #2c2a26;
+            --text-medium: #5a564d;
+            --text-muted: #8a857a;
+            --gold: #c9a227;
+            --gold-rich: #b8931f;
+            --gold-soft: rgba(201, 162, 39, 0.1);
+            --gold-glow: rgba(201, 162, 39, 0.2);
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', system-ui, sans-serif;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-warm);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Version Label */
+        .version-label {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gold);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(201, 162, 39, 0.4);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 5%;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-warm);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 100% 80% at 20% 10%, rgba(201, 162, 39, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 80% 60% at 80% 90%, rgba(193, 127, 89, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* ═══════════════════════════════════════════
+           VERSION 1: STAGGERED ICON REVEAL
+           Icons animate in from different directions
+        ═══════════════════════════════════════════ */
+        .mobile-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .mobile-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--white);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(30px) scale(0.8);
+        }
+
+        .mobile-icon img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        /* Staggered reveal animation */
+        .mobile-icon:nth-child(1) { animation: iconReveal 0.6s var(--ease-out-expo) 0.2s forwards; }
+        .mobile-icon:nth-child(2) { animation: iconReveal 0.6s var(--ease-out-expo) 0.35s forwards; }
+        .mobile-icon:nth-child(3) { animation: iconReveal 0.6s var(--ease-out-expo) 0.5s forwards; }
+        .mobile-icon:nth-child(4) { animation: iconReveal 0.6s var(--ease-out-expo) 0.65s forwards; }
+
+        @keyframes iconReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* After reveal, add subtle float */
+        .mobile-icon.revealed {
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .mobile-icon:nth-child(1).revealed { animation-delay: 0s; }
+        .mobile-icon:nth-child(2).revealed { animation-delay: 0.5s; }
+        .mobile-icon:nth-child(3).revealed { animation-delay: 1s; }
+        .mobile-icon:nth-child(4).revealed { animation-delay: 1.5s; }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Badge */
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.25rem;
+            background: var(--white);
+            border-radius: 100px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(201, 162, 39, 0.15);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 0.8s forwards;
+        }
+
+        .hero__badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 3px var(--gold-soft); }
+            50% { box-shadow: 0 0 0 8px transparent; }
+        }
+
+        .hero__badge-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-medium);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Title */
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 7vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero__title-line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero__title-line span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+            animation: revealText 1s var(--ease-out-expo) forwards;
+        }
+
+        .hero__title-line:nth-child(1) span { animation-delay: 0.9s; }
+        .hero__title-line:nth-child(2) span { animation-delay: 1.05s; }
+
+        @keyframes revealText {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero__title em {
+            font-style: italic;
+            color: var(--gold-rich);
+        }
+
+        /* Description */
+        .hero__desc {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+            margin: 0 auto 2rem;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 1.2s forwards;
+        }
+
+        /* CTA */
+        .hero__cta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 1.4s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.35s var(--ease-out-expo);
+        }
+
+        .btn--primary {
+            background: var(--gold);
+            color: var(--white);
+            border: 2px solid var(--gold);
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+
+        .btn--secondary {
+            background: var(--white);
+            color: var(--text-dark);
+            border: 2px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Empty second section for scroll testing */
+        .empty-section {
+            min-height: 100vh;
+            background: #f0ece4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="version-label">V1: Staggered Icon Reveal</div>
+
+    <section class="hero">
+        <!-- Mobile Icons Row -->
+        <div class="mobile-icons">
+            <div class="mobile-icon">
+                <img src="img/paut.svg" alt="Power Automate">
+            </div>
+            <div class="mobile-icon">
+                <img src="img/papps.svg" alt="Power Apps">
+            </div>
+            <div class="mobile-icon">
+                <img src="img/cop.svg" alt="Copilot Studio">
+            </div>
+            <div class="mobile-icon">
+                <img src="img/bi.svg" alt="Power BI">
+            </div>
+        </div>
+
+        <div class="hero__content">
+            <div class="hero__badge">
+                <span class="hero__badge-dot"></span>
+                <span class="hero__badge-text">Power Platform & Microsoft 365 Beratung</span>
+            </div>
+
+            <h1 class="hero__title">
+                <span class="hero__title-line"><span>Mehr <em>Wirkung</em> mit</span></span>
+                <span class="hero__title-line"><span>Microsoft 365 & Power Platform</span></span>
+            </h1>
+
+            <p class="hero__desc">
+                Sie haben Microsoft 365 im Einsatz? Ich helfe Ihnen, das Potenzial daraus sichtbar und nutzbar zu machen.
+            </p>
+
+            <div class="hero__cta">
+                <a href="#" class="btn btn--primary">
+                    Kostenloses 45-Min Assessment
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 8H13M13 8L8 3M13 8L8 13"/>
+                    </svg>
+                </a>
+                <a href="#" class="btn btn--secondary">Leistungen entdecken</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="empty-section">
+        <p>Scroll up to see the animation again (refresh page)</p>
+    </section>
+
+    <script>
+        // Add float animation after initial reveal completes
+        setTimeout(() => {
+            document.querySelectorAll('.mobile-icon').forEach(icon => {
+                icon.classList.add('revealed');
+            });
+        }, 1500);
+    </script>
+</body>
+</html>

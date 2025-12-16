@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Hero Test - Version 2: Floating Mini-Badges</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-warm: #f9f7f3;
+            --white: #ffffff;
+            --text-dark: #2c2a26;
+            --text-medium: #5a564d;
+            --text-muted: #8a857a;
+            --gold: #c9a227;
+            --gold-rich: #b8931f;
+            --gold-soft: rgba(201, 162, 39, 0.1);
+            --gold-glow: rgba(201, 162, 39, 0.2);
+            --copper: #c17f59;
+            --sage: #7a9a6d;
+            --dusty-blue: #7a8fa3;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', system-ui, sans-serif;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-warm);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .version-label {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gold);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(201, 162, 39, 0.4);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 5%;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-warm);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 100% 80% at 20% 10%, rgba(201, 162, 39, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 80% 60% at 80% 90%, rgba(193, 127, 89, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* ═══════════════════════════════════════════
+           VERSION 2: FLOATING MINI-BADGES
+           Small badges that float around the hero
+        ═══════════════════════════════════════════ */
+        .floating-badge {
+            position: absolute;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 0.6rem 0.9rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            opacity: 0;
+            z-index: 5;
+            white-space: nowrap;
+        }
+
+        .floating-badge__icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-badge__icon img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .floating-badge__icon svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .floating-badge__icon--gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-rich) 100%);
+            color: white;
+        }
+
+        .floating-badge__icon--sage {
+            background: linear-gradient(135deg, var(--sage) 0%, #5a7a4d 100%);
+            color: white;
+        }
+
+        .floating-badge__icon--copper {
+            background: linear-gradient(135deg, var(--copper) 0%, #a36a45 100%);
+            color: white;
+        }
+
+        .floating-badge__icon--blue {
+            background: linear-gradient(135deg, var(--dusty-blue) 0%, #5a7089 100%);
+            color: white;
+        }
+
+        /* Position badges around the content */
+        .floating-badge--1 {
+            top: 12%;
+            left: 5%;
+            animation: badgeReveal 0.8s var(--ease-out-expo) 0.3s forwards,
+                       floatBadge1 4s ease-in-out 1.1s infinite;
+        }
+
+        .floating-badge--2 {
+            top: 18%;
+            right: 3%;
+            animation: badgeReveal 0.8s var(--ease-out-expo) 0.5s forwards,
+                       floatBadge2 5s ease-in-out 1.3s infinite;
+        }
+
+        .floating-badge--3 {
+            bottom: 22%;
+            left: 2%;
+            animation: badgeReveal 0.8s var(--ease-out-expo) 0.7s forwards,
+                       floatBadge3 4.5s ease-in-out 1.5s infinite;
+        }
+
+        .floating-badge--4 {
+            bottom: 15%;
+            right: 5%;
+            animation: badgeReveal 0.8s var(--ease-out-expo) 0.9s forwards,
+                       floatBadge4 5.5s ease-in-out 1.7s infinite;
+        }
+
+        @keyframes badgeReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.5) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes floatBadge1 {
+            0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+            50% { transform: translate(5px, -10px) rotate(1deg); }
+        }
+
+        @keyframes floatBadge2 {
+            0%, 100% { transform: translate(0, 0) rotate(2deg); }
+            50% { transform: translate(-8px, -8px) rotate(-1deg); }
+        }
+
+        @keyframes floatBadge3 {
+            0%, 100% { transform: translate(0, 0) rotate(1deg); }
+            50% { transform: translate(6px, 8px) rotate(-2deg); }
+        }
+
+        @keyframes floatBadge4 {
+            0%, 100% { transform: translate(0, 0) rotate(-1deg); }
+            50% { transform: translate(-5px, 10px) rotate(2deg); }
+        }
+
+        /* Badge */
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.25rem;
+            background: var(--white);
+            border-radius: 100px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(201, 162, 39, 0.15);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .hero__badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 3px var(--gold-soft); }
+            50% { box-shadow: 0 0 0 8px transparent; }
+        }
+
+        .hero__badge-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-medium);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Title */
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 7vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero__title-line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero__title-line span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+            animation: revealText 1s var(--ease-out-expo) forwards;
+        }
+
+        .hero__title-line:nth-child(1) span { animation-delay: 0.6s; }
+        .hero__title-line:nth-child(2) span { animation-delay: 0.75s; }
+
+        @keyframes revealText {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero__title em {
+            font-style: italic;
+            color: var(--gold-rich);
+        }
+
+        /* Description */
+        .hero__desc {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+            margin: 0 auto 2rem;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 0.9s forwards;
+        }
+
+        /* CTA */
+        .hero__cta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeUp 0.8s ease-out 1.1s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.35s var(--ease-out-expo);
+        }
+
+        .btn--primary {
+            background: var(--gold);
+            color: var(--white);
+            border: 2px solid var(--gold);
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+
+        .btn--secondary {
+            background: var(--white);
+            color: var(--text-dark);
+            border: 2px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Empty second section */
+        .empty-section {
+            min-height: 100vh;
+            background: #f0ece4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="version-label">V2: Floating Mini-Badges</div>
+
+    <section class="hero">
+        <!-- Floating Mini-Badges -->
+        <div class="floating-badge floating-badge--1">
+            <div class="floating-badge__icon floating-badge__icon--gold">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+            </div>
+            <span>Freigaben</span>
+        </div>
+
+        <div class="floating-badge floating-badge--2">
+            <div class="floating-badge__icon">
+                <img src="img/paut.svg" alt="Power Automate">
+            </div>
+            <span>Automate</span>
+        </div>
+
+        <div class="floating-badge floating-badge--3">
+            <div class="floating-badge__icon">
+                <img src="img/cop.svg" alt="Copilot">
+            </div>
+            <span>Copilot</span>
+        </div>
+
+        <div class="floating-badge floating-badge--4">
+            <div class="floating-badge__icon floating-badge__icon--sage">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-5.07l-2.83 2.83m-5.66 5.66l-2.83 2.83m0-11.32l2.83 2.83m5.66 5.66l2.83 2.83"/>
+                </svg>
+            </div>
+            <span>Governance</span>
+        </div>
+
+        <div class="hero__content">
+            <div class="hero__badge">
+                <span class="hero__badge-dot"></span>
+                <span class="hero__badge-text">Power Platform & Microsoft 365 Beratung</span>
+            </div>
+
+            <h1 class="hero__title">
+                <span class="hero__title-line"><span>Mehr <em>Wirkung</em> mit</span></span>
+                <span class="hero__title-line"><span>Microsoft 365 & Power Platform</span></span>
+            </h1>
+
+            <p class="hero__desc">
+                Sie haben Microsoft 365 im Einsatz? Ich helfe Ihnen, das Potenzial daraus sichtbar und nutzbar zu machen.
+            </p>
+
+            <div class="hero__cta">
+                <a href="#" class="btn btn--primary">
+                    Kostenloses 45-Min Assessment
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 8H13M13 8L8 3M13 8L8 13"/>
+                    </svg>
+                </a>
+                <a href="#" class="btn btn--secondary">Leistungen entdecken</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="empty-section">
+        <p>Scroll up to see the animation again (refresh page)</p>
+    </section>
+</body>
+</html>
