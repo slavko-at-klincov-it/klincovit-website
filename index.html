@@ -201,70 +201,117 @@
             <p class="section__subtitle">Diese Probleme sehe ich in fast jedem Unternehmen — und ich weiß, wie man sie löst.</p>
         </div>
 
-        <div class="challenges-compact">
-            <div class="challenge-item reveal reveal-delay-1">
-                <div class="challenge-item__icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-                    </svg>
+        <div class="challenges-grid">
+            <!-- Card 1: Chaos -->
+            <div class="challenge-card reveal reveal-delay-1">
+                <div class="challenge-card__header">
+                    <div class="challenge-card__icon challenge-card__icon--warning">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <h3 class="challenge-card__title">Microsoft-365-Landschaft außer Kontrolle</h3>
                 </div>
-                <div class="challenge-item__content">
-                    <h3 class="challenge-item__title">Microsoft-365-Landschaft außer Kontrolle</h3>
-                    <p class="challenge-item__text">Excel-Listen ersetzen Datenbanken, Freigaben per E-Mail, manuelle Workarounds kosten täglich Stunden. SharePoint-Ordner wuchern, niemand hat den Überblick.</p>
-                </div>
-            </div>
-
-            <div class="challenge-item reveal reveal-delay-2">
-                <div class="challenge-item__icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                    </svg>
-                </div>
-                <div class="challenge-item__content">
-                    <h3 class="challenge-item__title">Power Platform wächst unkontrolliert</h3>
-                    <p class="challenge-item__text">Keine DLP-Regeln, keine Verantwortlichkeiten, kein Audit-Trail. Jede neue App ist ein Compliance-Risiko. Angst vor der nächsten Revision.</p>
+                <div class="challenge-card__body">
+                    <p class="challenge-card__text">Excel-Listen ersetzen Datenbanken, Freigaben per E-Mail, manuelle Workarounds kosten täglich Stunden. SharePoint-Ordner wuchern, niemand hat den Überblick.</p>
+                    <div class="challenge-card__impact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        Stunden verlorene Produktivität pro Woche
+                    </div>
                 </div>
             </div>
 
-            <div class="challenge-item reveal reveal-delay-3">
-                <div class="challenge-item__icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                        <line x1="12" y1="17" x2="12.01" y2="17"/>
-                    </svg>
+            <!-- Card 2: Compliance -->
+            <div class="challenge-card reveal reveal-delay-2">
+                <div class="challenge-card__header">
+                    <div class="challenge-card__icon challenge-card__icon--lock">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </div>
+                    <h3 class="challenge-card__title">Power Platform wächst unkontrolliert</h3>
                 </div>
-                <div class="challenge-item__content">
-                    <h3 class="challenge-item__title">Niemand weiß, was erlaubt ist</h3>
-                    <p class="challenge-item__text">M365, Power Platform, Teams, Copilot — aber keine klaren Rollen. Keine Guidelines, keine Schulung. Unsicherheit, Wildwuchs, verschenktes Potenzial.</p>
-                </div>
-            </div>
-
-            <div class="challenge-item reveal reveal-delay-4">
-                <div class="challenge-item__icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5"/>
-                        <path d="M2 12l10 5 10-5"/>
-                    </svg>
-                </div>
-                <div class="challenge-item__content">
-                    <h3 class="challenge-item__title">Copilot & KI ohne Strategie</h3>
-                    <p class="challenge-item__text">Copilot-Lizenzen gekauft, aber kein Plan für den Rollout. Mitarbeiter wissen nicht, wie sie KI sinnvoll nutzen. Potenzial bleibt ungenutzt, Investition verpufft.</p>
+                <div class="challenge-card__body">
+                    <p class="challenge-card__text">Keine DLP-Regeln, keine Verantwortlichkeiten, kein Audit-Trail. Jede neue App ist ein Compliance-Risiko. Angst vor der nächsten Revision.</p>
+                    <div class="challenge-card__impact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        Hohes Compliance-Risiko
+                    </div>
                 </div>
             </div>
 
-            <div class="challenge-item reveal reveal-delay-5">
-                <div class="challenge-item__icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 6h18M3 12h18M3 18h18"/>
-                    </svg>
+            <!-- Card 3: Unsicherheit -->
+            <div class="challenge-card reveal reveal-delay-3">
+                <div class="challenge-card__header">
+                    <div class="challenge-card__icon challenge-card__icon--question">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <h3 class="challenge-card__title">Niemand weiß, was erlaubt ist</h3>
                 </div>
-                <div class="challenge-item__content">
-                    <h3 class="challenge-item__title">Power-Lösungen ohne Operating Model</h3>
-                    <p class="challenge-item__text">Die Power App oder der Flow funktioniert — aber niemand weiß, wie man sie produktiv einsetzt. ALM-Prozess, Sicherheitskonzept, Berechtigungen, Support, Monitoring — alles unklar. Wer ist Owner? Wie werden Änderungen deployed? Was passiert bei Fehlern? Ohne Operating Model wird jede Automatisierung zum Risiko statt zur Entlastung.</p>
+                <div class="challenge-card__body">
+                    <p class="challenge-card__text">M365, Power Platform, Teams, Copilot — aber keine klaren Rollen. Keine Guidelines, keine Schulung. Unsicherheit, Wildwuchs, verschenktes Potenzial.</p>
+                    <div class="challenge-card__impact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                        </svg>
+                        Frustrierte Mitarbeiter
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: KI ohne Plan -->
+            <div class="challenge-card reveal reveal-delay-4">
+                <div class="challenge-card__header">
+                    <div class="challenge-card__icon challenge-card__icon--layers">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="challenge-card__title">Copilot & KI ohne Strategie</h3>
+                </div>
+                <div class="challenge-card__body">
+                    <p class="challenge-card__text">Copilot-Lizenzen gekauft, aber kein Plan für den Rollout. Mitarbeiter wissen nicht, wie sie KI sinnvoll nutzen. Potenzial bleibt ungenutzt, Investition verpufft.</p>
+                    <div class="challenge-card__impact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                        Verschwendetes Budget
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Operating Model -->
+            <div class="challenge-card reveal reveal-delay-5">
+                <div class="challenge-card__header">
+                    <div class="challenge-card__icon challenge-card__icon--cog">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="challenge-card__title">Power-Lösungen ohne Operating Model</h3>
+                </div>
+                <div class="challenge-card__body">
+                    <p class="challenge-card__text">Die Power App funktioniert — aber niemand weiß, wie man sie produktiv einsetzt. ALM-Prozess, Sicherheitskonzept, Support, Monitoring — alles unklar.</p>
+                    <div class="challenge-card__impact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        Jede Automatisierung wird zum Risiko
+                    </div>
                 </div>
             </div>
         </div>
