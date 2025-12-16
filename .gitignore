@@ -13,9 +13,6 @@ node_modules/
 *.docx
 *.pdf
 
-#Ordner die nciht ins Repo sollen
+#Ordner die nicht ins Repo sollen
 Notes/
-
-#testdateien
-
-hero*.html
+Backup/
