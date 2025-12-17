@@ -368,6 +368,11 @@ body {
     background: var(--bg-warm);
 }
 
+/* Mobile hero hidden by default (shown via media query) */
+.hero-mobile {
+    display: none;
+}
+
 /* Warm gradient background */
 .hero::before {
     content: '';
@@ -2509,6 +2514,28 @@ body {
 @media (max-width: 480px) {
     html {
         font-size: 14px;
+    }
+
+    /* Hide desktop hero, show mobile hero */
+    .hero-desktop {
+        display: none !important;
+    }
+
+    .hero-mobile {
+        display: flex;
+        flex-direction: column;
+        min-height: 100svh;
+        overflow-x: hidden;
+    }
+
+    /* Prevent horizontal scroll affecting centering */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Reduce gap after mobile hero */
+    .problems {
+        padding-top: 2rem;
     }
 
     .hero__title {
