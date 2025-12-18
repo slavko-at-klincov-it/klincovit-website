@@ -719,6 +719,62 @@ body {
     animation: fadeUp 0.8s ease-out 1.1s forwards;
 }
 
+/* ═══════════════════════════════════════════
+   HERO BUTTONS - Dedicated stable buttons
+═══════════════════════════════════════════ */
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem 2rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+}
+
+.hero-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.hero-btn--primary {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-rich) 100%);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 4px 15px var(--gold-glow);
+}
+
+.hero-btn--primary:hover {
+    box-shadow: 0 6px 20px rgba(201, 162, 39, 0.35);
+}
+
+.hero-btn--primary:active {
+    transform: scale(0.98);
+}
+
+.hero-btn--secondary {
+    background: var(--white);
+    color: var(--text-dark);
+    border: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.hero-btn--secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold-rich);
+}
+
+.hero-btn--secondary:active {
+    transform: scale(0.98);
+}
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -949,6 +1005,7 @@ body {
     }
 
     .btn { width: 100%; justify-content: center; }
+    .hero-btn { width: 100%; }
 }
 
 /* ═══════════════════════════════════════════
@@ -2380,7 +2437,8 @@ body {
         gap: 1rem;
     }
 
-    .hero__cta .btn {
+    .hero__cta .btn,
+    .hero-btn {
         width: 100%;
     }
 
