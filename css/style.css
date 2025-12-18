@@ -249,6 +249,11 @@ body {
     transform: translate(-50%, -50%);
     z-index: 1000;
     text-align: center;
+    pointer-events: none;
+}
+
+.nav-mobile.active {
+    pointer-events: auto;
 }
 
 .nav-mobile__links {
@@ -707,7 +712,11 @@ body {
     text-decoration: none;
     border-radius: 12px;
     cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
 }
@@ -1468,6 +1477,7 @@ body {
 ═══════════════════════════════════════════ */
 .value-stack {
     background: var(--bg-light);
+    padding-top: 0;
 }
 
 .value-stack__intro {
@@ -2524,20 +2534,31 @@ body {
     .hero-mobile {
         display: flex;
         flex-direction: column;
-        min-height: 100svh;
+        height: 860px;
+        min-height: 860px;
+        max-height: 860px;
         overflow: hidden;
     }
 
     /* Reset parent hero container for mobile */
     .hero {
-        min-height: auto;
+        height: 880px;
+        min-height: 880px;
+        max-height: 880px;
         padding: 0;
         padding-bottom: 20px;
+        overflow: hidden;
     }
 
     /* Prevent horizontal scroll affecting centering */
     body {
         overflow-x: hidden;
+    }
+
+    /* Disable content-visibility on mobile to fix scroll calculation */
+    .section:not(.hero) {
+        content-visibility: visible;
+        contain-intrinsic-size: auto;
     }
 
     /* Reduce gap after mobile hero */
