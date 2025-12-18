@@ -7,9 +7,9 @@
 .hero-mobile {
     --center-reveal-duration: 0.8s;
     --pulse-duration: 1.2s;
-    --pulse-delay: 0.6s;
-    --cards-start: 1.6s;
-    --content-start: 2.8s;
+    --pulse-delay: 0.2s;
+    --cards-start: 0.8s;
+    --content-start: 1.5s;
 }
 
 /* ═══════════════════════════════════════════
@@ -88,6 +88,14 @@
         opacity: 0;
         transform: scale(0);
     }
+    30% {
+        opacity: 1;
+        transform: scale(1.35);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(0.6);
+    }
     100% {
         opacity: 1;
         transform: scale(1);
@@ -131,16 +139,7 @@
     border: 2px solid rgba(201, 162, 39, 0.3);
     position: relative;
     overflow: hidden;
-    animation: orbitBadgePulse 1.4s ease-in-out var(--pulse-delay) forwards;
-}
 
-@keyframes orbitBadgePulse {
-    0% { transform: scale(1); }
-    12% { transform: scale(1.35); }
-    28% { transform: scale(1); }
-    40% { transform: scale(1.25); }
-    56% { transform: scale(1); }
-    100% { transform: scale(1); }
 }
 
 .orbit-center__badge::before {
@@ -360,7 +359,7 @@
     flex-direction: column;
     justify-content: flex-start;
     text-align: center;
-    padding: 0.5rem 5% 1rem;
+    padding: 0.5rem 5% 0;
     position: relative;
     z-index: 10;
 }
@@ -568,5 +567,43 @@
     }
     .hero-mobile__desc {
         display: none;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE SCROLL HINT
+═══════════════════════════════════════════ */
+.hero-mobile__scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: heroMobileFadeUp 0.8s ease-out calc(var(--content-start) + 0.6s) forwards;
+}
+
+.hero-mobile__scroll-text {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.hero-mobile__scroll-line {
+    width: 2px;
+    height: 35px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: mobileScrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes mobileScrollPulse {
+    0%, 100% {
+        transform: scaleY(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scaleY(1.2);
+        opacity: 1;
     }
 }

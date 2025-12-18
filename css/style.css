@@ -2525,7 +2525,14 @@ body {
         display: flex;
         flex-direction: column;
         min-height: 100svh;
-        overflow-x: hidden;
+        overflow: hidden;
+    }
+
+    /* Reset parent hero container for mobile */
+    .hero {
+        min-height: auto;
+        padding: 0;
+        padding-bottom: 20px;
     }
 
     /* Prevent horizontal scroll affecting centering */
