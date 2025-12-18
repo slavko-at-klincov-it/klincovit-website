@@ -3,7 +3,48 @@
    Bereinigt und optimiert
 ═══════════════════════════════════════════ */
 
-// Floating Cards Scroll Animation
+// ═══════════════════════════════════════════
+// CONFIGURATION CONSTANTS
+// ═══════════════════════════════════════════
+const CONFIG = {
+    // Animation timing (ms)
+    CARD_INIT_DELAY: 2000,
+    MOBILE_MENU_CLOSE_DELAY: 300,
+    COUNTER_ANIMATION_DURATION: 1500,
+    COUNTER_ANIMATION_DURATION_LONG: 1800,
+    COUNTER_STAGGER_DELAY: 200,
+    COUNTER_CLEANUP_DELAY: 2000,
+    RESIZE_DEBOUNCE: 100,
+    FORM_SUBMIT_DELAY: 300,
+
+    // Scroll animation
+    HERO_ANIMATION_END_RATIO: 0.80,
+    MAX_SPREAD_X: 200,
+    MAX_SPREAD_Y: 40,
+    MAX_OPACITY_LOSS: 0.1,
+    SCROLL_HINT_THRESHOLD: 50,
+    NAV_SCROLL_THRESHOLD: 100,
+
+    // Observer thresholds
+    REVEAL_THRESHOLD: 0.1,
+    REVEAL_ROOT_MARGIN: '0px 0px -80px 0px',
+    SECTION_ROOT_MARGIN: '-45% 0px -45% 0px',
+    ROI_THRESHOLD: 0.3,
+    TIMELINE_SCROLL_START_RATIO: 0.6,
+    TIMELINE_TRIGGER_RATIO: 0.55,
+    TIMELINE_ACTIVE_OFFSET: 100,
+
+    // Challenge items animation
+    CHALLENGE_ITEM_DELAY: 160,
+    CHALLENGE_ITEM_INITIAL_DELAY: 60,
+
+    // Magnetic button effect
+    MAGNETIC_FACTOR: 0.1
+};
+
+// ═══════════════════════════════════════════
+// FLOATING CARDS SCROLL ANIMATION
+// ═══════════════════════════════════════════
 (function() {
     const leftCards = document.querySelectorAll('.float-card[class*="left"]');
     const rightCards = document.querySelectorAll('.float-card[class*="right"]');
@@ -17,20 +58,13 @@
     function initCards() {
         if (initialized) return;
 
-        // Wait for CSS animations to complete initial reveal, then enable scroll effects
-        // Cards: last one starts at 0.65s + 1.2s duration = 1.85s
         setTimeout(() => {
             allCards.forEach(card => {
                 card.classList.add('scroll-controlled');
             });
             initialized = true;
-        }, 2000);
+        }, CONFIG.CARD_INIT_DELAY);
     }
-
-    // Scroll spread animation using margins (so CSS float animation can use transform)
-    const maxSpreadX = 200;
-    const maxSpreadY = 40;
-    const maxOpacityLoss = 0.1;
 
     function updateScrollAnimation() {
         if (!initialized) {
@@ -40,41 +74,34 @@
 
         const scrollY = window.scrollY;
         const heroHeight = hero.offsetHeight;
-        const animationEndPoint = heroHeight * 0.80;
+        const animationEndPoint = heroHeight * CONFIG.HERO_ANIMATION_END_RATIO;
         const progress = Math.min(scrollY / animationEndPoint, 1);
         const eased = 1 - Math.pow(1 - progress, 2);
 
-        // Left cards spread further left using margin
         leftCards.forEach((card, index) => {
             const stagger = 1 + (index * 0.30);
-            const xOffset = -maxSpreadX * eased * stagger; // negative = move left
-            const yOffset = maxSpreadY * eased * (index % 2 === 0 ? -1 : 1) * 0.3;
-            const opacity = 1 - (maxOpacityLoss * eased);
+            const xOffset = -CONFIG.MAX_SPREAD_X * eased * stagger;
+            const yOffset = CONFIG.MAX_SPREAD_Y * eased * (index % 2 === 0 ? -1 : 1) * 0.3;
+            const opacity = 1 - (CONFIG.MAX_OPACITY_LOSS * eased);
 
             card.style.marginLeft = `${xOffset}px`;
             card.style.marginTop = `${yOffset}px`;
             card.style.opacity = opacity;
         });
 
-        // Right cards spread further right using margin
         rightCards.forEach((card, index) => {
             const stagger = 1 + (index * 0.30);
-            const xOffset = maxSpreadX * eased * stagger; // positive = move right
-            const yOffset = maxSpreadY * eased * (index % 2 === 0 ? 1 : -1) * 0.3;
-            const opacity = 1 - (maxOpacityLoss * eased);
+            const xOffset = CONFIG.MAX_SPREAD_X * eased * stagger;
+            const yOffset = CONFIG.MAX_SPREAD_Y * eased * (index % 2 === 0 ? 1 : -1) * 0.3;
+            const opacity = 1 - (CONFIG.MAX_OPACITY_LOSS * eased);
 
-            card.style.marginRight = `${-xOffset}px`; // negative margin to push right
+            card.style.marginRight = `${-xOffset}px`;
             card.style.marginTop = `${yOffset}px`;
             card.style.opacity = opacity;
         });
 
-        // Scroll hint fade behavior - hide when scrolled, show when at top
         if (scrollHint) {
-            if (scrollY > 50) {
-                scrollHint.classList.add('hidden');
-            } else {
-                scrollHint.classList.remove('hidden');
-            }
+            scrollHint.classList.toggle('hidden', scrollY > CONFIG.SCROLL_HINT_THRESHOLD);
         }
 
         ticking = false;
@@ -102,32 +129,35 @@
     }
 })();
 
-// Intersection Observer for scroll animations (optimized - unobserve after reveal)
+// ═══════════════════════════════════════════
+// INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
+// ═══════════════════════════════════════════
 (function() {
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -80px 0px'
+        threshold: CONFIG.REVEAL_THRESHOLD,
+        rootMargin: CONFIG.REVEAL_ROOT_MARGIN
     };
 
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
 
-            // If this element is inside the challenges list, reveal all items sequentially
             const challengesContainer = entry.target.closest('.challenges-compact');
             if (challengesContainer) {
                 if (!challengesContainer.dataset.sequenced) {
                     challengesContainer.dataset.sequenced = '1';
                     const items = Array.from(challengesContainer.querySelectorAll('.challenge-item'));
-                    items.forEach((it, i) => setTimeout(() => it.classList.add('visible'), i * 160 + 60));
+                    items.forEach((it, i) => {
+                        setTimeout(() => it.classList.add('visible'),
+                            i * CONFIG.CHALLENGE_ITEM_DELAY + CONFIG.CHALLENGE_ITEM_INITIAL_DELAY);
+                    });
                 }
-                // stop observing the children of this container
                 challengesContainer.querySelectorAll('.reveal').forEach(el => obs.unobserve(el));
                 return;
             }
 
             entry.target.classList.add('visible');
-            obs.unobserve(entry.target); // Stop observing after revealed
+            obs.unobserve(entry.target);
         });
     }, observerOptions);
 
@@ -148,22 +178,35 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Modal functions
-function openModal(e) {
-    e.preventDefault();
-    document.getElementById('impressum-modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
+// ═══════════════════════════════════════════
+// MODAL CONTROLLER
+// ═══════════════════════════════════════════
+const ModalController = (function() {
+    const modal = document.getElementById('impressum-modal');
 
-function closeModal() {
-    document.getElementById('impressum-modal').classList.remove('active');
-    document.body.style.overflow = '';
-}
+    function open(e) {
+        if (e) e.preventDefault();
+        if (!modal) return;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-});
+    function close() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+    });
+
+    // Expose to global scope for inline onclick handlers
+    window.openModal = open;
+    window.closeModal = close;
+
+    return { open, close };
+})();
 
 // Mobile Navigation Toggle
 (function() {
@@ -215,12 +258,11 @@ document.addEventListener('keydown', (e) => {
 
             closeMobileNav();
 
-            // Smooth scroll after menu closes
             setTimeout(() => {
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
-            }, 300);
+            }, CONFIG.MOBILE_MENU_CLOSE_DELAY);
         });
     });
 
@@ -245,7 +287,7 @@ document.addEventListener('keydown', (e) => {
                 });
             }
         });
-    }, { rootMargin: '-45% 0px -45% 0px' });
+    }, { rootMargin: CONFIG.SECTION_ROOT_MARGIN });
 
     sections.forEach(section => mobileNavObserver.observe(section));
 })();
@@ -299,7 +341,7 @@ document.addEventListener('keydown', (e) => {
         entries.forEach(e => {
             if (e.isIntersecting) setActiveLink(e.target.id);
         });
-    }, { root: null, rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    }, { root: null, rootMargin: CONFIG.SECTION_ROOT_MARGIN, threshold: 0 });
 
     sections.forEach(s => obs.observe(s));
 
@@ -321,11 +363,13 @@ document.addEventListener('keydown', (e) => {
         resizeTimeout = setTimeout(() => {
             const activeLink = document.querySelector('.nav__link.active');
             if (activeLink) updatePillPosition(activeLink);
-        }, 100);
+        }, CONFIG.RESIZE_DEBOUNCE);
     }, { passive: true });
 })();
 
-// Navbar background on scroll - optimized with caching and passive listener
+// ═══════════════════════════════════════════
+// NAVBAR BACKGROUND ON SCROLL
+// ═══════════════════════════════════════════
 (function() {
     const nav = document.querySelector('.nav');
     if (!nav) return;
@@ -335,18 +379,11 @@ document.addEventListener('keydown', (e) => {
 
     function updateNavBackground() {
         const currentScroll = window.pageYOffset;
-        const newState = currentScroll > 100 ? 'scrolled' : 'top';
+        const newState = currentScroll > CONFIG.NAV_SCROLL_THRESHOLD ? 'scrolled' : 'top';
 
-        // Only update DOM if state changed
         if (newState !== lastState) {
             lastState = newState;
-            if (newState === 'scrolled') {
-                nav.style.background = 'rgba(232, 228, 220, 0.92)';
-                nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05)';
-            } else {
-                nav.style.background = 'rgba(232, 228, 220, 0.75)';
-                nav.style.boxShadow = '0 2px 16px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
-            }
+            nav.classList.toggle('nav--scrolled', newState === 'scrolled');
         }
         rafId = null;
     }
@@ -358,7 +395,9 @@ document.addEventListener('keydown', (e) => {
     }, { passive: true });
 })();
 
-// ROI Counter Animation
+// ═══════════════════════════════════════════
+// ROI COUNTER ANIMATION
+// ═══════════════════════════════════════════
 (function() {
     const roiBox = document.querySelector('.roi-box');
     if (!roiBox) return;
@@ -398,7 +437,7 @@ document.addEventListener('keydown', (e) => {
 
         statValues.forEach((stat, index) => {
             const type = stat.dataset.counter;
-            const delay = index * 200;
+            const delay = index * CONFIG.COUNTER_STAGGER_DELAY;
 
             setTimeout(() => {
                 stat.classList.add('counting');
@@ -406,22 +445,21 @@ document.addEventListener('keydown', (e) => {
                 if (type === 'range') {
                     const startVal = parseInt(stat.dataset.start);
                     const endVal = parseInt(stat.dataset.end);
-                    const suffix = stat.dataset.suffix || '';
                     const nums = stat.querySelectorAll('.counter-num');
 
                     if (nums.length >= 2) {
-                        animateCounter(nums[0], 0, startVal, 1500);
-                        animateCounter(nums[1], 0, endVal, 1800);
+                        animateCounter(nums[0], 0, startVal, CONFIG.COUNTER_ANIMATION_DURATION);
+                        animateCounter(nums[1], 0, endVal, CONFIG.COUNTER_ANIMATION_DURATION_LONG);
                     }
                 } else if (type === 'single') {
                     const value = parseInt(stat.dataset.value);
                     const num = stat.querySelector('.counter-num');
                     if (num) {
-                        animateCounter(num, 0, value, 1500);
+                        animateCounter(num, 0, value, CONFIG.COUNTER_ANIMATION_DURATION);
                     }
                 }
 
-                setTimeout(() => stat.classList.remove('counting'), 2000);
+                setTimeout(() => stat.classList.remove('counting'), CONFIG.COUNTER_CLEANUP_DELAY);
             }, delay);
         });
     }
@@ -433,12 +471,14 @@ document.addEventListener('keydown', (e) => {
                 roiObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: CONFIG.ROI_THRESHOLD });
 
     roiObserver.observe(roiBox);
 })();
 
-// Timeline Scroll Progress Animation
+// ═══════════════════════════════════════════
+// TIMELINE SCROLL PROGRESS ANIMATION
+// ═══════════════════════════════════════════
 (function() {
     const timeline = document.querySelector('.transformation__timeline');
     if (!timeline) return;
@@ -452,25 +492,22 @@ document.addEventListener('keydown', (e) => {
         const timelineTop = timelineRect.top;
         const timelineHeight = timelineRect.height;
 
-        // Calculate progress through the timeline
-        const scrollStart = viewportHeight * 0.6;
+        const scrollStart = viewportHeight * CONFIG.TIMELINE_SCROLL_START_RATIO;
         const scrollProgress = Math.max(0, Math.min(1, (scrollStart - timelineTop) / timelineHeight));
 
-        // Update the progress bar height via CSS custom property
         const progressHeight = scrollProgress * timelineHeight;
         timeline.style.setProperty('--timeline-progress', `${progressHeight}px`);
 
-        // Update stage states based on scroll position
-        stages.forEach((stage, index) => {
+        stages.forEach((stage) => {
             const stageRect = stage.getBoundingClientRect();
             const stageCenter = stageRect.top + stageRect.height / 2;
-            const triggerPoint = viewportHeight * 0.55;
+            const triggerPoint = viewportHeight * CONFIG.TIMELINE_TRIGGER_RATIO;
 
             stage.classList.remove('active', 'completed');
 
-            if (stageCenter < triggerPoint - 100) {
+            if (stageCenter < triggerPoint - CONFIG.TIMELINE_ACTIVE_OFFSET) {
                 stage.classList.add('completed');
-            } else if (stageCenter < triggerPoint + 100) {
+            } else if (stageCenter < triggerPoint + CONFIG.TIMELINE_ACTIVE_OFFSET) {
                 stage.classList.add('active');
             }
         });
@@ -496,7 +533,9 @@ document.addEventListener('keydown', (e) => {
     updateTimelineProgress();
 })();
 
-// Button Micro-interactions: Ripple + Magnetic Hover
+// ═══════════════════════════════════════════
+// BUTTON MICRO-INTERACTIONS
+// ═══════════════════════════════════════════
 (function() {
     const buttons = document.querySelectorAll('.btn');
 
@@ -531,8 +570,8 @@ document.addEventListener('keydown', (e) => {
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
 
-            const moveX = x * 0.1;
-            const moveY = y * 0.1;
+            const moveX = x * CONFIG.MAGNETIC_FACTOR;
+            const moveY = y * CONFIG.MAGNETIC_FACTOR;
 
             btn.style.transform = `translateY(-4px) translate(${moveX}px, ${moveY}px)`;
         });
@@ -560,10 +599,8 @@ document.addEventListener('keydown', (e) => {
 
         if (!painpoint) return;
 
-        // Add submitting class for animation
         card.classList.add('submitting');
 
-        // Prepare form data
         const formData = {
             painpoint: painpoint,
             email: email || 'Not provided',
@@ -572,19 +609,12 @@ document.addEventListener('keydown', (e) => {
         };
 
         try {
-            // Send to Formspree (replace YOUR_FORM_ID with actual ID)
-            // For now, we'll simulate the submission
-            // Uncomment and replace with your Formspree endpoint:
-            // await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(formData)
-            // });
+            await fetch('https://formspree.io/f/xojaqqlw', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
 
-            // Simulate network delay
-            await new Promise(resolve => setTimeout(resolve, 300));
-
-            // Switch to success state
             setTimeout(() => {
                 const inputState = card.querySelector('.challenge-card__input-state');
                 const successState = card.querySelector('.challenge-card__success-state');
@@ -596,12 +626,9 @@ document.addEventListener('keydown', (e) => {
                 const submissions = JSON.parse(localStorage.getItem('painpoint_submissions') || '[]');
                 submissions.push(formData);
                 localStorage.setItem('painpoint_submissions', JSON.stringify(submissions));
-
-                console.log('Pain point submitted:', formData);
-            }, 300);
+            }, CONFIG.FORM_SUBMIT_DELAY);
 
         } catch (error) {
-            console.error('Submission error:', error);
             card.classList.remove('submitting');
             alert('Es gab einen Fehler. Bitte versuchen Sie es erneut.');
         }
