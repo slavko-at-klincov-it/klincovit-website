@@ -1,0 +1,474 @@
+<!-- ═══════════════════════════════════════════
+     LEISTUNGEN VERSION 1: SERVICE CARDS GRID
+
+     Structure: Service categories as visual cards in a grid layout
+     Categories: Beratung, Digital Workplace, Business Apps, Automation, AI & Copilot, Workshops & Enablement
+
+     To implement: Replace the current <section class="section value-stack" id="services">...</section>
+     with this section in index.html
+═══════════════════════════════════════════ -->
+
+<section class="section services-grid" id="services">
+    <div class="section__header reveal">
+        <span class="section__label">Leistungen</span>
+        <h2 class="section__title">Digitalisierung mit Microsoft-Bordmitteln</h2>
+        <p class="section__subtitle">Sie nutzen Microsoft 365? Dann haben Sie bereits alles, was Sie brauchen. Power Apps, Power Automate, Copilot Studio und Power BI sind Teil Ihrer Lizenz. Ich helfe Ihnen, dieses Potenzial zu nutzen.</p>
+    </div>
+
+    <!-- Awareness Banner -->
+    <div class="services-awareness reveal">
+        <div class="services-awareness__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4"/>
+                <path d="M12 8h.01"/>
+            </svg>
+        </div>
+        <div class="services-awareness__content">
+            <p class="services-awareness__text">
+                <strong>Wussten Sie?</strong> Mit einer Microsoft 365 E3/E5 oder Business-Lizenz haben Sie bereits Zugang zu Power Automate und Power Apps. Sie können heute noch anfangen, Prozesse zu automatisieren.
+            </p>
+        </div>
+    </div>
+
+    <!-- Service Cards Grid -->
+    <div class="services-cards">
+
+        <!-- Card 1: Beratung & Strategie -->
+        <div class="service-card reveal reveal-delay-1">
+            <div class="service-card__icon service-card__icon--gold">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+            </div>
+            <h3 class="service-card__title">Beratung & Strategie</h3>
+            <p class="service-card__text">
+                Analyse Ihrer Microsoft-365-Landschaft, Entwicklung einer Digitalisierungsstrategie und Roadmap für Power Platform.
+            </p>
+            <ul class="service-card__features">
+                <li>Tenant-Analyse & Governance-Check</li>
+                <li>Maturity Assessment</li>
+                <li>Strategische Roadmap</li>
+                <li>IT-/Business-Alignment</li>
+            </ul>
+        </div>
+
+        <!-- Card 2: Digital Workplace -->
+        <div class="service-card reveal reveal-delay-2">
+            <div class="service-card__icon service-card__icon--sage">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+            </div>
+            <h3 class="service-card__title">Digital Workplace</h3>
+            <p class="service-card__text">
+                Moderner Arbeitsplatz mit Microsoft 365. Teams, SharePoint, OneDrive und Collaboration-Lösungen optimal einsetzen.
+            </p>
+            <ul class="service-card__features">
+                <li>Microsoft Teams Governance</li>
+                <li>SharePoint-Strukturen</li>
+                <li>Intranet-Lösungen</li>
+                <li>Collaboration-Konzepte</li>
+            </ul>
+        </div>
+
+        <!-- Card 3: Business Apps -->
+        <div class="service-card reveal reveal-delay-3">
+            <div class="service-card__icon service-card__icon--copper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+                    <rect x="9" y="9" width="6" height="6"/>
+                    <line x1="9" y1="1" x2="9" y2="4"/>
+                    <line x1="15" y1="1" x2="15" y2="4"/>
+                    <line x1="9" y1="20" x2="9" y2="23"/>
+                    <line x1="15" y1="20" x2="15" y2="23"/>
+                    <line x1="20" y1="9" x2="23" y2="9"/>
+                    <line x1="20" y1="14" x2="23" y2="14"/>
+                    <line x1="1" y1="9" x2="4" y2="9"/>
+                    <line x1="1" y1="14" x2="4" y2="14"/>
+                </svg>
+            </div>
+            <h3 class="service-card__title">Business Apps</h3>
+            <p class="service-card__text">
+                Individuelle Canvas Apps und Model-Driven Apps mit Power Apps. Von Self-Service-Portalen bis zu komplexen Fachanwendungen.
+            </p>
+            <ul class="service-card__features">
+                <li>Power Apps Canvas & Model-Driven</li>
+                <li>Dataverse-Integration</li>
+                <li>Self-Service-Portale</li>
+                <li>Mobile Apps</li>
+            </ul>
+        </div>
+
+        <!-- Card 4: Automation -->
+        <div class="service-card reveal reveal-delay-4">
+            <div class="service-card__icon service-card__icon--blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 3 21 3 21 8"/>
+                    <line x1="4" y1="20" x2="21" y2="3"/>
+                    <polyline points="21 16 21 21 16 21"/>
+                    <line x1="15" y1="15" x2="21" y2="21"/>
+                    <line x1="4" y1="4" x2="9" y2="9"/>
+                </svg>
+            </div>
+            <h3 class="service-card__title">Automation</h3>
+            <p class="service-card__text">
+                Prozesse automatisieren mit Power Automate. Genehmigungen, Benachrichtigungen, Datenflüsse und Integrationen.
+            </p>
+            <ul class="service-card__features">
+                <li>Power Automate Flows</li>
+                <li>Genehmigungsprozesse</li>
+                <li>System-Integrationen</li>
+                <li>Scheduled Workflows</li>
+            </ul>
+        </div>
+
+        <!-- Card 5: AI & Copilot -->
+        <div class="service-card reveal reveal-delay-5">
+            <div class="service-card__icon service-card__icon--gradient">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/>
+                    <circle cx="7.5" cy="14.5" r="1.5"/>
+                    <circle cx="16.5" cy="14.5" r="1.5"/>
+                </svg>
+            </div>
+            <h3 class="service-card__title">AI & Copilot</h3>
+            <p class="service-card__text">
+                KI-gestützte Lösungen mit Copilot Studio. Intelligente Chatbots, KI-Agents und Copilot-Rollout-Strategien.
+            </p>
+            <ul class="service-card__features">
+                <li>Copilot Studio Agents</li>
+                <li>KI-Chatbots</li>
+                <li>Copilot Readiness</li>
+                <li>Prompt Engineering</li>
+            </ul>
+        </div>
+
+        <!-- Card 6: Workshops & Enablement -->
+        <div class="service-card reveal reveal-delay-5">
+            <div class="service-card__icon service-card__icon--gold">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+            </div>
+            <h3 class="service-card__title">Workshops & Enablement</h3>
+            <p class="service-card__text">
+                Hands-on Trainings für IT-Teams und Citizen Developer. Power Platform verstehen, anwenden und sicher betreiben.
+            </p>
+            <ul class="service-card__features">
+                <li>Power Platform Grundlagen</li>
+                <li>Citizen Developer Training</li>
+                <li>Governance-Workshops</li>
+                <li>Center of Excellence Aufbau</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Governance Highlight -->
+    <div class="services-governance reveal">
+        <div class="services-governance__content">
+            <h3 class="services-governance__title">Governance & Compliance als roter Faden</h3>
+            <p class="services-governance__text">
+                Egal welchen Service Sie nutzen: Governance, DLP-Policies, Entra-Rollen und Compliance sind immer Teil meiner Arbeit. Keine Schatten-IT, keine unkontrollierten Apps, keine Sicherheitslücken.
+            </p>
+        </div>
+        <div class="services-governance__badges">
+            <span class="services-governance__badge">DLP-Policies</span>
+            <span class="services-governance__badge">Entra ID</span>
+            <span class="services-governance__badge">Purview</span>
+            <span class="services-governance__badge">CoE Starter Kit</span>
+        </div>
+    </div>
+
+    <!-- ROI Box -->
+    <div class="roi-box reveal">
+        <h3 class="roi-box__title">Typische Ergebnisse meiner Kunden</h3>
+        <div class="roi-box__stats">
+            <div class="roi-box__stat">
+                <div class="roi-box__stat-value" data-counter="range" data-start="10" data-end="30" data-suffix="h"><span class="counter-num">0</span>–<span class="counter-num">0</span>h</div>
+                <div class="roi-box__stat-label">Zeitersparnis pro Woche*</div>
+            </div>
+            <div class="roi-box__stat">
+                <div class="roi-box__stat-value" data-counter="single" data-value="40" data-prefix="~" data-suffix="%"><span class="counter-prefix">~</span><span class="counter-num">0</span>%</div>
+                <div class="roi-box__stat-label">Weniger IT-Tickets**</div>
+            </div>
+            <div class="roi-box__stat">
+                <div class="roi-box__stat-value" data-counter="range" data-start="5" data-end="10" data-suffix="×"><span class="counter-num">0</span>–<span class="counter-num">0</span>×</div>
+                <div class="roi-box__stat-label">ROI auf Ihre Investition</div>
+            </div>
+        </div>
+        <p class="roi-box__text">*Zeitersparnis in Fachbereichen durch automatisierte Genehmigungsprozesse und Self-Service-Lösungen. **Weniger Tickets an die IT durch klare Citizen-Developer-Guidelines und Self-Service-Portale. Ergebnisse variieren je nach Ausgangssituation.</p>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     ADDITIONAL CSS FOR VERSION 1
+     Add this to your style.css
+═══════════════════════════════════════════ -->
+<style>
+/* Services Grid Section */
+.services-grid {
+    background: var(--bg-light);
+}
+
+/* Awareness Banner */
+.services-awareness {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: linear-gradient(135deg, rgba(201, 162, 39, 0.08) 0%, rgba(201, 162, 39, 0.03) 100%);
+    border: 1px solid rgba(201, 162, 39, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 0 auto 3rem;
+    max-width: 800px;
+}
+
+.services-awareness__icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--accent-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services-awareness__icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+}
+
+.services-awareness__text {
+    font-size: 0.95rem;
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.services-awareness__text strong {
+    color: var(--text-dark);
+}
+
+/* Service Cards Grid */
+.services-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .services-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .services-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Service Card */
+.service-card {
+    background: var(--bg-light-card);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s var(--ease-out-expo);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    border-color: rgba(201, 162, 39, 0.2);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+/* Service Card Icon */
+.service-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.service-card__icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.service-card__icon--gold {
+    background: rgba(201, 162, 39, 0.12);
+}
+.service-card__icon--gold svg {
+    stroke: var(--accent-gold);
+}
+
+.service-card__icon--sage {
+    background: rgba(122, 154, 109, 0.12);
+}
+.service-card__icon--sage svg {
+    stroke: var(--sage);
+}
+
+.service-card__icon--copper {
+    background: rgba(193, 127, 89, 0.12);
+}
+.service-card__icon--copper svg {
+    stroke: var(--copper);
+}
+
+.service-card__icon--blue {
+    background: rgba(122, 143, 163, 0.12);
+}
+.service-card__icon--blue svg {
+    stroke: var(--dusty-blue);
+}
+
+.service-card__icon--gradient {
+    background: linear-gradient(135deg, rgba(201, 162, 39, 0.15), rgba(193, 127, 89, 0.15));
+}
+.service-card__icon--gradient svg {
+    stroke: var(--accent-gold);
+}
+
+/* Service Card Content */
+.service-card__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.service-card__text {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.service-card__features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-card__features li {
+    font-size: 0.85rem;
+    color: var(--text-medium);
+    padding: 0.4rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.service-card__features li:first-child {
+    border-top: none;
+}
+
+.service-card__features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--accent-gold);
+    border-radius: 50%;
+}
+
+/* Governance Highlight */
+.services-governance {
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-secondary) 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.services-governance__title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.services-governance__text {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.services-governance__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.services-governance__badge {
+    background: rgba(201, 162, 39, 0.15);
+    border: 1px solid rgba(201, 162, 39, 0.3);
+    color: var(--accent-gold-light);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+@media (max-width: 640px) {
+    .services-awareness {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .services-governance {
+        padding: 1.5rem;
+    }
+
+    .services-governance__badges {
+        justify-content: center;
+    }
+}
+</style>
