@@ -530,37 +530,6 @@
     transform: scale(0.98);
 }
 
-/* Secondary mobile button */
-.hero-mobile__btn--secondary {
-    background: #fff;
-    color: var(--text-dark);
-    border: 2px solid rgba(0, 0, 0, 0.08);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-mobile__btn--secondary::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(201, 162, 39, 0.3),
-        transparent
-    );
-    transform: skewX(-20deg);
-    animation: mobileBtnShine 4s ease-in-out infinite;
-    animation-delay: 3s;
-}
-
-.hero-mobile__btn--secondary:active {
-    transform: scale(0.98);
-}
-
 /* Trust Section */
 .hero-mobile__trust {
     padding-top: 1.25rem;

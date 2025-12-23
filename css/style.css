@@ -709,6 +709,7 @@ body {
 /* CTA */
 .hero__cta {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
@@ -716,6 +717,14 @@ body {
     opacity: 0;
     transform: translateY(15px);
     animation: fadeUp 0.8s ease-out 1.1s forwards;
+}
+
+.hero__cta-note {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    text-align: center;
+    margin-top: 0.5rem;
 }
 
 /* ═══════════════════════════════════════════
@@ -789,40 +798,6 @@ body {
     transform: scale(0.98);
 }
 
-.hero-btn--secondary {
-    background: var(--white);
-    color: var(--text-dark);
-    border: 2px solid rgba(0, 0, 0, 0.08);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-btn--secondary::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(201, 162, 39, 0.3),
-        transparent
-    );
-    transform: skewX(-20deg);
-    animation: btnShine 4s ease-in-out infinite;
-    animation-delay: 2s;
-}
-
-.hero-btn--secondary:hover {
-    border-color: var(--gold);
-    color: var(--gold-rich);
-}
-
-.hero-btn--secondary:active {
-    transform: scale(0.98);
-}
 
 .btn {
     display: inline-flex;
