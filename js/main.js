@@ -634,3 +634,110 @@ const ModalController = (function() {
         }
     });
 })();
+
+// ═══════════════════════════════════════════
+// ESCAPE BUTTON - Easter Egg
+// ═══════════════════════════════════════════
+(function() {
+    const escapeBtn = document.getElementById('escape-btn');
+    const placeholder = document.getElementById('escape-btn-placeholder');
+    if (!escapeBtn || !placeholder) return;
+
+    let escapeCount = 0;
+    let isMoving = false;
+    let isInitialized = false;
+
+    function getRandomPosition() {
+        const btnWidth = 120;
+        const btnHeight = 45;
+        const padding = 30;
+
+        const maxX = window.innerWidth - btnWidth - padding;
+        const maxY = window.innerHeight - btnHeight - padding;
+
+        const randomX = Math.max(padding, Math.random() * maxX);
+        const randomY = Math.max(padding, Math.random() * maxY);
+
+        return { x: randomX, y: randomY };
+    }
+
+    function initializeButton() {
+        if (isInitialized) return;
+
+        const rect = placeholder.getBoundingClientRect();
+        const btnWidth = escapeBtn.offsetWidth || 120;
+
+        // Zentriert unter dem Text
+        const centerX = (window.innerWidth - btnWidth) / 2;
+
+        escapeBtn.style.left = centerX + 'px';
+        escapeBtn.style.top = (rect.top - 170) + 'px';
+        escapeBtn.classList.add('visible');
+        isInitialized = true;
+    }
+
+    function escapeFromPointer() {
+        if (escapeCount >= 20 || isMoving) return;
+
+        isMoving = true;
+        escapeCount++;
+
+        // Add moving class for transition (after first move)
+        if (escapeCount > 1) {
+            escapeBtn.classList.add('moving');
+        }
+
+        // Move to new position
+        const pos = getRandomPosition();
+        escapeBtn.style.left = pos.x + 'px';
+        escapeBtn.style.top = pos.y + 'px';
+
+        // Change text after a few attempts
+        if (escapeCount === 3) {
+            escapeBtn.textContent = 'Haha, nein!';
+        } else if (escapeCount === 6) {
+            escapeBtn.textContent = 'Erwischt mich nicht!';
+        } else if (escapeCount === 10) {
+            escapeBtn.textContent = 'Gib auf!';
+        } else if (escapeCount === 15) {
+            escapeBtn.textContent = 'Ok ok...';
+        } else if (escapeCount >= 20) {
+            escapeBtn.textContent = 'Du hast gewonnen!';
+            escapeBtn.style.cursor = 'pointer';
+        }
+
+        // Prevent rapid firing
+        setTimeout(() => {
+            isMoving = false;
+        }, 250);
+    }
+
+    // Watch for placeholder to come into view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                initializeButton();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(placeholder);
+
+    // Desktop: escape on hover
+    escapeBtn.addEventListener('mouseenter', escapeFromPointer);
+
+    // Mobile: escape on touch
+    escapeBtn.addEventListener('touchstart', function(e) {
+        if (escapeCount < 20) {
+            e.preventDefault();
+            escapeFromPointer();
+        }
+    }, { passive: false });
+
+    // When finally clicked after "winning"
+    escapeBtn.addEventListener('click', function() {
+        if (escapeCount >= 20) {
+            alert('Gratulation! Du hast den Button gefangen. Hier ist dein Preis: Nichts. Aber du hast Ausdauer bewiesen!');
+        }
+    });
+})();

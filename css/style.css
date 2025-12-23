@@ -798,6 +798,41 @@ body {
     transform: scale(0.98);
 }
 
+.hero-btn--secondary {
+    background: var(--white);
+    color: var(--text-on-light);
+    border: 1px solid var(--border-dark-subtle);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-btn--secondary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 0, 0, 0.08),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: btnShine 4s ease-in-out infinite;
+    animation-delay: 2.5s;
+}
+
+.hero-btn--secondary:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.hero-btn--secondary:active {
+    transform: scale(0.98);
+}
 
 .btn {
     display: inline-flex;
@@ -2611,6 +2646,62 @@ body {
 .btn--large {
     padding: 1.25rem 3rem;
     font-size: 1rem;
+}
+
+.secondary-cta__email-intro {
+    font-size: 1rem;
+    color: var(--text-on-light-secondary);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.secondary-cta__escape-intro {
+    font-size: 0.9rem;
+    color: var(--text-on-light-secondary);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;
+}
+
+.escape-btn-placeholder {
+    display: block;
+    height: 10px;
+    margin-top: 0.5rem;
+}
+
+.escape-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: var(--white);
+    color: var(--text-on-light);
+    border: 1px solid var(--border-dark-subtle);
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.escape-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.escape-btn.moving {
+    transition: left 0.2s ease-out, top 0.2s ease-out;
 }
 
 /* ═══════════════════════════════════════════

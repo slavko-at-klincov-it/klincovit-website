@@ -970,12 +970,23 @@
             In 45 Minuten schauen wir uns gemeinsam an, was Sie heute nutzen und was brach liegt. Wo automatisiert werden könnte. Wo Apps helfen würden. Wo KI Sinn macht. Am Ende haben Sie 2–3 konkrete nächste Schritte — kostenlos und unverbindlich. Der Call richtet sich an IT-Leitung, Fachbereiche, Business-Verantwortliche und Power Platform-Owner.
         </p>
 
-        <a href="https://outlook.office.com/book/Microsoft365undPowerPlatformAssessment@klincov.it/" class="btn btn--primary btn--large reveal" target="_blank">
-            Ja, ich will starten, lass uns sprechen!
-            <svg class="btn__arrow" width="18" height="18" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5"/>
+        <a href="https://outlook.office.com/book/Microsoft365undPowerPlatformAssessment@klincov.it/" class="hero-btn hero-btn--primary reveal" target="_blank">
+            Kostenloses 45-Min Assessment buchen
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 8H13M13 8L8 3M13 8L8 13"/>
             </svg>
         </a>
+
+        <p class="secondary-cta__email-intro reveal">Kein konkretes Projekt, aber eine Frage? Schreiben Sie mir einfach — ich melde mich.</p>
+        <a href="mailto:kontakt@klincov.it" class="hero-btn hero-btn--secondary reveal">
+            Kontakt per E-Mail
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 8H13M13 8L8 3M13 8L8 13"/>
+            </svg>
+        </a>
+
+        <p class="secondary-cta__escape-intro reveal">Ich will eigentlich gar nichts von alle dem, ich will einfach nur auf diesen Button klicken.</p>
+        <span class="escape-btn-placeholder reveal" id="escape-btn-placeholder"></span>
     </section>
 
     <!-- ═══════════════════════════════════════════
@@ -1057,6 +1068,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Escape Button (außerhalb aller Sections für freie Bewegung) -->
+    <button class="escape-btn" id="escape-btn">Click mich</button>
 
     <script src="js/main.js"></script>
 </body>
