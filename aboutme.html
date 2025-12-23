@@ -533,6 +533,43 @@
             margin: 0;
         }
 
+        .profile-intro__story {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--bg-light-card);
+            border: 1px solid var(--border-light-subtle);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .profile-intro__story::before {
+            content: '„';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .profile-intro__story p {
+            color: var(--text-on-light-secondary);
+            font-size: 0.95rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .profile-intro__story p:last-child {
+            margin-bottom: 0;
+        }
+
+        .profile-intro__story strong {
+            color: var(--text-on-light);
+        }
+
         /* ═══════════════════════════════════════════
            CAREER TIMELINE
         ═══════════════════════════════════════════ */
@@ -1428,6 +1465,11 @@
 
                 <div class="profile-intro__highlight">
                     <p>Ich helfe Unternehmen, ihre digitale Transformation end-to-end zu denken — technologisch, organisatorisch und menschlich.</p>
+                </div>
+
+                <div class="profile-intro__story">
+                    <p>„Ich war selbst jahrelang Teil chaotischer Microsoft-365-Landschaften — Excel-Silos, manuelle Freigaben per E-Mail, fehlende DLP-Policies. Als Trainer, Consultant und Team Lead bei Kunden aus Finanzdienstleistung, Industrie und öffentlichem Sektor (500+ Mitarbeitende) habe ich erlebt, <strong>wie viel Potenzial verloren geht</strong>, wenn Power Platform und M365 ohne klare Governance eingeführt werden.</p>
+                    <p>Der Wendepunkt kam, als ich begann, <strong>Enterprise-Plattformen mit Governance, DLP, Entra-Rollen und Center of Excellence aufzubauen</strong>. Heute helfe ich IT-Teams, genau diese Reise abzukürzen — von Wildwuchs zu kontrollierter Plattform."</p>
                 </div>
             </div>
         </div>

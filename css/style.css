@@ -446,15 +446,14 @@ body {
         0 0 0 1px rgba(0, 0, 0, 0.02);
 }
 
-/* Scroll-controlled: disable only reveal animation, keep float */
+/* Scroll-controlled: marks cards as ready for scroll transforms, animation continues naturally */
 .float-card.scroll-controlled {
-    animation: floatUp var(--float-duration, 6s) ease-in-out infinite !important;
     opacity: 1;
 }
 
 @keyframes floatUp {
-    0%, 100% { transform: translateY(0) rotate(var(--rotate, 0deg)); }
-    50% { transform: translateY(-10px) rotate(var(--rotate, 0deg)); }
+    0%, 100% { transform: translateY(-5px) rotate(var(--rotate, 0deg)); }
+    50% { transform: translateY(5px) rotate(var(--rotate, 0deg)); }
 }
 
 /* Card reveal animation - comes from above while fading in */
@@ -465,7 +464,7 @@ body {
     }
     to {
         opacity: 1;
-        transform: translateY(0) rotate(var(--rotate, 0deg));
+        transform: translateY(-5px) rotate(var(--rotate, 0deg));
     }
 }
 
@@ -745,11 +744,41 @@ body {
     flex-shrink: 0;
 }
 
+/* Golden shine animation for CTA buttons */
+@keyframes btnShine {
+    0% {
+        left: -100%;
+    }
+    20%, 100% {
+        left: 100%;
+    }
+}
+
 .hero-btn--primary {
     background: linear-gradient(135deg, var(--gold) 0%, var(--gold-rich) 100%);
     color: var(--white);
     border: none;
     box-shadow: 0 4px 15px var(--gold-glow);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-btn--primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: btnShine 4s ease-in-out infinite;
+    animation-delay: 1s;
 }
 
 .hero-btn--primary:hover {
@@ -764,6 +793,26 @@ body {
     background: var(--white);
     color: var(--text-dark);
     border: 2px solid rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-btn--secondary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(201, 162, 39, 0.3),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: btnShine 4s ease-in-out infinite;
+    animation-delay: 2s;
 }
 
 .hero-btn--secondary:hover {
@@ -966,7 +1015,7 @@ body {
 }
 
 /* Responsive - all cards hide together */
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
     .float-card { display: none; }
 }
 
@@ -1162,6 +1211,12 @@ body {
 }
 
 /* Icon color variants - matching hero cards */
+.challenge-card__icon--compass {
+    background: linear-gradient(135deg, #5b9aa0 0%, #3d7a80 100%);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(91, 154, 160, 0.3);
+}
+
 .challenge-card__icon--warning {
     background: linear-gradient(135deg, #e8a838 0%, #d4922a 100%);
     color: var(--white);
@@ -1480,71 +1535,6 @@ body {
         opacity: 0;
         transform: scale(0.95);
     }
-}
-
-/* Transition Story */
-.transition-story {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 3rem;
-    background: var(--bg-light-card);
-    border: 1px solid var(--border-light-subtle);
-    position: relative;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
-}
-
-.transition-story::before {
-    content: '"';
-    font-family: var(--font-display);
-    font-size: 8rem;
-    color: var(--accent-gold);
-    opacity: 0.15;
-    position: absolute;
-    top: -1rem;
-    left: 2rem;
-    line-height: 1;
-}
-
-.transition-story__text {
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: var(--text-on-light-secondary);
-    line-height: 1.9;
-    position: relative;
-    z-index: 1;
-}
-
-.transition-story__text strong {
-    color: var(--accent-gold-dark);
-    font-weight: 600;
-}
-
-.transition-story__author {
-    margin-top: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.transition-story__avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--accent-gold);
-}
-
-.transition-story__name {
-    font-weight: 500;
-    color: var(--text-on-light);
-}
-
-.transition-story__role {
-    font-size: 0.85rem;
-    color: var(--text-on-light-muted);
 }
 
 /* ═══════════════════════════════════════════
@@ -2403,6 +2393,25 @@ body {
     color: var(--text-on-light-muted);
 }
 
+.testimonial-card__avatar-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border-light-gold);
+    flex-shrink: 0;
+}
+
+.testimonial-card__name-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+}
+
+.testimonial-card__name-link:hover .testimonial-card__name {
+    color: var(--accent-gold-dark);
+}
+
 /* ═══════════════════════════════════════════
    TRANSFORMATION SECTION (LIGHT)
 ═══════════════════════════════════════════ */
@@ -2974,21 +2983,6 @@ body {
 
     .section__subtitle {
         font-size: 0.95rem;
-    }
-
-    /* Transition story */
-    .transition-story {
-        padding: 2rem 1.5rem;
-    }
-
-    .transition-story__text {
-        font-size: 0.95rem;
-    }
-
-    .transition-story::before {
-        font-size: 5rem;
-        top: -0.5rem;
-        left: 1rem;
     }
 
     /* Timeline */
