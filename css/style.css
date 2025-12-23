@@ -472,7 +472,7 @@ body {
 .float-card--left-1 {
     --rotate: -2deg;
     --float-duration: 6s;
-    top: 22%;
+    top: 24%;
     left: calc(50% - 500px);
     animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards, floatUp 6s ease-in-out 1.5s infinite;
 }
@@ -480,8 +480,8 @@ body {
 .float-card--left-2 {
     --rotate: 1deg;
     --float-duration: 7s;
-    top: 40%;
-    left: calc(50% - 500px);
+    top: 38%;
+    left: calc(50% - 450px);
     animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards, floatUp 7s ease-in-out 1.6s infinite;
 }
 
@@ -489,7 +489,7 @@ body {
     --rotate: -1deg;
     --float-duration: 5.5s;
     top: 50%;
-    left: calc(50% - 550px);
+    left: calc(50% - 500px);
     animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards, floatUp 5.5s ease-in-out 1.7s infinite;
 }
 
@@ -497,7 +497,7 @@ body {
     --rotate: 2deg;
     --float-duration: 6.5s;
     top: 61%;
-    left: calc(50% - 500px);
+    left: calc(50% - 400px);
     animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards, floatUp 6.5s ease-in-out 1.8s infinite;
 }
 
@@ -513,24 +513,24 @@ body {
 .float-card--right-2 {
     --rotate: -1deg;
     --float-duration: 6s;
-    top: 40%;
-    right: calc(50% - 470px);
+    top: 37%;
+    right: calc(50% - 430px);
     animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards, floatUp 6s ease-in-out 1.65s infinite;
 }
 
 .float-card--right-3 {
     --rotate: 1deg;
     --float-duration: 5.5s;
-    top: 50%;
-    right: calc(50% - 520px);
+    top: 51%;
+    right: calc(50% - 470px);
     animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards, floatUp 5.5s ease-in-out 1.75s infinite;
 }
 
 .float-card--right-4 {
     --rotate: -2deg;
     --float-duration: 7.5s;
-    top: 60%;
-    right: calc(50% - 470px);
+    top: 62%;
+    right: calc(50% - 390px);
     animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards, floatUp 7.5s ease-in-out 1.85s infinite;
 }
 
