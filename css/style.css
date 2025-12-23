@@ -480,8 +480,8 @@ body {
 .float-card--left-2 {
     --rotate: 1deg;
     --float-duration: 7s;
-    top: 38%;
-    left: calc(50% - 440px);
+    top: 40%;
+    left: calc(50% - 500px);
     animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards, floatUp 7s ease-in-out 1.6s infinite;
 }
 
@@ -513,8 +513,8 @@ body {
 .float-card--right-2 {
     --rotate: -1deg;
     --float-duration: 6s;
-    top: 38%;
-    right: calc(50% - 400px);
+    top: 40%;
+    right: calc(50% - 470px);
     animation: cardRevealFromAbove 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards, floatUp 6s ease-in-out 1.65s infinite;
 }
 
