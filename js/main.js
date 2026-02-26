@@ -348,11 +348,7 @@ const ModalController = (function() {
     // click handlers (smooth scroll + active)
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            if (link.dataset.external) {
-                e.preventDefault();
-                window.location.href = link.getAttribute('href');
-                return;
-            }
+            if (!link.getAttribute('href').startsWith('#')) return;
             e.preventDefault();
             const id = link.getAttribute('href').substring(1);
             const target = document.getElementById(id);
